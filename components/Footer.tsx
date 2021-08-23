@@ -4,12 +4,12 @@ interface Props {
     
 }
 
-function Index({}: Props): ReactElement {
+function Footer({}: Props): ReactElement {
     return (
         <div>
-            Index
+            footer
         </div>
     )
 }
 
-export default Index
+export default Footer

@@ -1,0 +1,15 @@
+@import './utils/_reset.scss';
+@import './utils/_mixin.scss';
+@import './utils/_colors.scss';
+@import './utils/_fontsizes.scss';
+@import './utils/_margins.scss';
+@import './utils/_paddings.scss';
+
+@font-face {
+    font-family: m;
+    src: url("../../public/static/fonts/SF-Pro-Display-Medium.otf");
+} 
+@font-face {
+    font-family: r;
+    src: url("../../public/static/fonts/SF-Pro-Display-Regular.otf");
+} 

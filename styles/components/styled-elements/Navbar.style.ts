@@ -140,7 +140,25 @@ export const Lityle = styled.li`
 
 `
 
-
+export const ImageStyle1 = styled.div`
+    display:flex;
+    justify-content:center;
+    align-items:center;
+`
+export const ImageStyle2 = styled.div`
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position: absolute;
+    opacity: 0;
+    transition: 0.1s;
+`
+export const ImageStyleLogin = styled.div`
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    
+`
 
 export const Enterance = styled.div`
     display:flex;
@@ -151,6 +169,11 @@ export const Logged = styled.div`
     display:flex;
     justify-content:center;
     align-items:center;
+    position: relative;
+    &:hover ${ImageStyle2}
+    {
+        opacity: 1;
+    }
 `
 
 export const Guest = styled.div`

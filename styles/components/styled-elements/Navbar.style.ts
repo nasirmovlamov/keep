@@ -152,11 +152,14 @@ export const ImageStyle2 = styled.div`
     position: absolute;
     opacity: 0;
     transition: 0.1s;
+    cursor: pointer;
+
 `
 export const ImageStyleLogin = styled.div`
     display:flex;
     justify-content:center;
     align-items:center;
+    cursor: pointer;
     
 `
 

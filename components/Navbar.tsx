@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import {Enterance, Guest, ImageStyle1, ImageStyle2, ImageStyleLogin, Light, LightShadow, LightShadow2, Line, Line1, Line2, Line3, LinksStyle, LinkStyle, Lityle, Logged, Logo, Nav} from '../styles/components/styled-elements/Navbar.style'
+import {Enterance, Guest, ImageStyle1, ImageStyle2, ImageStyleLogin, Light, LightShadow, LightShadow2, Line,  LinksStyle, LinkStyle, Lityle, Logged, Logo, Nav} from '../styles/components/styled-elements/Navbar.style'
 import Image from 'next/image'
 import mainLogo from '../public/static/img/main-logo.svg'
 import lightPerson from '../public/static/img/light-person.png'

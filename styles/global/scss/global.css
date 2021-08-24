@@ -54,11 +54,11 @@ table {
 
 @font-face {
   font-family: m;
-  src: url("../../public/static/fonts/SF-Pro-Display-Medium.otf");
+  src: url("../../../public/static/fonts/SF-Pro-Display-Medium.otf");
 }
 
 @font-face {
   font-family: r;
-  src: url("../../public/static/fonts/SF-Pro-Display-Regular.otf");
+  src: url("../../../public/static/fonts/SF-Pro-Display-Regular.otf");
 }
 /*# sourceMappingURL=global.css.map */

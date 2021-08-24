@@ -4,8 +4,13 @@ import Head from 'next/head'
 
 export default function Head({props}) {
     return (
-        <Head>
+        <>
+            <Head>
             
-        </Head>
+            </Head>
+            <div>
+
+            </div>
+        </>
     )
 }

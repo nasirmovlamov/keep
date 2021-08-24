@@ -111,7 +111,7 @@ export const Line = styled.div`
 `
 
 
-export const Lityle = styled.li`
+export const LiStyle = styled.li`
     display:flex;
     justify-content:center;
     align-items:center;

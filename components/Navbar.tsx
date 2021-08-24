@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import {Enterance, Guest, ImageStyle1, ImageStyle2, ImageStyleLogin, Light, LightShadow, LightShadow2, Line,  LinksStyle, LinkStyle, Lityle, Logged, Logo, Nav} from '../styles/components/styled-elements/Navbar.style'
+import {Enterance, Guest, ImageStyle1, ImageStyle2, ImageStyleLogin, Light, LightShadow, LightShadow2, Line,  LinksStyle, LinkStyle, LiStyle, Logged, Logo, Nav} from '../styles/components/styled-elements/Navbar.style'
 import Image from 'next/image'
 import mainLogo from '../public/static/img/main-logo.svg'
 import lightPerson from '../public/static/img/light-person.png'
@@ -14,20 +14,20 @@ function Navbar({}: Props): ReactElement {
         <Nav>
             <Logo> <Image src={mainLogo} />   <Light/> <LightShadow/> <LightShadow2/></Logo>
             <LinksStyle>
-                <Lityle>
+                <LiStyle>
                     <LinkStyle>Forum</LinkStyle> 
                     <Line/>
-                </Lityle>
+                </LiStyle>
                 
-                <Lityle>
+                <LiStyle>
                     <LinkStyle>Store</LinkStyle> 
                     <Line/>
-                </Lityle>
+                </LiStyle>
                 
-                <Lityle>
+                <LiStyle>
                     <LinkStyle>Pedi</LinkStyle>  
                     <Line/>
-                </Lityle>
+                </LiStyle>
             </LinksStyle>
 
             <Enterance>

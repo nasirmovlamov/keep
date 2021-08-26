@@ -12,9 +12,9 @@ interface URL_INTERFACE {
 
 export const URL:URL_INTERFACE = {
     HOME: '/',
-    LOGIN: '/auth/login',
-    LOGOUT: '/auth/logout',
-    REGISTER: '/auth/register',
-    CHECK_USER: '/auth/check',
+    LOGIN: '/login',
+    LOGOUT: '/logout',
+    REGISTER: '/register',
+    CHECK_USER: '/check',
     ABOUT: '/about',
 }

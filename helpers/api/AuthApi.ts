@@ -4,7 +4,7 @@ import * as types from '../../app/constants/AuthContants'
 import { getToken } from '../../app/actions/getToken';
 
 export class AUTH_API  {
-    token:string | null
+    token:string | null 
     username:string
     email:string
     password:string
@@ -29,22 +29,43 @@ export class AUTH_API  {
     async login()
     {
         try {
-            const login_response:any  = await API.post(URL.LOGIN, {params:{email:this.email , password:this.password}}) 
+
+            const login_form = new FormData()
+            login_form.append("email",this.email)
+            login_form.append("password",this.password)
+            const login_response:any  = await API.post(URL.LOGIN, login_form)
             return login_response
         } catch (error) {
             return error.response.data
-            
         }
     }
 
-    async register()
+    async logout()
     {
         try {
-            const register_response:any  = await API.post(URL.REGISTER, {params:{email:this.email , password:this.password , username:this.username}}) 
-            return register_response
+            if(this.token)
+            {
+                const logout_form = new FormData()
+                logout_form.append("token" , this.token)
+                const logout_response:any  = await API.post(URL.LOGOUT, logout_form)
+                return logout_response
+            }
+            else 
+            {
+                return NaN
+            }
         } catch (error) {
-            return error.response.data
+            return error
         }
+    }
+    async register()
+    {
+        const register_form = new FormData()
+        register_form.append("email",this.email)
+        register_form.append("password",this.password)
+        register_form.append("name",this.username)
+        const register_response:any  = await API.post(URL.REGISTER, register_form) 
+        return register_response
     }
 }
 

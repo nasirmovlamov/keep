@@ -5,5 +5,12 @@ export interface USER_INTERFACE {
     status:'idle'| 'loading' | 'failed',
     loggedIn:boolean,
     message:null|string,
-    errors:null|{}
+    errors:{
+        errors:{
+            email:string[]|undefined
+            password:string[]|undefined
+            name:string[]|undefined
+        }
+        message:string
+    }|null
 }

@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { getUser, userLogin, userRegister } from '../thunks/AuthThunk'
 import {USER_STATE} from '../state/AuthState'
+import { setToken } from '../../logic/userToken'
+import { RootState } from '../store/store'
 
 
 
@@ -13,7 +15,7 @@ export const authSlice = createSlice({
   extraReducers: (builder) => {
     //Check Login Reducers
     builder.addCase(getUser.fulfilled, (state, {payload}) => {
-      state.user = payload.data
+      state.user = payload.data.data
       state.status = 'idle'
     }),
     builder.addCase(getUser.pending, (state, {payload}) => {
@@ -27,10 +29,11 @@ export const authSlice = createSlice({
 
     //Login Reducers
     builder.addCase(userLogin.fulfilled, (state, {payload}) => {
-      state.user = payload.data.user
-      localStorage.setItem("token" , payload.data.access_token)
-      state.loggedIn = true
-      state.status = 'idle'
+        console.log( payload.data.data.user)
+        state.user =  payload.data.data.user
+        setToken(payload.data.data.access_token)
+        state.loggedIn = true
+        state.status = 'idle'
     }),
     builder.addCase(userLogin.pending, (state, {payload}) => {
       state.status = 'loading'
@@ -44,22 +47,29 @@ export const authSlice = createSlice({
     //Register Reducers
     builder.addCase(userRegister.fulfilled, (state, {payload}) => {
       state.status = 'idle'
-      state.user = payload.data.user
+      state.user = payload.data.data.user
       state.loggedIn = true
-      localStorage.setItem("token" , payload.token)
-
+      setToken(payload.data.data.access_token)
     }),
     builder.addCase(userRegister.pending, (state, {payload}) => {
       state.status = 'loading'
     }),
     builder.addCase(userRegister.rejected, (state, action) => {
-      state.status = 'failed'
-      state.errors = action.error
+      if (action.payload) {        
+        // Since we passed in `MyKnownError` to `rejectValue` in `updateUser`, the type information will be available here.        
+        state.errors = action.payload      
+        console.log(action.payload)
+      } 
+      else 
+      {        
+        state.errors = action.error      
+      }
     })
   },
 
 })
 
+export const userErrors = (state: RootState) => state.errors?.errors;
 
 export default authSlice.reducer;
 

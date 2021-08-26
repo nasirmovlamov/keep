@@ -155,11 +155,32 @@ export const ImageStyle2 = styled.div`
     cursor: pointer;
 
 `
-export const ImageStyleLogin = styled.div`
+export const LoginButton = styled.button`
     display:flex;
     justify-content:center;
     align-items:center;
     cursor: pointer;
+    width: 100px;
+    height: 60px;
+    img 
+    {
+        width: 50px;
+        height: 30px;
+    }
+    
+`
+export const RegisterButton = styled.button`
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor: pointer;
+    width: 100px;
+    height: 60px;
+    img 
+    {
+        width: 50px;
+        height: 40px;
+    }
     
 `
 

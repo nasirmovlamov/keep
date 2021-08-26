@@ -1,15 +1,26 @@
-import React, { ReactElement } from 'react'
-import {Enterance, Guest, ImageStyle1, ImageStyle2, ImageStyleLogin, Light, LightShadow, LightShadow2, Line,  LinksStyle, LinkStyle, LiStyle, Logged, Logo, Nav} from '../styles/components/styled-elements/Navbar.style'
+import React, { ReactElement, useState } from 'react'
+import {Enterance, Guest, ImageStyle1, ImageStyle2,  Light, LightShadow, LightShadow2, Line,  LinksStyle, LinkStyle, LiStyle, Logged, LoginButton, Logo, Nav, RegisterButton} from '../styles/components/styled-elements/Navbar.style'
 import Image from 'next/image'
 import mainLogo from '../public/static/img/main-logo.svg'
 import lightPerson from '../public/static/img/light-person.png'
 import darkPerson from '../public/static/img/dark-person.png'
 import loginPng from '../public/static/img/login.svg'
+import registerSVG from '../public/static/img/register-icon.svg'
+import RegisterModal from './RegisterModal'
+import LoginModal from './LoginModal'
 interface Props {
     
 }
 
 function Navbar({}: Props): ReactElement {
+
+    const [modals, setmodals] = useState({login:true, register:true,another:false})
+
+    const loginModal = (modalType:boolean) => setmodals({...modals , login:modalType })
+    const registerModal = (modalType:boolean) => setmodals({...modals , register:modalType })
+    const anotherModal = (modalType:boolean) => setmodals({...modals , another:modalType })
+
+
     return (
         <Nav>
             <Logo> <Image src={mainLogo} />   <Light/> <LightShadow/> <LightShadow2/></Logo>
@@ -40,9 +51,14 @@ function Navbar({}: Props): ReactElement {
                     </ImageStyle2>
                 </Logged>
                 <Guest>  
-                    <ImageStyleLogin>
-                        <Image width="110px" height='45px' src={loginPng} /> 
-                    </ImageStyleLogin>
+                    <LoginButton onClick={() => loginModal(true)}>
+                        <Image  src={loginPng} /> 
+                    </LoginButton>
+                    <RegisterButton onClick={() => registerModal(true)}>
+                        <Image  src={registerSVG} /> 
+                    </RegisterButton>
+                    {modals.register && <RegisterModal/>}
+                    {/* {modals.login && <LoginModal/>} */}
                 </Guest>
             </Enterance>
         </Nav>

@@ -5,11 +5,35 @@ import {getToken} from '../../logic/userToken'
 import { AxiosError } from 'axios'
 
 
-export const getUser= createAsyncThunk(
-  types.GET_USER, async (token:string, {rejectWithValue}) => {
+export const userCheck= createAsyncThunk(
+  types.GET_USER, async (token, {rejectWithValue}) => {
     try {
-      const API = new AUTH_API({token:getToken()  ,user:null})
-      return API.getUser() 
+      const token = getToken()
+      if(token!==null)
+      {
+        const API = new AUTH_API({token:token, user:null})
+        const data = await API.getUser()
+        return  data
+      }
+      else {
+        return false 
+      }
+    } catch (error) {
+      return rejectWithValue(error.response.data)
+    }
+  }
+)
+
+export const forgetPassword= createAsyncThunk(
+  types.FORGET_PASSWORD, async (token, {rejectWithValue}) => {
+    try {
+      try {
+        const API = new AUTH_API({token:"" , user:user})
+        const data = await API.login() 
+        return data
+      } catch (err) {
+        return rejectWithValue(err.response.data )
+      }
     } catch (error) {
       return rejectWithValue(error.response.data)
     }
@@ -17,16 +41,33 @@ export const getUser= createAsyncThunk(
 )
 
 
-export const userLogin = createAsyncThunk(
-  types.LOGIN, async (user:{} , {rejectWithValue}) => {
+
+export const userLogout = createAsyncThunk(
+  types.LOGOUT, async (token, {rejectWithValue}) => {
     try {
-      const API = new AUTH_API({token:"" , user:user})
-      return API.login() 
+      const token = getToken()
+      if(token!==null)
+      {
+        const API = new AUTH_API({token:token, user:null})
+        const data = await API.logout()
+        return  data
+      }
+      else {
+        return false 
+      }
     } catch (error) {
       return rejectWithValue(error.response.data)
     }
   }
 )
+
+
+
+
+
+
+
+
 
 interface MyData {  
   data:{
@@ -46,18 +87,32 @@ interface MyData {
 }
 
 
-export interface AuthError {
+export interface RegisterAuthError {
   errors:{
-        email:string[]|undefined
-        password:string[]|undefined
-        name:string[]|undefined
-    }
+    email:string[]|undefined
+    password:string[]|undefined
+    name:string[]|undefined
+  }
   message:string
 } 
 
-interface UserAttributes {
+export interface LoginAuthError {
+  errors:{
+    email:string[]|undefined
+    password:string[]|undefined
+  }
+  message:string
+} 
+
+
+interface RegisterAttributes {
   email: string
   name: string
+  password: string
+}
+
+interface LoginAttributes {
+  email: string
   password: string
 }
 
@@ -69,15 +124,37 @@ interface RejectedWithValueAction<ThunkArg, RejectedValue> {
     requestId: string    
     arg: ThunkArg    
     aborted: boolean  }
-}
+  }
+  
+  
+  
+  export const userLogin = createAsyncThunk<
+  MyData , 
+  LoginAttributes , 
+  {
+    rejectValue: LoginAuthError 
+  }>(
+    types.LOGIN, async (user , {rejectWithValue}) => {
+      try {
+        const API = new AUTH_API({token:"" , user:user})
+        const data = await API.login() 
+        return data
+      } catch (err) {
+        return rejectWithValue(err.response.data )
+      }
+    }
+  )
+
+
+
 
 
 
 export const userRegister = createAsyncThunk<
 MyData , 
-UserAttributes , 
+RegisterAttributes , 
 {
-  rejectValue: AuthError 
+  rejectValue: RegisterAuthError 
 }>
 (
   types.REGISTER, async (user, {rejectWithValue}) => {
@@ -86,7 +163,7 @@ UserAttributes ,
       const data = await API.register()
       return  data
     } catch (err) {
-      return rejectWithValue(err.response.data as AuthError);
+      return rejectWithValue(err.response.data);
     }
   }
 )
@@ -97,22 +174,6 @@ UserAttributes ,
 
 
 
-
-
-
-
-
-
-export const userLogout = createAsyncThunk(
-  types.LOGOUT, async (token:string|null, {rejectWithValue}) => {
-    try {
-      const API = new AUTH_API({token:token , user:null})
-      return API.logout() 
-    } catch (errorPayload) {
-      return rejectWithValue(errorPayload.response.data)
-    }
-  }
-)
 
 
 

@@ -144,17 +144,28 @@ export const ImageStyle1 = styled.div`
     display:flex;
     justify-content:center;
     align-items:center;
+    /* position: absolute; */
 `
 export const ImageStyle2 = styled.div`
     display:flex;
-    justify-content:center;
-    align-items:center;
+    /* justify-content:center; */
+    /* align-items:center; */
     position: absolute;
     opacity: 0;
     transition: 0.1s;
     cursor: pointer;
 
 `
+
+
+export const PersonName = styled.label`
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-right: 15px;
+`
+
+
 export const LoginButton = styled.button`
     display:flex;
     justify-content:center;
@@ -162,6 +173,8 @@ export const LoginButton = styled.button`
     cursor: pointer;
     width: 100px;
     height: 60px;
+    border: none;
+    background-color: transparent;
     img 
     {
         width: 50px;
@@ -176,6 +189,8 @@ export const RegisterButton = styled.button`
     cursor: pointer;
     width: 100px;
     height: 60px;
+    border: none;
+    background-color: transparent;
     img 
     {
         width: 50px;
@@ -191,7 +206,7 @@ export const Enterance = styled.div`
 `
 export const Logged = styled.div`
     display:flex;
-    justify-content:center;
+    /* justify-content:center; */
     align-items:center;
     position: relative;
     &:hover ${ImageStyle2}
@@ -199,6 +214,26 @@ export const Logged = styled.div`
         opacity: 1;
     }
 `
+export const Logout = styled.button`
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position: relative;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 18px;
+    &:hover 
+    {
+        color: black;
+    }
+    &:focus 
+    {
+        outline: none;
+    }
+`
+
 
 export const Guest = styled.div`
     display:flex;

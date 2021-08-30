@@ -2,8 +2,27 @@ import { USER_INTERFACE } from "./state-Interfaces/AuthInterface";
 
 export const USER_STATE:USER_INTERFACE = {
     user: {},
-    status: 'idle',
-    loggedIn:false,
+    status: 'loading',
+    loggedIn:null,
     message:null,
-    errors:null
+    userModals:{
+        login:false,
+        register:false,
+        forgetPassword:false
+    },
+    forms:{
+        registerForm:{
+            email:"",
+            name:"",
+            password:""
+        },
+        loginForm:{
+            email:"",
+            password:""
+        }
+    },
+    errors:{
+        registerErrors:null,
+        loginErrors:null,
+    },
 }

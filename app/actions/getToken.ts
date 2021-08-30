@@ -1,3 +1,6 @@
 
 
-export const getToken = () => localStorage.getItem('token')
+export const getToken = () => {
+    const token = localStorage.getItem('token') 
+    return token===null ? token : false
+}  

@@ -4,66 +4,59 @@ import * as types from '../../app/constants/AuthContants'
 import { getToken } from '../../app/actions/getToken';
 
 export class AUTH_API  {
-    token:string | null 
-    username:string
-    email:string
-    password:string
+    token:string 
+    user:{name:string,email:string,password:string}|null 
 
-    constructor(auth_data:{token: string | null , user:any }) {
+    constructor(auth_data:{token: string , user:{name:string,email:string,password:string}|null }) {
         this.token = auth_data.token;
-        this.username = auth_data.user.username
-        this.email    = auth_data.user.email
-        this.password = auth_data.user.password
+        this.user = auth_data.user
     }
 
     async getUser()
     {
-        try {
-            const getUser_response:any  = await API.post(URL.CHECK_USER, {headers: { 'Authorization': `Bearer ${this.token}`}}) 
-            return getUser_response
-        } catch (error) {
-            return error.response.data
-        }
+        const user_response:any  = await API.get(URL.CHECK_USER, {headers:{Authorization:`Bearer ${this.token}`}})
+        return user_response
     }
-
-    async login()
-    {
-        try {
-
-            const login_form = new FormData()
-            login_form.append("email",this.email)
-            login_form.append("password",this.password)
-            const login_response:any  = await API.post(URL.LOGIN, login_form)
-            return login_response
-        } catch (error) {
-            return error.response.data
-        }
-    }
-
     async logout()
     {
-        try {
-            if(this.token)
-            {
-                const logout_form = new FormData()
-                logout_form.append("token" , this.token)
-                const logout_response:any  = await API.post(URL.LOGOUT, logout_form)
-                return logout_response
-            }
-            else 
-            {
-                return NaN
-            }
-        } catch (error) {
-            return error
-        }
+        const logout_response:any  = await API.get(URL.LOGOUT, {headers:{Authorization:`Bearer ${this.token}`}})
+        return logout_response
     }
+    
+    async login()
+    {
+        const login_form = new FormData()
+        if(this.user !== null)
+        {
+            login_form.append("email",this.user.email)
+            login_form.append("password",this.user.password)
+
+        }
+        const login_response:any  = await API.post(URL.LOGIN, login_form)
+        return login_response
+    }
+
+    async forgetPassword()
+    {
+        const forgetPasswordForm = new FormData()
+        if(this.user !== null)
+        {
+            forgetPasswordForm.append("email",this.user.email)
+        }
+        const login_response:any  = await API.post(URL.LOGIN, forgetPasswordForm)
+        return login_response
+    }
+
+    
     async register()
     {
         const register_form = new FormData()
-        register_form.append("email",this.email)
-        register_form.append("password",this.password)
-        register_form.append("name",this.username)
+        if(this.user !== null)
+        {
+            register_form.append("email",this.user.email)
+            register_form.append("password",this.user.password)
+            register_form.append("name",this.user.name)
+        }
         const register_response:any  = await API.post(URL.REGISTER, register_form) 
         return register_response
     }

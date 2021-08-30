@@ -15,6 +15,6 @@ export const URL:URL_INTERFACE = {
     LOGIN: '/login',
     LOGOUT: '/logout',
     REGISTER: '/register',
-    CHECK_USER: '/check',
+    CHECK_USER: '/user',
     ABOUT: '/about',
 }

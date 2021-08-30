@@ -16,27 +16,25 @@ export const userCheck= createAsyncThunk(
         return  data
       }
       else {
-        return false 
+        throw new Error("not logged");
+        
       }
+      console.log(token)
     } catch (error) {
       return rejectWithValue(error.response.data)
     }
   }
 )
 
-export const forgetPassword= createAsyncThunk(
-  types.FORGET_PASSWORD, async (token, {rejectWithValue}) => {
-    try {
+export const forgetPasswordThunk= createAsyncThunk(
+  types.FORGET_PASSWORD, async (user:{email:string}, {rejectWithValue}) => {
       try {
         const API = new AUTH_API({token:"" , user:user})
-        const data = await API.login() 
+        const data = await API.forgetPassword() 
         return data
       } catch (err) {
         return rejectWithValue(err.response.data )
       }
-    } catch (error) {
-      return rejectWithValue(error.response.data)
-    }
   }
 )
 
@@ -100,6 +98,13 @@ export interface LoginAuthError {
   errors:{
     email:string[]|undefined
     password:string[]|undefined
+  }
+  message:string
+} 
+
+export interface ForgetPasswordError {
+  errors:{
+    email:string[]|undefined
   }
   message:string
 } 

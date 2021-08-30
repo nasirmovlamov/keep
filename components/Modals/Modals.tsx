@@ -4,6 +4,7 @@ import { useAppSelector } from '../../app/store/hooks'
 import ForgetPasswordModal from './ForgetPasswordModal'
 import LoginModal from './LoginModal'
 import RegisterModal from './RegisterModal'
+import IsEmailSendModal from './IsEmailSendModal'
 
 interface Props {
 }
@@ -16,6 +17,7 @@ function Modals({}: Props):ReactElement {
             {allModals.login && <LoginModal />}
             {allModals.register && <RegisterModal />}
             {allModals.forgetPassword && <ForgetPasswordModal />}
+            {allModals.isEmailSend && <IsEmailSendModal />}
         </>
     )
 }

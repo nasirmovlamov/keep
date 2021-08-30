@@ -8,7 +8,8 @@ export const USER_STATE:USER_INTERFACE = {
     userModals:{
         login:false,
         register:false,
-        forgetPassword:false
+        forgetPassword:false,
+        isEmailSend:false
     },
     forms:{
         registerForm:{
@@ -24,5 +25,6 @@ export const USER_STATE:USER_INTERFACE = {
     errors:{
         registerErrors:null,
         loginErrors:null,
+        forgetPasswordErrors:null
     },
 }

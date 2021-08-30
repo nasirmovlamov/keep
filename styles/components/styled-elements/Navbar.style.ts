@@ -1,4 +1,9 @@
+import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { is_Logged } from "../../../app/containers/AuthSlice";
+
+// color = (isLogged) ? "red" : "gray"
+
 
 export const Nav = styled.nav`
     display:flex;
@@ -8,7 +13,8 @@ export const Nav = styled.nav`
     padding-right: 20px;
     padding-top: 7px;
     padding-bottom: 10px;
-    border: 1px solid lightgray;
+    border-bottom: 1px solid ${({theme}) => theme.navbar.navBorder};
+    background-color: ${({theme}) => theme.navbar.navBackground};
     margin: 0px;
 `
 
@@ -18,47 +24,49 @@ export const Light = styled.div`
     width:7px;
     height:7px;
     position:absolute;
-    background-color:rgb(255, 213, 0);
-    left:76px;
-    top:21px;
+    background-color:#FFFFFF;
     border-radius:50%;
     z-index:2;
+    left:44.4px;
+    top:9.4px;
+    opacity: 0.1;
     transition: 0.2s;
+    filter: blur(1px);
 
 `
 
 
 export const LightShadow = styled.div`
-    width:17px;
-    height:17px;
+    width:15px;
+    height:15px;
     position:absolute;
-    background-color:#ffd500;
-    left:71px;
-    top:16px;
+    background-color:#FFFFFF;
     border-radius:50%;
     transition: 0.2s;
     stroke-width: 0;
     opacity: 0;
-    fill: #ffd500;stroke: #8c8c8c;stroke-width: 0
+    z-index: 2;
+    fill: #FFFFFF;stroke: #8c8c8c;stroke-width: 0;
+    filter: blur(5px);
+    left:40.4px;
+    top:5.5px;
 `
 export const LightShadow2 = styled.div`
-    width:25px;
+    /* width:25px;
     height:25px;
     position:absolute;
-    background-color:#ffd500;
-    left:67px;
-    top:12px;
+    background-color:#76888A;
     border-radius:50%;
     transition: 0.2s;
     stroke-width: 0;
-    opacity: 0;
+    opacity: 0; */
 `
 export const Logo = styled.div`
     display:flex;
     justify-content:center;
     align-items:center;
     position:relative;
-    
+
     
     &:hover ${LightShadow} {
         opacity: 0.38;
@@ -66,17 +74,22 @@ export const Logo = styled.div`
     }
     &:hover ${LightShadow2} {
         opacity: 0.169;
-
     }
-    
+    &:hover ${Light} {
+        opacity: 1;
+    }
     img 
     {
-        width: 220px;
-        z-index: 3;
+        width: 120px;
+        z-index: 1;
         height: 58px;
     }
 `
-
+export const LogoText = styled.p`
+    font-size: 45px;
+    color: ${({theme}) => theme.navbar.navLogoText};
+    font-family: "m";
+`
 
 export const LinksStyle = styled.ul`
     display:flex;
@@ -93,21 +106,21 @@ export const LinkStyle = styled.a`
     align-items:center;
     font-family: m;
     letter-spacing: 1px;
-    color: rgba(3, 39, 40, 0.61);
     font-weight: 600;
     cursor: pointer;
+    color: ${({theme}) => theme.navbar.navLinks};
     transition: 0.3s;
-
 `
 export const Line = styled.div`
     width: 10px;
     opacity: 0;
     height: 2px;
     border-radius: 100px;
-    background-color:  rgb(3, 39, 40);
     position:absolute;
     bottom: 0px;
     transition: 0.3s;
+    background-color: ${({theme}) => theme.navbar.navLinksHovered};
+
 `
 
 
@@ -122,19 +135,28 @@ export const LiStyle = styled.li`
     width: 195px;
     font-family: m;
     letter-spacing: 1px;
-    color: rgba(3, 39, 40, 0.61);
     font-weight: 600;
     position: relative;
     margin-top: 27px;
+    div 
+    {
+        opacity: ${({linkFocus}) => linkFocus ? '1' : '0'};
+        width: ${({linkFocus}) => linkFocus ? '120px' : '0px'};
+    }
+    a {
+        color: ${({theme , linkFocus}) => linkFocus ? theme.navbar.navLinksHovered : theme.navbar.navLinks};
+    }
+
     &:hover 
     {
         div 
         {
             opacity: 1;
             width: 120px;
+
         }
         a {
-            color:rgb(3, 39, 40);
+            color: ${({theme}) => theme.navbar.navLinksHovered};
         }
     }
 
@@ -152,7 +174,7 @@ export const ImageStyle2 = styled.div`
     /* align-items:center; */
     position: absolute;
     opacity: 0;
-    transition: 0.1s;
+    transition: 0.15s;
     cursor: pointer;
 
 `
@@ -163,6 +185,8 @@ export const PersonName = styled.label`
     justify-content:center;
     align-items:center;
     margin-right: 15px;
+    color: ${({theme}) => theme.navbar.navLinks};
+
 `
 
 
@@ -175,6 +199,8 @@ export const LoginButton = styled.button`
     height: 60px;
     border: none;
     background-color: transparent;
+    filter: ${({theme}) => `invert(${theme.navbar.navLogin})`};
+
     img 
     {
         width: 50px;
@@ -191,6 +217,7 @@ export const RegisterButton = styled.button`
     height: 60px;
     border: none;
     background-color: transparent;
+    filter: ${({theme}) => `invert(${theme.navbar.navRegister})`};
     img 
     {
         width: 50px;
@@ -209,9 +236,10 @@ export const Logged = styled.div`
     /* justify-content:center; */
     align-items:center;
     position: relative;
-    &:hover ${ImageStyle2}
+    &:hover ${ImageStyle2} , &:hover ${PersonName}
     {
         opacity: 1;
+        color: ${({theme}) => theme.navbar.navLinksHovered};   
     }
 `
 export const Logout = styled.button`
@@ -224,9 +252,11 @@ export const Logout = styled.button`
     cursor: pointer;
     transition: 0.2s;
     font-size: 18px;
+    color: ${({theme}) => theme.navbar.navLinks};
+
     &:hover 
     {
-        color: black;
+        color: ${({theme}) => theme.navbar.navLinksHovered};
     }
     &:focus 
     {

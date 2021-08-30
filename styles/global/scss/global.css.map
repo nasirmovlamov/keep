@@ -9,7 +9,8 @@
         "_fontsizes.scss",
         "_margins.scss",
         "_paddings.scss",
-        "_typography.scss"
+        "_typography.scss",
+        "_theme.scss"
     ],
     "names": [],
     "file": "global.css"

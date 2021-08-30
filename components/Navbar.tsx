@@ -1,5 +1,5 @@
-import React, { ReactElement, useEffect, useState } from 'react'
-import {Enterance, Guest, ImageStyle1, ImageStyle2,  Light, LightShadow, LightShadow2, Line,  LinksStyle, LinkStyle, LiStyle, Logged, LoginButton, Logo, Logout, Nav, PersonName, RegisterButton} from '../styles/components/styled-elements/Navbar.style'
+import React, { ReactElement, useEffect,  useState } from 'react'
+import {Enterance, Guest, ImageStyle1, ImageStyle2,  Light, LightShadow, LightShadow2, Line,  LinksStyle, LinkStyle, LiStyle, Logged, LoginButton, Logo, LogoText, Logout, Nav, PersonName, RegisterButton} from '../styles/components/styled-elements/Navbar.style'
 import Image from 'next/image'
 import mainLogo from '../public/static/img/main-logo.svg'
 import lightPerson from '../public/static/img/light-person.png'
@@ -13,10 +13,15 @@ import { useAppDispatch, useAppSelector } from '../app/store/hooks'
 import { changeModalAction, is_loading, is_Logged, userState, user_modals } from '../app/containers/AuthSlice'
 import { userCheck, userLogin, userLogout } from '../app/thunks/AuthThunk'
 import { GetServerSideProps } from 'next'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+
 interface Props {
 }
 
 function Navbar({}: Props): ReactElement {
+    const router = useRouter()
+    const {pathname} = router
     const dispatch = useAppDispatch();
     const userModals = useAppSelector(user_modals);
     const userData = useAppSelector(userState);
@@ -25,7 +30,7 @@ function Navbar({}: Props): ReactElement {
     const [navView, setnavView] = useState(null)
     useEffect(() => {
         dispatch(userCheck())
-        
+
         if(isLogged === null)
         {
 
@@ -66,25 +71,51 @@ function Navbar({}: Props): ReactElement {
     }, [isLogged])
 
     
-                
+
+    const pathChecker = (path) => {
+        if(pathname === "/forum")
+        {
+            return true
+        }
+        else if (pathname === "/store")
+        {
+            return true
+        }
+        else if(pathname === "/pedi")
+        {
+            return true 
+        }
+        else 
+        {
+            return false
+        }
+    }
+
+
     return (
         <Nav>
-            <Logo> <Image src={mainLogo} />   <Light/> <LightShadow/> <LightShadow2/></Logo>
+            <Link href="/" ><Logo> <Image src={mainLogo} />   <Light/> <LightShadow/> <LightShadow2/> <LogoText>abyss</LogoText> </Logo></Link>
             <LinksStyle>
-                <LiStyle>
-                    <LinkStyle>Forum</LinkStyle> 
-                    <Line/>
-                </LiStyle>
+                <Link href="/forum">
+                    <LiStyle linkFocus={pathname === "/forum" ? true: false}>
+                        <LinkStyle>Forum</LinkStyle>
+                        <Line />
+                    </LiStyle>
+                </Link> 
+                {console.log(pathname)}
+                <Link href="/store">
+                    <LiStyle linkFocus={pathname === "/store" ? true: false}>
+                        <LinkStyle>Store</LinkStyle>
+                        <Line/>
+                    </LiStyle>
+                </Link>
                 
-                <LiStyle>
-                    <LinkStyle>Store</LinkStyle> 
-                    <Line/>
-                </LiStyle>
-                
-                <LiStyle>
-                    <LinkStyle>Pedi</LinkStyle>  
-                    <Line/>
-                </LiStyle>
+                <Link href="/pedi">
+                    <LiStyle linkFocus={pathname === "/pedi" ? true: false}>
+                        <LinkStyle>Pedi</LinkStyle>
+                        <Line/>
+                    </LiStyle>
+                </Link> 
             </LinksStyle>
 
             <Enterance>

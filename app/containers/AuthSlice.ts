@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { userCheck, userLogin, userLogout, userRegister } from '../thunks/AuthThunk'
+import { forgetPasswordThunk, userCheck, userLogin, userLogout, userRegister } from '../thunks/AuthThunk'
 import {USER_STATE} from '../state/AuthState'
 import { setToken } from '../../logic/userToken'
 import { RootState } from '../store/store'
@@ -30,7 +30,7 @@ export const authSlice = createSlice({
 
   },
   extraReducers: (builder) => {
-    //Check Login Reducers
+    //Check User Reducers
     builder.addCase(userCheck.fulfilled, (state, {payload}) => {
       state.user = payload.data.data
       state.status = 'idle'
@@ -45,6 +45,7 @@ export const authSlice = createSlice({
     }),
 
 
+    // Logout
     builder.addCase(userLogout.fulfilled, (state, {payload}) => {
       state.user = {}
       state.status = 'idle'
@@ -82,6 +83,28 @@ export const authSlice = createSlice({
         state.errors.loginErrors = action.error      
       } 
     })  
+
+
+    //Forget Password Reducers
+    builder.addCase(forgetPasswordThunk.fulfilled, (state, {payload}) => {
+      state.userModals = {...state.userModals, 'forgetPassword':false , 'isEmailSend':true}
+      state.status = 'idle'
+    }),
+    builder.addCase(forgetPasswordThunk.pending, (state, {payload}) => {
+      state.status = 'loading'
+    }),
+    builder.addCase(forgetPasswordThunk.rejected, (state, action) => {
+      state.status = 'failed'
+      state.loggedIn = false
+      if (action.payload) {        
+        state.errors.forgetPasswordErrors = action.payload
+      } 
+      else 
+      {        
+        state.errors.forgetPasswordErrors = action.error      
+      } 
+    })  
+
 
 
     //Register Reducers
@@ -123,6 +146,7 @@ export const { register_Form_OnChange } = authSlice.actions;
 // data
 export const registerErrors = (state: RootState) => state.authReducer.errors?.registerErrors;
 export const loginErrors = (state: RootState) => state.authReducer.errors?.loginErrors;
+export const forget_Password_Errors = (state: RootState) => state.authReducer.errors?.forgetPasswordErrors;
 export const userState = (state: RootState) => state.authReducer.user
 export const user_modals = (state: RootState) => state.authReducer.userModals
 

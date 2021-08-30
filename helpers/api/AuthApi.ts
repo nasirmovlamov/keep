@@ -7,7 +7,7 @@ export class AUTH_API  {
     token:string 
     user:{name:string,email:string,password:string}|null 
 
-    constructor(auth_data:{token: string , user:{name:string,email:string,password:string}|null }) {
+    constructor(auth_data:{token: string , user:{name:string|undefined,email:string|undefined,password:string|undefined}|null }) {
         this.token = auth_data.token;
         this.user = auth_data.user
     }
@@ -41,9 +41,9 @@ export class AUTH_API  {
         const forgetPasswordForm = new FormData()
         if(this.user !== null)
         {
-            forgetPasswordForm.append("email",this.user.email)
+            forgetPasswordForm.append("email", this.user.email)
         }
-        const login_response:any  = await API.post(URL.LOGIN, forgetPasswordForm)
+        const login_response:any  = await API.post(URL.PASSWORD_RESET, forgetPasswordForm , {headers:{Authorization:`Bearer ${this.token}`}})
         return login_response
     }
 

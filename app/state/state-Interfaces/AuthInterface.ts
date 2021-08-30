@@ -1,4 +1,4 @@
-import { LoginAuthError, RegisterAuthError } from "../../thunks/AuthThunk";
+import { ForgetPasswordError, LoginAuthError, RegisterAuthError } from "../../thunks/AuthThunk";
 
 
 export interface USER_INTERFACE {
@@ -9,7 +9,8 @@ export interface USER_INTERFACE {
     userModals:{
         login:boolean
         register:boolean
-        forgetPassword:boolean
+        forgetPassword:boolean,
+        isEmailSend:boolean
     }
     forms:{
         registerForm:{
@@ -25,5 +26,6 @@ export interface USER_INTERFACE {
     errors:{
         registerErrors: RegisterAuthError | null
         loginErrors: LoginAuthError | null
+        forgetPasswordErrors: ForgetPasswordError | null
     }|null
 }

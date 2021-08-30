@@ -41,7 +41,7 @@ function LoginModal({}: Props):ReactElement {
                     <button type="submit">Submit</button>
                 </div>
                 <div style={{display:'flex',flexDirection:"column",alignItems:'center',marginTop:"5px",marginBottom:"10px"}}>
-                    {(errors !== null && errors !== undefined &&  errors.errors.email !== undefined) && <button type="button" style={{color:"red", fontSize:"12px",marginTop:"5px",marginBottom:"5px"}} onClick={()=> dispatch(changeModalAction('forgetPassword'))}>Forget Password</button>}
+                    {(errors !== null && errors !== undefined &&  errors.errors.password !== undefined) && <button type="button" style={{color:"red", fontSize:"12px",marginTop:"5px",marginBottom:"5px"}} onClick={()=> dispatch(changeModalAction('forgetPassword'))}>Forget Password</button>}
                 </div>
             </form>
         </div>

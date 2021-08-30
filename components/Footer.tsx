@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react'
+import { FooterColumn,  FooterElement,  FooterRow, FooterStyle } from '../styles/components/styled-elements/Footer.style'
 
 interface Props {
     
@@ -6,9 +7,40 @@ interface Props {
 
 function Footer({}: Props): ReactElement {
     return (
-        <div>
-            footer
-        </div>
+        <FooterStyle>
+            <FooterRow>
+                <FooterColumn>
+                    <FooterElement>Terms of </FooterElement>
+                </FooterColumn>
+
+                <FooterColumn>
+                    <FooterElement>Privacy Policy</FooterElement>
+                </FooterColumn>
+
+                <FooterColumn>
+                    <FooterElement>About Us</FooterElement>
+                </FooterColumn>
+
+                <FooterColumn>
+                    <FooterElement>Careers</FooterElement>
+                </FooterColumn>
+
+
+                <FooterColumn>
+                    <FooterElement>Support</FooterElement>
+                </FooterColumn>
+
+                <FooterColumn>
+                    <FooterElement>Community</FooterElement>
+                </FooterColumn>
+            </FooterRow>
+            <FooterRow>
+                <FooterRow>
+                    <FooterElement>&#169; All rights reserved 2021</FooterElement>
+                    <FooterElement>Abyss</FooterElement>
+                </FooterRow>
+            </FooterRow>
+        </FooterStyle>
     )
 }
 

@@ -1,9 +1,17 @@
 
 @font-face {
     font-family: m;
-    src: url("../../../public/static/fonts/SF-Pro-Display-Medium.otf");
+    src: url("../../../public/static/fonts/SFProDisplay-Medium.ttf");
+} 
+@font-face {
+    font-family: s;
+    src: url("../../../public/static/fonts/SFProDisplay-Semibold.ttf");
 } 
 @font-face {
     font-family: r;
-    src: url("../../../public/static/fonts/SF-Pro-Display-Regular.otf");
+    src: url("../../../public/static/fonts/SFProDisplay-Regular.ttf");
 } 
+body 
+{
+    font-family:s;
+}

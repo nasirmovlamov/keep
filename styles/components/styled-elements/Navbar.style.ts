@@ -88,29 +88,8 @@ export const Logo = styled.div`
 export const LogoText = styled.p`
     font-size: 45px;
     color: ${({theme}) => theme.navbar.navLogoText};
-    font-family: "m";
 `
 
-export const LinksStyle = styled.ul`
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:57px;    
-    column-gap: 76px;
-`
-
-
-export const LinkStyle = styled.a`
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-family: m;
-    letter-spacing: 1px;
-    font-weight: 600;
-    cursor: pointer;
-    color: ${({theme}) => theme.navbar.navLinks};
-    transition: 0.3s;
-`
 export const Line = styled.div`
     width: 10px;
     opacity: 0;
@@ -120,9 +99,18 @@ export const Line = styled.div`
     bottom: 0px;
     transition: 0.3s;
     background-color: ${({theme}) => theme.navbar.navLinksHovered};
-
 `
-
+export const LinkStyle = styled.a`
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    letter-spacing: 1px;
+    font-weight: 600;
+    cursor: pointer;
+    color: ${({theme}) => theme.navbar.navLinks};
+    transition: 0.3s;
+    
+`
 
 export const LiStyle = styled.li`
     display:flex;
@@ -133,7 +121,6 @@ export const LiStyle = styled.li`
     column-gap: 40px;
     font-size: 18px;
     width: 195px;
-    font-family: m;
     letter-spacing: 1px;
     font-weight: 600;
     position: relative;
@@ -149,10 +136,12 @@ export const LiStyle = styled.li`
 
     &:hover 
     {
+        
         div 
         {
-            opacity: 1;
+            opacity: 1 !important;
             width: 120px;
+            transform: scale(1) !important;
 
         }
         a {
@@ -161,6 +150,21 @@ export const LiStyle = styled.li`
     }
 
 `
+
+export const LinksStyle = styled.ul`
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:57px;    
+    &:hover ${Line}
+    {
+        opacity: 0.2; 
+        transform: scale(0.8);
+
+    }
+`
+
+
 
 export const ImageStyle1 = styled.div`
     display:flex;

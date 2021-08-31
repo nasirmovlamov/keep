@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <Provider store={store}> 
-      <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+      <ThemeProvider theme={theme === "light" ?  darkTheme :lightTheme}>
         <>
           <GlobalStyle/>
           <Layout >

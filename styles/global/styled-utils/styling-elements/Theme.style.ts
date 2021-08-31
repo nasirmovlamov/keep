@@ -16,10 +16,15 @@
         navLogin:"0",
         navRegister:"0",
         navLogout:"#000000"
-
+      },
+      pageTabs: {
+        contBG:"#11191e",
+        border:"gray",
+        hover:{
+          border:"lightgray",
+        }
       }
   }
-  
   export const darkTheme = {
     body: '#00090E',
     text: '#FAFAFA',
@@ -39,6 +44,13 @@
       navLogin:"1",
       navRegister:"1",
       navLogout:"#FFFFFF"
+    },
+    pageTabs: {
+      contBG:"#11191e",
+      border:"gray",
+      hover:{
+        border:"lightgray",
+      }
     }
   }
 

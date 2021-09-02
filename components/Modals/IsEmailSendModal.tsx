@@ -16,7 +16,7 @@ function IsEmailSendModal({}: Props):ReactElement {
 
     const formSubmit = async (e:FormEvent) => {
         e.preventDefault()
-        dispatch(authThunk.forgetPasswordThunk({email:loginForm.email}))
+        // dispatch(authThunk.forgetPasswordThunk({email:loginForm.email}))
     }
 
     
@@ -38,7 +38,7 @@ function IsEmailSendModal({}: Props):ReactElement {
                     <button type="button" onClick={() => dispatch(changeModalAction('forgetPassword'))}>Go back</button>
                 </div>
                 <div style={{display:'flex',flexDirection:"column",alignItems:'center',marginTop:"20px",marginBottom:"10px"}}>
-                    {(errors !== null && errors !== undefined &&  errors.errors.email !== undefined) && <label>{errors.errors.email}</label>}
+                    {/* {(errors !== null && errors !== undefined &&  errors.errors.email !== undefined) && <label>{errors.errors.email}</label>} */}
                 </div>
             </form>
         </div>

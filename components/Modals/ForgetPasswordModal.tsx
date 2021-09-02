@@ -16,7 +16,7 @@ function ForgetPasswordModal({}: Props):ReactElement {
 
     const formSubmit = async (e:FormEvent) => {
         e.preventDefault()
-        dispatch(authThunk.forgetPasswordThunk({email:loginForm.email}))
+        dispatch(authThunk.forgetPasswordThunk({email:loginForm.email, name:"",password:""}))
     }
 
     
@@ -38,8 +38,7 @@ function ForgetPasswordModal({}: Props):ReactElement {
                     <button type="button" onClick={() => dispatch(changeModalAction('login'))}>Go back</button>
                 </div>
                 <div style={{display:'flex',flexDirection:"column",alignItems:'center',marginTop:"20px",marginBottom:"10px"}}>
-                {(errors !== null && errors !== undefined &&  errors.errors.email !== undefined) && <label>{errors.errors.email}</label>}
-
+                {(errors !== null && errors !== undefined &&  errors.errors.attempt !== undefined) && <label>{errors.errors.attempt}</label>}
                 </div>
             </form>
         </div>

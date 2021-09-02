@@ -3,6 +3,7 @@ import {AUTH_API} from '../../helpers/api/AuthApi'
 import { AsyncThunk, createAction, createAsyncThunk, isRejectedWithValue} from '@reduxjs/toolkit'
 import {getToken} from '../../logic/userToken'
 import { AxiosError } from 'axios'
+import { USER_INTERFACE } from '../state/state-Interfaces/AuthInterface'
 
 
 export const userCheck= createAsyncThunk(
@@ -26,14 +27,18 @@ export const userCheck= createAsyncThunk(
   }
 )
 
-export const forgetPasswordThunk= createAsyncThunk(
-  types.FORGET_PASSWORD, async (user:{email:string}, {rejectWithValue}) => {
+export const forgetPasswordThunk= createAsyncThunk<
+{data:null , message:string, errors:null},
+{name:string, email:string, password:string},
+{rejectValue:ForgetPasswordError}
+>(
+  types.FORGET_PASSWORD, async (user:{name:string, email:string, password:string}, {rejectWithValue}) => {
       try {
         const API = new AUTH_API({token:"" , user:user})
         const data = await API.forgetPassword() 
         return data
-      } catch (err) {
-        return rejectWithValue(err.response.data )
+      } catch (error) {
+        return rejectWithValue(error.response.data )
       }
   }
 )
@@ -87,24 +92,24 @@ interface MyData {
 
 export interface RegisterAuthError {
   errors:{
-    email:string[]|undefined
-    password:string[]|undefined
-    name:string[]|undefined
+    email:string[]
+    password:string[]
+    name:string[]
   }
   message:string
 } 
 
 export interface LoginAuthError {
   errors:{
-    email:string[]|undefined
-    password:string[]|undefined
+    email:string[]
+    password:string[]
   }
   message:string
 } 
 
 export interface ForgetPasswordError {
   errors:{
-    email:string[]|undefined
+    attempt:string[]
   }
   message:string
 } 
@@ -139,7 +144,7 @@ interface RejectedWithValueAction<ThunkArg, RejectedValue> {
   {
     rejectValue: LoginAuthError 
   }>(
-    types.LOGIN, async (user , {rejectWithValue}) => {
+    types.LOGIN, async (user:{email:string,password:string} , {rejectWithValue}) => {
       try {
         const API = new AUTH_API({token:"" , user:user})
         const data = await API.login() 

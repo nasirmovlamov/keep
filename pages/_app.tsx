@@ -14,13 +14,22 @@ import { useEffect } from 'react'
 
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [theme, settheme] = useState(null)
+  const [theme, settheme] = useState("")
   useEffect(() => {
-    settheme(localStorage.getItem('theme') !== null ? (localStorage.getItem('theme') === "light" && "light" || localStorage.getItem('theme') === "dark" && "dark") : "light")
+    if(localStorage.getItem('theme') !== null )
+    {
+      let them = localStorage.getItem('theme') === "light" && "light"  || localStorage.getItem('theme') === "dark" && "dark"
+      settheme(theme)
+    }
+    else 
+    {
+      settheme("light")
+    }
   }, [])
 
-  const changeTheme = (theme) => {
-    settheme(theme === "light"? "dark": "light")
+  const changeTheme = (theme:string) => {
+    theme === "light"? "dark": "light"
+    settheme(theme)
     localStorage.setItem('theme' , (theme === "light"? "dark": "light"))
   }
 

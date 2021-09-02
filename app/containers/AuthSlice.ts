@@ -12,11 +12,18 @@ export const authSlice = createSlice({
   initialState:USER_STATE,
   reducers: {
     changeModalAction(state, action) {
-      for (const [key, value] of Object.entries(state.userModals)) {
-        state.userModals = {...state.userModals,[key !== action.payload && key]:false}
+      if(state.errors !== null)
+      {
+        for (const [key, value] of Object.entries(state.errors)) {
+          state.errors = {...state.errors,[key]:null}
+        }
+
       }
-      for (const [key, value] of Object.entries(state.errors)) {
-        state.errors = {...state.errors,[key]:null}
+      for (const [key, value] of Object.entries(state.userModals)) {
+        if(key !== action.payload)
+        {
+          state.userModals = {...state.userModals,[key]:false}
+        }
       }
       state.userModals = {...state.userModals, [action.payload]:!getKeyValue(state.userModals, action.payload)}
     },
@@ -47,12 +54,12 @@ export const authSlice = createSlice({
 
     // Logout
     builder.addCase(userLogout.fulfilled, (state, {payload}) => {
-      state.user = {}
+      state.user = {name:"" , email:"" , id:0}
       state.status = 'idle'
       state.loggedIn = false
     }),
     builder.addCase(userLogout.pending, (state, {payload}) => {
-      state.user = {}
+      state.user = {name:"" , email:"" , id:0}
       state.status = 'loading'
     }),
     builder.addCase(userLogout.rejected, (state, {payload}) => {
@@ -75,13 +82,10 @@ export const authSlice = createSlice({
     builder.addCase(userLogin.rejected, (state, action) => {
       state.status = 'failed'
       state.loggedIn = false
-      if (action.payload) {        
+      if (action.payload !== null && action.payload !== undefined) {        
         state.errors.loginErrors = action.payload
       } 
-      else 
-      {        
-        state.errors.loginErrors = action.error      
-      } 
+      
     })  
 
 
@@ -96,12 +100,12 @@ export const authSlice = createSlice({
     builder.addCase(forgetPasswordThunk.rejected, (state, action) => {
       state.status = 'failed'
       state.loggedIn = false
-      if (action.payload) {        
+      if (action.payload !== null && action.payload !== undefined) {        
         state.errors.forgetPasswordErrors = action.payload
       } 
       else 
       {        
-        state.errors.forgetPasswordErrors = action.error      
+        // state.errors.forgetPasswordErrors = action.error      
       } 
     })  
 
@@ -127,7 +131,7 @@ export const authSlice = createSlice({
       } 
       else 
       {        
-        state.errors.registerErrors = action.error      
+        // state.errors.registerErrors = action.error      
       }
     })
   },

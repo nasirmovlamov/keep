@@ -1,6 +1,7 @@
-import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 import { is_Logged } from "../../../app/containers/AuthSlice";
+import { ThemeType } from "../../global/styled-utils/styling-elements/Theme.style";
 
 // color = (isLogged) ? "red" : "gray"
 
@@ -90,7 +91,7 @@ export const LogoText = styled.p`
     color: ${({theme}) => theme.navbar.navLogoText};
 `
 
-export const Line = styled.div`
+export const Line =  styled.div`
     width: 10px;
     opacity: 0;
     height: 2px;
@@ -112,6 +113,8 @@ export const LinkStyle = styled.a`
     
 `
 
+
+
 export const LiStyle = styled.li`
     display:flex;
     justify-content:center;
@@ -127,11 +130,11 @@ export const LiStyle = styled.li`
     margin-top: 27px;
     div 
     {
-        opacity: ${({linkFocus}) => linkFocus ? '1' : '0'};
-        width: ${({linkFocus}) => linkFocus ? '120px' : '0px'};
+        opacity: ${(props:{focus:boolean}) => props.focus ? '1' : '0'};
+        width: ${(props:{focus:boolean}) =>  props.focus ? '120px' : '0px'};
     }
     a {
-        color: ${({theme , linkFocus}) => linkFocus ? theme.navbar.navLinksHovered : theme.navbar.navLinks};
+        color: ${(props:{theme:ThemeType , focus:boolean}) =>  props.focus ? props.theme.navbar.navLinksHovered : props.theme.navbar.navLinks};
     }
 
     &:hover 

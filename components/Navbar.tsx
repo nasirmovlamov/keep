@@ -27,15 +27,14 @@ function Navbar({}: Props): ReactElement {
     const userData = useAppSelector(userState);
     const isLogged = useAppSelector(is_Logged);
     const isLoading = useAppSelector(is_loading);
-    const [navView, setnavView] = useState(null)
+    const [navView, setnavView] = useState<JSX.Element>()
     useEffect(() => {
         loginChecker()
-       
+        console.log(userData)
     }, [isLogged])
-
     
 
-    const pathChecker = (path) => {
+    const pathChecker = (path:string) => {
         if(pathname === "/forum")
         {
             return true
@@ -100,22 +99,22 @@ function Navbar({}: Props): ReactElement {
             <Link href="/" ><Logo> <Image src={mainLogo} />   <Light/> <LightShadow/> <LightShadow2/> <LogoText>abyss</LogoText> </Logo></Link>
             <LinksStyle>
                 <Link href="/forum">
-                    <LiStyle linkFocus={pathname === "/forum" ? true: false}>
+                    <LiStyle focus={pathname === "/forum" ? true: false}>
                         <LinkStyle>Forum</LinkStyle>
                         <Line />
                     </LiStyle>
                 </Link> 
 
                 <Link href="/store">
-                    <LiStyle linkFocus={pathname === "/store" ? true: false}>
+                    <LiStyle focus={pathname === "/store" ? true: false}>
                         <LinkStyle>Store</LinkStyle>
                         <Line/>
                     </LiStyle>
                 </Link>
                 
                 <Link href="/pedi">
-                    <LiStyle linkFocus={pathname === "/pedi" ? true: false}>
-                        <LinkStyle>Pedi</LinkStyle>
+                    <LiStyle focus={pathname === "/pedi" ? true: false}>
+                        <LinkStyle>Pedia</LinkStyle>
                         <Line/>
                     </LiStyle>
                 </Link> 

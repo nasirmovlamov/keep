@@ -2,7 +2,11 @@ import { ForgetPasswordError, LoginAuthError, RegisterAuthError } from "../../th
 
 
 export interface USER_INTERFACE {
-    user:{},
+    user:{
+        name:string
+        id:number
+        email:string
+    },
     status:'idle'| 'loading' | 'failed',
     loggedIn:boolean|null,
     message:null|string,
@@ -27,5 +31,5 @@ export interface USER_INTERFACE {
         registerErrors: RegisterAuthError | null
         loginErrors: LoginAuthError | null
         forgetPasswordErrors: ForgetPasswordError | null
-    }|null
+    }
 }

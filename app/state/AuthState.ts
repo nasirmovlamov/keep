@@ -1,7 +1,11 @@
 import { USER_INTERFACE } from "./state-Interfaces/AuthInterface";
 
 export const USER_STATE:USER_INTERFACE = {
-    user: {},
+    user: {
+        id:0,
+        name:"",
+        email:""
+    },
     status: 'loading',
     loggedIn:null,
     message:null,

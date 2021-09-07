@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
 import authReducer from '../containers/AuthSlice'
+import tabsReducer from '../containers/PageTabsSlice'
 
-const reducer = {  authReducer: authReducer}
+const reducer = {  authReducer: authReducer , tabsReducer:tabsReducer }
 
 
 

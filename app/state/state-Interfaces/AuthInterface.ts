@@ -26,7 +26,7 @@ export interface USER_INTERFACE {
             email:string,
             password:string
         }
-    }
+    },
     errors:{
         registerErrors: RegisterAuthError | null
         loginErrors: LoginAuthError | null

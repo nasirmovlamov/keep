@@ -35,13 +35,13 @@ export const GlobalStyle = createGlobalStyle<Props>`
 `
 
 export const ThemeToggler = styled.button`
+    position: fixed;
     width: 70px;
     height: 35px;
     border: 1px solid white;
     padding: 0px;
     margin: 0px;
     border-radius: 20px;
-    position: absolute;
     background-color: black;
     background-color: ${({ theme }) => theme.themeTogglerCont};
     border:1px solid ${({ theme }) => theme.themeTogglerContBorder};

@@ -14,6 +14,10 @@ export const SingleTabsContainer  = styled.div`
     padding-right: 51px;
     border-bottom: 1px solid ${({theme}) => theme.pageTabs.border};
     margin-top: 10px;
+    position: sticky;
+    top: 76px;
+    background-color: #00090E;
+    padding-bottom: 0px;
     &:hover 
     {
     }
@@ -24,48 +28,18 @@ export const SingleTabsContainer  = styled.div`
 export const SingleTabText = styled.span`
     display: flex;
     padding: 12px 20px 0px 20px;
+    transition: 0.2s;
+
 `
 export const SingleLine = styled.div`
     width: 0px;
     opacity:0;
-    height: 2px;
-    background-color: gray;
-    margin-top: 5px;
+    height: 2.5px;
+    background-color: white;
     transition: 0.2s;
+    align-self: center;
 `
 
-export const SingleTabButton = styled.a`    
-    display: flex;
-    border: none;
-    font-size: 18px;
-    background-color: transparent;
-    color: #8EA1A3;
-    cursor: pointer;
-    font-weight: 600;
-    align-items:center;
-    flex-direction: column;
-    padding:0px;
-    height: 41px;
-    box-sizing: border-box;
-    div 
-    {
-        opacity: ${(props:{tabFocus:boolean}) => props.tabFocus && '1'};
-        width: ${(props:{tabFocus:boolean}) => props.tabFocus && '100%'};
-
-    }
-    span {
-        color: ${(props : {theme:ThemeType , tabFocus:boolean}) => props.tabFocus ?  props.theme.navbar.navLinksHovered :  props.theme.navbar.navLinks};
-    }
-    &:hover
-    {
-        div{
-            opacity:1  !important;
-            width: 100% !important;
-            height: 2px !important;
-            transform: scale(1) !important;
-        }
-    }
-`
 
 export const SingleTabTagsCont = styled.div`
     display: flex;
@@ -94,9 +68,50 @@ export const SingleTabTags = styled.button`
 
 export const SingleTabs = styled.div`
     display: flex;
+    height: 40px;
     &:hover ${SingleLine}
     {
-        height: 1px;
-        transform: scale(0.8);
+        opacity: 0.3;
+        transform: scaleX(0.8);
+    }
+`
+
+
+
+export const SingleTabButton = styled.button`    
+    display: flex;
+    border: none;
+    font-size: 18px;
+    background-color: transparent;
+    color: #8EA1A3;
+    cursor: pointer;
+    font-weight: 600;
+    align-items:center;
+    flex-direction: column;
+    justify-content: space-between;
+    padding:0px;
+    box-sizing: border-box;
+    text-decoration: none;
+    div 
+    {
+        opacity: ${(props:{tabActive:boolean}) => props.tabActive && '1'};
+        width: ${(props:{tabActive:boolean}) => props.tabActive && '100% '};
+        height: ${(props:{tabActive:boolean}) => props.tabActive && '2.5px'};
+        transform: scale(1);
+    }
+    span {
+        color: ${(props : {theme:ThemeType , tabActive:boolean}) => props.tabActive ?  props.theme.navbar.navLinksHovered :  props.theme.navbar.navLinks};
+    }
+    &:hover
+    {   
+        span{
+            color: white;
+        }
+        div{
+            opacity:1  !important;
+            width: 100% !important;
+            height: 2.5px !important;
+            transform: scale(1) !important;
+        }
     }
 `

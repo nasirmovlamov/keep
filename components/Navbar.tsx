@@ -30,7 +30,6 @@ function Navbar({}: Props): ReactElement {
     const [navView, setnavView] = useState<JSX.Element>()
     useEffect(() => {
         loginChecker()
-        console.log(userData)
     }, [isLogged])
     
 

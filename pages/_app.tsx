@@ -10,33 +10,54 @@ import { darkTheme, lightTheme } from '../styles/global/styled-utils/styling-ele
 import { useState } from 'react'
 import ThemeSwitcher from '../components/ThemeSwitcher'
 import { useEffect } from 'react'
+import {Toaster } from 'react-hot-toast'
 
 
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const [theme, settheme] = useState("")
+
+
+  const [theme, settheme] = useState("dark")
   useEffect(() => {
     if(localStorage.getItem('theme') !== null )
     {
-      let them = localStorage.getItem('theme') === "light" && "light"  || localStorage.getItem('theme') === "dark" && "dark"
+      let theme =  ""
+      if(localStorage.getItem('theme') === "light")
+      {
+        theme =  "light"
+      }
+      else 
+      {
+        theme =   "dark"
+      }
       settheme(theme)
     }
     else 
     {
       settheme("light")
     }
+    console.log("%cDont try stupid things which you heared from uncle toms or etc!","font-size: 30px; color: red; -webkit-text-stroke:1px black; font-weight: bold;")
   }, [])
 
   const changeTheme = (theme:string) => {
-    theme === "light"? "dark": "light"
-    settheme(theme)
-    localStorage.setItem('theme' , (theme === "light"? "dark": "light"))
+    if(theme==="light")
+    {
+      settheme("dark")
+      localStorage.setItem('theme' , "dark")
+    }
+    else 
+    {
+      settheme("light")
+      localStorage.setItem('theme' , "light")
+    }
   }
+
 
   return (
     <Provider store={store}> 
       <ThemeProvider theme={theme === "light" ?  darkTheme :lightTheme}>
         <>
+          <Toaster/>
           <GlobalStyle/>
           <Layout >
               <ThemeSwitcher theme={theme} setTheme={changeTheme}/>

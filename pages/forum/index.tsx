@@ -1,10 +1,10 @@
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import React, { ReactElement, useEffect, useState } from 'react'
-import FormQuestion from '../components/ForumQuestion'
-import PageTabs from '../components/PageTabs'
-import { TabButton, Tabs, TabsContainer, TabTags, TabTagsCont } from '../styles/components/styled-elements/PageTabs.style'
-import { ForumPage } from '../styles/global/styled-utils/styling-elements/Pages.style'
+import FormQuestion from '../../components/ForumQuestion'
+import PageTabs from '../../components/PageTabs'
+import { TabButton, Tabs, TabsContainer, TabTags, TabTagsCont } from '../../styles/components/styled-elements/PageTabs.style'
+import { ForumPage } from '../../styles/global/styled-utils/styling-elements/Pages.style'
 
 interface Props {
     

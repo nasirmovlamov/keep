@@ -4,6 +4,7 @@ import {USER_STATE} from '../state/AuthState'
 import { setToken } from '../../logic/userToken'
 import { RootState } from '../store/store'
 import { getKeyValue } from '../../logic/getKeyValue'
+import toast from 'react-hot-toast'
 
 
 
@@ -27,12 +28,32 @@ export const authSlice = createSlice({
       }
       state.userModals = {...state.userModals, [action.payload]:!getKeyValue(state.userModals, action.payload)}
     },
+
     register_Form_OnChange(state, action) {
       state.forms.registerForm =  {...state.forms.registerForm , [action.payload.target.name]:action.payload.target.value}
     },  
     login_Form_OnChange(state, action) {
       state.forms.loginForm =  {...state.forms.loginForm , [action.payload.target.name]:action.payload.target.value}
     },
+
+    errorToast(state, action) {
+            toast(action.payload.content , {
+              position: `${action.payload.side}`,
+              // Styling
+              style: {background:"green", padding:"10px", transition:"5s", color:"white"},
+              className: '',
+              // Custom Icon
+              icon: '👏',
+              // Change colors of success/error/loading icon
+              
+              // Aria
+              ariaProps: {
+                role: 'status',
+                'aria-live': 'polite',
+              },
+            });
+    },
+
 
 
   },
@@ -74,6 +95,22 @@ export const authSlice = createSlice({
         setToken(payload.data.data.access_token)
         state.user =  payload.data.data.user
         state.loggedIn = true
+        console.log(payload)
+        toast("You logged your account!" , {
+          position: `top-left`,
+          // Styling
+          style: {background:"green", padding:"10px", transition:"5s", color:"white"},
+          className: '',
+          // Custom Icon
+          icon: '🔥',
+          // Change colors of success/error/loading icon
+          
+          // Aria
+          ariaProps: {
+            role: 'status',
+            'aria-live': 'polite',
+          },
+        });
         state.status = 'idle'
     }),
     builder.addCase(userLogin.pending, (state, {payload}) => {
@@ -85,7 +122,25 @@ export const authSlice = createSlice({
       if (action.payload !== null && action.payload !== undefined) {        
         state.errors.loginErrors = action.payload
       } 
-      
+      console.log("TST")
+      toast(action.payload.message , {
+        position: `top-left`,
+        // Styling
+        style: {background:"red", padding:"10px", transition:"5s", color:"white"},
+        className: '',
+        // Custom Icon
+        icon: '❌',
+        // Change colors of success/error/loading icon
+        
+        // Aria
+        ariaProps: {
+          role: 'status',
+          'aria-live': 'polite',
+        },
+      });
+
+
+
     })  
 
 
@@ -143,6 +198,10 @@ export const authSlice = createSlice({
 export const { changeModalAction } = authSlice.actions;
 export const { login_Form_OnChange } = authSlice.actions;
 export const { register_Form_OnChange } = authSlice.actions;
+
+
+//Notifications
+export const { errorToast } = authSlice.actions;
 
 
 

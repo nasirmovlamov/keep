@@ -140,6 +140,9 @@ export const AddAnswer = styled.input`
     border-radius: 6px 0px 0px 6px;
     border: 1px solid lightgray;
     border-right: 0px;
+    &:focus {
+        outline: none;
+    }
 `
 export const AddAnswerSubmit = styled.button`
     width: 50px;
@@ -152,3 +155,28 @@ export const AddAnswerSubmit = styled.button`
     border-radius: 0px 6px 6px 0px;
 
 `
+
+
+export const AnswersCont = styled.div`
+    row-gap: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center ;
+    box-sizing: border-box;
+`
+
+
+export const ProductsCont = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    align-items: center ;
+    justify-content: center;
+    height: 1500px;
+    background-color: gray;
+    border-radius: 6px;
+    color: white;
+`
+

@@ -14,7 +14,18 @@
 {
     justify-content: space-around;
 }
+
 .a-center
 {
     align-items: center;
+}
+
+.a-end
+{
+    align-items: flex-end;
+}
+
+.fd-c
+{
+    flex-direction: column;
 }

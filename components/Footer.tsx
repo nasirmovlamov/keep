@@ -1,4 +1,6 @@
 import React, { ReactElement } from 'react'
+import { errorToast } from '../app/containers/AuthSlice'
+import { useAppDispatch } from '../app/store/hooks'
 import { FooterColumn,  FooterElement,  FooterRow, FooterStyle } from '../styles/components/styled-elements/Footer.style'
 
 interface Props {
@@ -6,8 +8,12 @@ interface Props {
 }
 
 function Footer({}: Props): ReactElement {
+    const dispatch = useAppDispatch()
+
+
     return (
         <FooterStyle>
+            <button onClick={()=>dispatch(errorToast({side:"top-center", content:'Hello World 123'}))}>toast</button>
             <FooterRow>
                 <FooterColumn>
                     <FooterElement>Terms of </FooterElement>

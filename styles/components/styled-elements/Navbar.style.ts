@@ -17,6 +17,8 @@ export const Nav = styled.nav`
     border-bottom: 1px solid ${({theme}) => theme.navbar.navBorder};
     background-color: ${({theme}) => theme.navbar.navBackground};
     margin: 0px;
+    position: sticky;
+    top:0px;
 `
 
 
@@ -163,7 +165,14 @@ export const LinksStyle = styled.ul`
     {
         opacity: 0.2; 
         transform: scale(0.8);
-
+        ${({theme}) => theme.navbar.navLinks}   
+    }
+    &::hover
+    {
+        a 
+        {
+            color:${({theme}) => theme.navbar.navLinks}   
+        }
     }
 `
 

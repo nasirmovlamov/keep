@@ -1,7 +1,7 @@
 import React, { FormEvent,ReactElement, useEffect, useState } from 'react'
 import { useAppSelector, useAppDispatch } from '../../app/store/hooks';
-import * as authThunk from '../../app/thunks/AuthThunk'
-import { changeModalAction, loginErrors, login_form, login_Form_OnChange, user_modals } from '../../app/containers/AuthSlice';
+import * as authThunk from '../../app/thunks/AppThunk'
+import { changeModalAction, loginErrors, login_form, login_Form_OnChange, user_modals } from '../../app/containers/AppSlice';
 interface Props {
 }
 

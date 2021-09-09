@@ -19,6 +19,7 @@ function Store({}: Props): ReactElement {
             console.error(error)
         }
     }
+    
     useEffect(() => {
         getStoreProducts()
     }, [])

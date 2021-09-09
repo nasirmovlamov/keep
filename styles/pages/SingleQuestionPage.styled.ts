@@ -1,5 +1,36 @@
 import styled from 'styled-components';
 
+export const SingleProductMiddle = styled.main`
+    width: 894px;
+    display: flex;
+    flex-direction:column;
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+    margin: auto;
+    align-items: center;
+    padding-left: 100px;
+    padding-right: 100px;
+    row-gap: 20px;
+    padding-bottom: 50px;
+    padding-top: 50px;
+    box-sizing: initial;
+`
+
+
+export const SingleProductAside = styled.aside`
+    display: flex;
+    width: 350px;
+    height: 100%;
+    flex-direction:column;
+    align-items: center;
+    row-gap: 20px;
+    padding-bottom: 50px;
+    padding-top: 50px;
+    background-color: red;
+    position: sticky;
+    top:78px;
+`
+
 
 
 export const QuestionCont = styled.div`
@@ -36,6 +67,7 @@ export const ContentCont = styled.div`
     display: flex;
     flex-direction: column;
     row-gap: 10px;
+    width: 100%;
 `
 
 export const QuestionTitle = styled.h2`
@@ -102,7 +134,7 @@ export const QuestionStatisticElement = styled.div`
     column-gap: 5px;
     align-items: center;
 `
-export const QuestionStatisticButton = styled.div`
+export const QuestionStatisticButton = styled.button`
     display: flex;
     width: 35px;
     font-size: 12px;

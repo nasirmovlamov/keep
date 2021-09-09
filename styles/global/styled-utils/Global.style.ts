@@ -31,6 +31,9 @@ export const GlobalStyle = createGlobalStyle<Props>`
         background: #555;
         } 
     }
+    *{
+        box-sizing: border-box;
+    }
   
 `
 
@@ -49,6 +52,7 @@ export const ThemeToggler = styled.button`
     right: 10px;
     top: 90px;
     cursor: pointer;
+    z-index: 77;
 `
 export const Relativer = styled.div`
     position: relative;

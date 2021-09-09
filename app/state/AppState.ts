@@ -1,6 +1,6 @@
-import { USER_INTERFACE } from "./state-Interfaces/AuthInterface";
+import { APP_INTERFACE } from "./state-Interfaces/AppInterface";
 
-export const USER_STATE:USER_INTERFACE = {
+export const APP_STATE:APP_INTERFACE = {
     user: {
         id:0,
         name:"",
@@ -13,7 +13,9 @@ export const USER_STATE:USER_INTERFACE = {
         login:false,
         register:false,
         forgetPassword:false,
-        isEmailSend:false
+        isEmailSend:false,
+        questionCreate:false,
+        commentModal:false,
     },
     forms:{
         registerForm:{
@@ -26,9 +28,10 @@ export const USER_STATE:USER_INTERFACE = {
             password:""
         }
     },
+    singleQuestionData:null,
     errors:{
         registerErrors:null,
         loginErrors:null,
-        forgetPasswordErrors:null
+        forgetPasswordErrors:null,
     },
 }

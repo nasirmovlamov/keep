@@ -28,7 +28,7 @@ function FormQuestion({data}: Props): ReactElement {
             </PersonCont>
 
             <TextCont>
-                <Link href={`/forum/180/laravel-property-user-does-not-exist-on-this-collection-instance`}>
+                <Link href={`/forum/1/schema-builder-laravel-migrations-unique-on-two-columns`}>
                     <Title> 
                         {data.title}
                     </Title>

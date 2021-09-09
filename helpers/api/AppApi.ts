@@ -1,9 +1,9 @@
 import API from './BaseApi'
-import {URL} from '../urls/AuthUrl'
+import {URL} from '../urls/Urls'
 import * as types from '../../app/constants/AuthContants'
 import { getToken } from '../../app/actions/getToken';
 
-export class AUTH_API  {
+export class APP_API  {
     token:string 
     user:{name?:string,email?:string,password?:string}|null 
 

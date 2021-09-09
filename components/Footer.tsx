@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import { errorToast } from '../app/containers/AuthSlice'
+import { errorToast } from '../app/containers/AppSlice'
 import { useAppDispatch } from '../app/store/hooks'
 import { FooterColumn,  FooterElement,  FooterRow, FooterStyle } from '../styles/components/styled-elements/Footer.style'
 

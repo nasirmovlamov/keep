@@ -1,9 +1,14 @@
+import { accessToken, getAccessToken, setAccessToken } from './../../helpers/token/TokenHandle';
+import { BASE_API_URL } from './../../helpers/urls/BASE_URL';
 import * as types from '../constants/AuthContants'
-import {AUTH_API} from '../../helpers/api/AuthApi'
+import {APP_API} from '../../helpers/api/AppApi'
 import { AsyncThunk, createAction, createAsyncThunk, isRejectedWithValue} from '@reduxjs/toolkit'
 import {getToken} from '../../logic/userToken'
 import { AxiosError } from 'axios'
-import { USER_INTERFACE } from '../state/state-Interfaces/AuthInterface'
+import { APP_INTERFACE } from '../state/state-Interfaces/AppInterface'
+import BaseApi from '../../helpers/api/BaseApi';
+import { BASE_API_INSTANCE } from '../../helpers/api/BaseInstance';
+import { errorToast } from '../containers/AppSlice';
 
 
 export const userCheck= createAsyncThunk(
@@ -12,15 +17,19 @@ export const userCheck= createAsyncThunk(
       const token = getToken()
       if(token!==null)
       {
-        const API = new AUTH_API({token:token, user:null})
+        const API = new APP_API({token:token, user:null})
         const data = await API.getUser()
+        setAccessToken(token)
         return  data
       }
       else {
+        if(localStorage.getItem('token') !== null)
+        {
+          localStorage.removeItem('token')
+          setAccessToken('idle')
+        }
         throw new Error("not logged");
-        
       }
-      console.log(token)
     } catch (error) {
       return rejectWithValue(error.response.data)
     }
@@ -34,7 +43,7 @@ export const forgetPasswordThunk= createAsyncThunk<
 >(
   types.FORGET_PASSWORD, async (user:{name:string, email:string, password:string}, {rejectWithValue}) => {
       try {
-        const API = new AUTH_API({token:"" , user:user})
+        const API = new APP_API({token:"" , user:user})
         const data = await API.forgetPassword() 
         return data
       } catch (error) {
@@ -44,6 +53,79 @@ export const forgetPasswordThunk= createAsyncThunk<
 )
 
 
+export const getSingleQuestion = createAsyncThunk(
+  types.GET_SINGLE_QUESTION, async (url:string, {rejectWithValue}) => {
+      try {
+        const resp = await BASE_API_INSTANCE.get(`${url}`)
+        console.log(resp.data)
+        return resp.data
+      } catch (error) {
+        return rejectWithValue(error.response.data)
+      }
+  }
+)
+
+export const voteQuestion = createAsyncThunk(
+  types.VOTE_QUESTION, async (vote:{id:string | string[] | undefined , type:string}, {rejectWithValue}) => {
+      try {
+        const formData = new FormData()
+        formData.append("type" , vote.type)
+        const resp = await BASE_API_INSTANCE.post(`/forum/${vote.id}/thread/vote` , formData)
+        return resp.data
+      } catch (error) {
+        console.log(error.response.data)
+        return rejectWithValue(error.response.data.errors.thread_id[0])
+      }
+  }
+)
+
+
+export const unVoteQuestion = createAsyncThunk(
+  types.UN_VOTE_QUESTION, async (vote:{id:string | string[] | undefined , type:string}, {rejectWithValue}) => {
+      try {
+        const formData = new FormData()
+        formData.append("type" , vote.type)
+        const resp = await BASE_API_INSTANCE.post(`/forum/${vote.id}/thread/unvote` , formData)
+        return resp.data
+      } catch (error) {
+        return rejectWithValue(error.response.data.errors.thread_id[0])
+      }
+  }
+)
+
+
+
+export const voteAnswer = createAsyncThunk(
+  types.VOTE_ANSWER, async (vote:{id:string | string[] | undefined , type:string}, {rejectWithValue}) => {
+      try {
+        const formData = new FormData()
+        formData.append("type" , vote.type)
+        const resp = await BASE_API_INSTANCE.post(`/forum/${vote.id}/answer/vote` , formData)
+        return resp.data
+      } catch (error) {
+        console.log(error.response.data)
+        return rejectWithValue(error.response.data.errors.answer_id[0])
+      }
+  }
+)
+
+
+export const unVoteAnswer = createAsyncThunk(
+  types.UN_VOTE_ANSWER, async (vote:{id:string | string[] | undefined , type:string}, {rejectWithValue}) => {
+      try {
+        const formData = new FormData()
+        formData.append("type" , vote.type)
+        const resp = await BASE_API_INSTANCE.post(`/forum/${vote.id}/answer/unvote` , formData)
+        return vote.id
+      } catch (error) {
+        return rejectWithValue(error.response.data.errors.answer_id[0])
+      }
+  }
+)
+
+
+
+
 
 export const userLogout = createAsyncThunk(
   types.LOGOUT, async (token, {rejectWithValue}) => {
@@ -51,7 +133,9 @@ export const userLogout = createAsyncThunk(
       const token = getToken()
       if(token!==null)
       {
-        const API = new AUTH_API({token:token, user:null})
+        localStorage.removeItem('token')
+        setAccessToken(null)
+        const API = new APP_API({token:token, user:null})
         const data = await API.logout()
         return  data
       }
@@ -114,7 +198,6 @@ export interface ForgetPasswordError {
   message:string
 } 
 
-
 interface RegisterAttributes {
   email: string
   name: string
@@ -146,7 +229,7 @@ interface RejectedWithValueAction<ThunkArg, RejectedValue> {
   }>(
     types.LOGIN, async (user:{email:string,password:string} , {rejectWithValue}) => {
       try {
-        const API = new AUTH_API({token:"" , user:user})
+        const API = new APP_API({token:"" , user:user})
         const data = await API.login() 
         return data
       } catch (err) {
@@ -169,7 +252,7 @@ RegisterAttributes ,
 (
   types.REGISTER, async (user, {rejectWithValue}) => {
     try {
-      const API = new AUTH_API({token:"" , user:user})
+      const API = new APP_API({token:"" , user:user})
       const data = await API.register()
       return  data
     } catch (err) {

@@ -26,17 +26,15 @@ export const StorePage = styled.main`
     padding-right: 100px;
     row-gap: 20px;
 `
-export const SingleProductPage = styled.main`
-    width: 894px;
+
+export const SingleProductPage = styled.div`
+    width: 100%;
+    column-gap: 20px;
+    justify-content: space-between;
+    box-sizing: border-box;
     display: flex;
-    flex-direction: column;
-    border-left: 1px solid lightgray;
-    border-right: 1px solid lightgray;
-    margin: auto;
-    align-items: center;
-    padding-left: 100px;
-    padding-right: 100px;
     row-gap: 20px;
-    padding-bottom: 50px;
-    padding-top: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
 `
+

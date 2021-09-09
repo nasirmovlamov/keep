@@ -1,8 +1,8 @@
 import React, { FormEvent, ReactElement, useEffect, useState } from 'react'
-import * as authThunk from '../../app/thunks/AuthThunk'
+import * as authThunk from '../../app/thunks/AppThunk'
 import { useAppSelector, useAppDispatch } from '../../app/store/hooks';
 import axios from 'axios';
-import { changeModalAction, registerErrors, register_form, register_Form_OnChange, user_modals } from '../../app/containers/AuthSlice';
+import { changeModalAction, registerErrors, register_form, register_Form_OnChange, user_modals } from '../../app/containers/AppSlice';
 
 interface Props {
 }
@@ -19,7 +19,6 @@ function RegisterModal({}: Props):ReactElement {
         try {
             dispatch(authThunk.userRegister(registerForm))
         } catch (error) {
-            console.log(error)
         }
     }
 

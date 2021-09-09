@@ -22,9 +22,11 @@ function Forum({}: Props): ReactElement {
             console.error(error)
         }
     }
+
     useEffect(() => {
         getQuestions()
     }, [])
+    
     return (
         <ForumPage>
             <PageTabs/>  

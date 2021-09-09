@@ -24,7 +24,7 @@ function ProductsConts({}: Props): ReactElement {
     }, [inView])
 
     return (
-        <ProductsCont id="productsCont"  ref={ref} >
+        <ProductsCont id="productsCont"  ref={ref} style={{scrollMarginTop: "130px"}}>
             PRODUCTS    
         </ProductsCont>
     )

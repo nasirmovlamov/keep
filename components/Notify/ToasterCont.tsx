@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useState } from 'react'
-import { toasts } from '../../app/containers/AuthSlice'
+import { toasts } from '../../app/containers/AppSlice'
 import { useAppDispatch, useAppSelector } from '../../app/store/hooks'
 import { ToastContent, ToastDeleteButton, ToastIcon, ToastItem, ToastsListTop } from '../../styles/components/styled-elements/ToastCont.style'
 import { AnimatePresence } from "framer-motion"

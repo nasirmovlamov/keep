@@ -1,1 +1,1 @@
-export const BASE_API_URL = "http://api.abyss.com/api"
+export const BASE_API_URL = "https://api.abysshub.com/api"

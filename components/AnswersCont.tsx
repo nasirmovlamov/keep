@@ -14,9 +14,8 @@ export interface USER_INTERFACE {
 
 
 
-export interface ANSWER_INTERFACE {
-    asnwer:{id:number, parent_id:number|number,user:USER_INTERFACE , score:number,content:string,created_at:string,updated_at:string}
-}
+export interface ANSWER_INTERFACE {id?:number, parent_id:number|number,user:USER_INTERFACE ,content:string,created_at:string,updated_at:string , user_votes:{id:number,user_id:number,answer_id:number,type:string,created_at:string,updated_at:string}|null}
+
 
 
 
@@ -42,8 +41,8 @@ function AnswersConts({answers}: Props): ReactElement {
     
 
     return (
-        <AnswersCont id="answersCont" ref={ref}>
-            {answers.map((answer:ANSWER_INTERFACE) => <Answer answer={answer}/>)} 
+        <AnswersCont id="answersCont" ref={ref} style={{scrollMarginTop: "250px"}}>
+            {answers.map((answer:ANSWER_INTERFACE , index:number) => <Answer key={index} index={index} answer={answer}/>)} 
         </AnswersCont>
     )
 }

@@ -1,8 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import appReducer from '../containers/AppSlice'
 import tabsReducer from '../containers/PageTabsSlice'
+import authReducer from '../containers/AuthSlice'
+import commentsReducer from '../containers/CommentsSlice'
+import questionReducer from '../containers/QuestionSlice'
 
-const reducer = {  appReducer: appReducer , tabsReducer:tabsReducer }
+const reducer = {  appReducer: appReducer , authReducer:authReducer , questionReducer:questionReducer, commentsReducer:commentsReducer  ,tabsReducer:tabsReducer }
 
 
 

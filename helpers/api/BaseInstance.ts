@@ -6,7 +6,7 @@ export const BASE_API_INSTANCE = axios.create({baseURL:'https://api.abysshub.com
 // Request interceptor for API calls
 BASE_API_INSTANCE.interceptors.request.use(
   async config => {
-    const accessToken = await getAccessToken()
+    const accessToken = await localStorage.getItem("token")
     if(accessToken !== null && accessToken !== "")
     {
       config.headers = { 

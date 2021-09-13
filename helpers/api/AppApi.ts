@@ -1,6 +1,6 @@
 import API from './BaseApi'
 import {URL} from '../urls/Urls'
-import * as types from '../../app/constants/AuthContants'
+import * as types from '../../app/constants/AppContants'
 import { getToken } from '../../app/actions/getToken';
 
 export class APP_API  {
@@ -35,7 +35,7 @@ export class APP_API  {
             }
         }
         const login_response:any  = await API.post(URL.LOGIN, login_form)
-        return login_response
+        return login_response.data
     }
 
     async forgetPassword()

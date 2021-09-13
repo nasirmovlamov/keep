@@ -1,5 +1,4 @@
 import React, { ReactElement, useEffect, useState } from 'react'
-import { addNewQuestion, errorToast, successToast } from '../../app/containers/AppSlice'
 import { useAppDispatch } from '../../app/store/hooks'
 import {BASE_API_INSTANCE} from '../../helpers/api/BaseInstance'
 import { accessToken } from '../../helpers/token/TokenHandle'
@@ -14,7 +13,7 @@ interface Props {
 
 function CreateQuestionModal({}: Props): ReactElement {
     const [questionValue, setQuestionValue] = useState({title:"", content:""})
-    const [tags, settags] = useState<string[] | Blob>([])
+    const [tags, settags] = useState<string[]>([])
     const [category, setCategory] = useState<string>("")
 
     const dispatch = useAppDispatch()
@@ -75,7 +74,7 @@ function CreateQuestionModal({}: Props): ReactElement {
                 <LabelCont>
                     <label htmlFor="title">Tags</label>
                     <div className="tags d-f ">
-                        {tags.map(tag => <div>{tag}</div>)}
+                        {tags.map((tag:string) => <div>{tag}</div>)}
                         <input onKeyDown={createTag} type="text" name="tags"/>
                     </div>
                 </LabelCont>

@@ -1,12 +1,11 @@
 import React, {ReactElement, useEffect, useState} from 'react'
-import { user_modals } from '../../app/containers/AppSlice'
+import { user_modals } from '../../app/containers/AuthSlice'
 import { useAppSelector } from '../../app/store/hooks'
 import ForgetPasswordModal from './ForgetPasswordModal'
 import LoginModal from './LoginModal'
 import RegisterModal from './RegisterModal'
 import IsEmailSendModal from './IsEmailSendModal'
 import CreateQuestionModal from './CreateQuestionModal'
-import CommentModal from './CommentsModal'
 
 interface Props {
 }
@@ -21,7 +20,6 @@ function Modals({}: Props):ReactElement {
             {allModals.forgetPassword && <ForgetPasswordModal />}
             {allModals.isEmailSend && <IsEmailSendModal />}
             {allModals.questionCreate && <CreateQuestionModal />}
-            {allModals.commentModal && <CommentModal />}
         </>
     )
 }

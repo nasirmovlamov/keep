@@ -11,11 +11,12 @@ import { useState } from 'react'
 import ThemeSwitcher from '../components/ThemeSwitcher'
 import { useEffect } from 'react'
 import {Toaster } from 'react-hot-toast'
+import { useAppDispatch } from '../app/store/hooks'
+import { userCheck } from '../app/thunks/AuthThunk'
 
 
 
 function MyApp({ Component, pageProps }: AppProps) {
-
 
   const [theme, settheme] = useState("dark")
   useEffect(() => {
@@ -52,7 +53,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       localStorage.setItem('theme' , "light")
     }
   }
-
+  
 
   return (
     <Provider store={store}> 

@@ -1,26 +1,77 @@
 import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer';
-import { changeModalAction, single_question_data, userState } from '../app/containers/AppSlice';
 import { changeForumTabActive } from '../app/containers/PageTabsSlice';
+import { changeModalAction, user_data } from '../app/containers/AuthSlice';
 import { useAppDispatch, useAppSelector } from '../app/store/hooks';
-import { unVoteAnswer, voteAnswer, voteQuestion } from '../app/thunks/AppThunk';
+import { unVoteAnswer, voteAnswer } from '../app/thunks/VotingThunk';
 import { AnswerContent, AnswerStyle, Avatar, Name, PersonCont, ShowComments } from '../styles/components/styled-elements/Answer.style';
 import { AnswersCont } from '../styles/pages/SingleQuestionPage.styled'
 import { ANSWER_INTERFACE } from './AnswersCont';
+import { showComments } from '../app/containers/CommentsSlice';
+import { getAnswerComments } from '../app/thunks/CommentsThunk';
+import { question_answers, single_question_data } from '../app/containers/QuestionSlice';
+import { errorToastFunc, loginError } from './Notify/ErrorToasts';
 
 interface Props {
     answer:ANSWER_INTERFACE
-    index:number
+    index:number,
+    id:number,
+    key:number
 }
 
-function Answer({answer , index}: Props): ReactElement {
+function Answer({answer , index , id , key}: Props): ReactElement {
     const dispatch = useAppDispatch()
     const singleQuestionData = useAppSelector(single_question_data)
-    const userData = useAppSelector(userState)
+    const Answers = useAppSelector(question_answers)
+    const userData = useAppSelector(user_data)
+    const [color, setcolor] = useState("gray")
+    const voting = () => {
+        console.log(answer)
+        if(userData === null)
+        {
+            loginError()
+            return null
+        }
+        if(answer.user_votes === null)
+        {
+            dispatch(voteAnswer({id:answer.id, type:"upvote"}))
+        }
+        else if (answer.user_votes !== null && answer.user_votes.user_id === userData.id)
+        {
+            dispatch(unVoteAnswer({id: answer.id, type:"upvote"}))
+        }
+        else{}
+    }
     
+    const openComments = () =>{
+        dispatch(getAnswerComments(answer.id))
+        dispatch(
+            showComments(
+                {
+                    id:answer.id, 
+                    user:answer.user, 
+                    title:answer.content, 
+                    type:"answer",
+                    showComments:true
+                }
+            )
+        )
+    }
+
+    useEffect(() => {
+        if(userData)
+        {
+            answer.user_votes === null ? setcolor("gray") : setcolor("red")
+        }
+        else 
+        {
+            setcolor("gray")
+        }
+    }, [userData , answer])
+
     return (
-        <AnswerStyle>
+        <AnswerStyle key={key}>
             <div className="flexer c-gp-10">
                 <PersonCont>
                     <Avatar></Avatar>
@@ -30,11 +81,11 @@ function Answer({answer , index}: Props): ReactElement {
                     {answer.content}
                 </AnswerContent>
                 <div className="flexer fd-c a-end">
-                    <button onClick={() => dispatch((singleQuestionData.answers[index].user_votes !== null && singleQuestionData.answers[index].user_votes.user_id === userData.id) ? unVoteAnswer({id: singleQuestionData.answers[index].id, type:"upvote"}) :voteAnswer({id:singleQuestionData.answers[index].id, type:"upvote"}))} style={{color:singleQuestionData.answers[index].user_votes === null ? "white" : "black"}}>like</button>
+                    <button onClick={voting} style={{color:  color}}>like</button>
                 </div>
             </div>
             <div className="flexer fd-c a-end">
-                <ShowComments onClick={() => dispatch(changeModalAction("commentModal"))}>Show Comments</ShowComments>
+                <ShowComments onClick={openComments}>Show Comments</ShowComments>
             </div>
         </AnswerStyle>
     )

@@ -1,15 +1,15 @@
 import React, { FormEvent, ReactElement, useEffect, useState } from 'react'
-import * as authThunk from '../../app/thunks/AppThunk'
+import * as authThunk from '../../app/thunks/AuthThunk'
 import { useAppSelector, useAppDispatch } from '../../app/store/hooks';
 import axios from 'axios';
-import { changeModalAction, registerErrors, register_form, register_Form_OnChange, user_modals } from '../../app/containers/AppSlice';
+import { changeModalAction, register_errors,  register_form, register_Form_OnChange, user_modals } from '../../app/containers/AuthSlice';
 
 interface Props {
 }
 
 function RegisterModal({}: Props):ReactElement {
     const dispatch = useAppDispatch();
-    const errors = useAppSelector(registerErrors);
+    const registerErrors = useAppSelector(register_errors);
     const allModals = useAppSelector(user_modals)
     const registerForm = useAppSelector(register_form)
     
@@ -34,18 +34,18 @@ function RegisterModal({}: Props):ReactElement {
                 </div>
                 <div style={{display:'flex',flexDirection:"column",alignItems:'center',marginTop:"20px",marginBottom:"10px"}}>
                     <label style={{width:"150px",marginBottom:"10px",alignSelf:"flex-start"}} htmlFor="">username</label>
-                    <input name="name" value={registerForm.name} onChange={(e)=> dispatch(register_Form_OnChange(e))}  />
-                    {(errors !== null && errors !== undefined &&  errors.errors.name !== undefined) && errors.errors.name.map((error , index) => <label style={{color:"red", fontSize:"12px",marginTop:"10px",marginBottom:"10px"}} key={index}>{error}</label>)}
+                    <input name="name" value={registerForm.name} onChange={(e)=> dispatch(register_Form_OnChange({name:e.target.name , value:e.target.value}))}  />
+                    { registerErrors.name !== undefined && registerErrors.name.map((error , index) => <label style={{color:"red", fontSize:"12px",marginTop:"10px",marginBottom:"10px"}} key={index}>{error}</label>)}
                 </div>
                 <div style={{display:'flex',flexDirection:"column",alignItems:'center',marginTop:"20px",marginBottom:"10px"}}> 
                     <label style={{width:"150px",marginBottom:"10px",alignSelf:"flex-start"}} htmlFor="">email</label>
-                    <input name="email" value={registerForm.email} onChange={(e)=> dispatch(register_Form_OnChange(e))} />
-                    {(errors !== null && errors !== undefined && errors.errors.email !== undefined) && errors.errors.email.map((error , index) => <label style={{color:"red", fontSize:"12px",marginTop:"10px",marginBottom:"10px"}} key={index}>{error}</label>)}
+                    <input name="email" value={registerForm.email} onChange={(e)=> dispatch(register_Form_OnChange({name:e.target.name , value:e.target.value}))} />
+                    { registerErrors.email !== undefined &&  registerErrors.email.map((error , index) => <label style={{color:"red", fontSize:"12px",marginTop:"10px",marginBottom:"10px"}} key={index}>{error}</label>)}
                 </div>
                 <div style={{display:'flex',flexDirection:"column",alignItems:'center',marginTop:"20px",marginBottom:"10px"}}>
                     <label style={{width:"150px",marginBottom:"10px",alignSelf:"flex-start"}} htmlFor="">password</label>
-                    <input name="password" value={registerForm.password} onChange={(e)=> dispatch(register_Form_OnChange(e))} />
-                    {(errors !== null && errors !== undefined &&  errors.errors.password !== undefined) && errors.errors.password.map((error , index) => <label style={{color:"red", fontSize:"12px",marginTop:"10px",marginBottom:"10px"}} key={index}>{error}</label>)}
+                    <input name="password" value={registerForm.password} onChange={(e)=> dispatch(register_Form_OnChange({name:e.target.name , value:e.target.value}))} />
+                    { registerErrors.password !== undefined &&  registerErrors.password.map((error , index) => <label style={{color:"red", fontSize:"12px",marginTop:"10px",marginBottom:"10px"}} key={index}>{error}</label>)}
                 </div>
                 <div style={{width:"100%", display:'flex',justifyContent:'center',marginTop:"20px"}}>
                     <button type="submit">Submit</button>

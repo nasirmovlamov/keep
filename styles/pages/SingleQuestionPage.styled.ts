@@ -20,7 +20,7 @@ export const SingleProductMiddle = styled.main`
 export const SingleProductAside = styled.aside`
     display: flex;
     width: 350px;
-    height: 100%;
+    height:500px;
     flex-direction:column;
     align-items: center;
     row-gap: 20px;
@@ -154,38 +154,45 @@ export const QuestionStatisticText = styled.span`
 `
 
 
-export const AddAnswerCont = styled.form`
+export const AddAnswer = styled.textarea`
     width: 100%;
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
-    height: 35px;
-    
-`
-export const AddAnswer = styled.input`
-    width: 100%;
-    height: 100%;
+    height: 50px;
     border: none;
     padding: 0px;
     margin: 0px;
     padding-left: 10px;
-    border-radius: 6px 0px 0px 6px;
+    padding-top: 10px;
+    border-radius:6px ;
     border: 1px solid lightgray;
+    transition: 0.4s;
     border-right: 0px;
-    &:focus {
+    resize:none;
+    &:focus{
         outline: none;
     }
+`
+
+export const AddAnswerCont = styled.form`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    height: auto;
+    
 `
 export const AddAnswerSubmit = styled.button`
     width: 50px;
     margin: 0px;
     padding: 0px;
-    height: 103%;
+    height: 30px;
     background-color: green;
     color: white;
     border: 1px solid green;
-    border-radius: 0px 6px 6px 0px;
-
+    align-self:flex-end;
+    border-radius:6px ;
+    margin-top: 10px;
+    
 `
 
 

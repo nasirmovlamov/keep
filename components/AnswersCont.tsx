@@ -9,12 +9,29 @@ import Answer from './Answer';
 
 
 export interface USER_INTERFACE {
-    user:{id:number , email:string, name:string}
+    id:number , 
+    email:string, 
+    name:string
 }
 
 
 
-export interface ANSWER_INTERFACE {id?:number, parent_id:number|number,user:USER_INTERFACE ,content:string,created_at:string,updated_at:string , user_votes:{id:number,user_id:number,answer_id:number,type:string,created_at:string,updated_at:string}|null}
+export interface ANSWER_INTERFACE {
+    id:number, 
+    parent_id:number,
+    user:USER_INTERFACE ,
+    content:string,
+    created_at:string,
+    updated_at:string ,
+    user_votes:{
+            id:number,
+            user_id:number,
+            answer_id:number,
+            type:string,
+            created_at:string,
+            updated_at:string
+    } | null
+}
 
 
 
@@ -39,10 +56,10 @@ function AnswersConts({answers}: Props): ReactElement {
         }
     }, [inView])
     
-
+    
     return (
         <AnswersCont id="answersCont" ref={ref} style={{scrollMarginTop: "250px"}}>
-            {answers.map((answer:ANSWER_INTERFACE , index:number) => <Answer key={index} index={index} answer={answer}/>)} 
+            {answers.map((answer:ANSWER_INTERFACE , index:number) => <Answer key={answer.id} index={index} id={answer.id} answer={answer}/>)} 
         </AnswersCont>
     )
 }

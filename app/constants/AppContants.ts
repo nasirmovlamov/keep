@@ -9,4 +9,8 @@ export const VOTE_QUESTION:string = 'VOTE_QUESTION'
 export const UN_VOTE_QUESTION:string = 'UN_VOTE_QUESTION'
 export const VOTE_ANSWER:string = 'VOTE_ANSWER'
 export const UN_VOTE_ANSWER:string = 'UN_VOTE_ANSWER'
+export const GET_QUESTION_COMMENTS:string = 'GET_QUESTION_COMMENTS'
+export const GET_ANSWER_COMMENTS:string = 'GET_ANSWER_COMMENTS'
+export const ADD_ANSWER_COMMENTS:string = 'ADD_ANSWER_COMMENTS'
+export const ADD_QUESTION_COMMENTS:string = 'ADD_QUESTION_COMMENTS'
 

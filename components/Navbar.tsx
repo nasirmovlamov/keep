@@ -10,8 +10,8 @@ import RegisterModal from './Modals/RegisterModal'
 import LoginModal from './Modals/LoginModal'
 import Modals from './Modals/Modals'
 import { useAppDispatch, useAppSelector } from '../app/store/hooks'
-import { changeModalAction, is_loading, is_Logged, userState, user_modals } from '../app/containers/AppSlice'
-import { userCheck, userLogin, userLogout } from '../app/thunks/AppThunk'
+import { changeModalAction, is_loading, is_Logged,  user_data, user_modals } from '../app/containers/AuthSlice'
+import { userCheck, userLogin, userLogout } from '../app/thunks/AuthThunk'
 import { GetServerSideProps } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -24,7 +24,7 @@ function Navbar({}: Props): ReactElement {
     const {pathname} = router
     const dispatch = useAppDispatch();
     const userModals = useAppSelector(user_modals);
-    const userData = useAppSelector(userState);
+    const userData = useAppSelector(user_data);
     const isLogged = useAppSelector(is_Logged);
     const isLoading = useAppSelector(is_loading);
     const [navView, setnavView] = useState<JSX.Element>()
@@ -53,12 +53,27 @@ function Navbar({}: Props): ReactElement {
         }
     }
 
+    const exit = async () => {
+        await dispatch(userLogout())
+        // window.location.reload() 
+    }
+
     const loginChecker = () => {
-        if(isLogged === null)
+        if(!isLogged)
         {
-            dispatch(userCheck())
+            const view = 
+            <Guest>  
+                <LoginButton      onClick={() => dispatch(changeModalAction("login"))}>
+                    <Image  src={loginPng} /> 
+                </LoginButton>
+                <RegisterButton   onClick={() => dispatch(changeModalAction("register"))}>
+                    <Image  src={registerSVG} /> 
+                </RegisterButton>
+            </Guest>
+            setnavView(view)
+            return ""
         }
-        else if(isLogged)
+        else if(userData !== null)
         {
             const view = <>
                     <Logged> 
@@ -72,24 +87,12 @@ function Navbar({}: Props): ReactElement {
                             {userData.name}
                         </PersonName>
                     </Logged>
-                    <Logout onClick={() => dispatch(userLogout())}>
+                    <Logout onClick={exit}>
                         exit 
                     </Logout>
                 </>
             setnavView(view)
-        }
-        else
-        {
-            const view = 
-            <Guest>  
-                <LoginButton      onClick={() => dispatch(changeModalAction("login"))}>
-                    <Image  src={loginPng} /> 
-                </LoginButton>
-                <RegisterButton   onClick={() => dispatch(changeModalAction("register"))}>
-                    <Image  src={registerSVG} /> 
-                </RegisterButton>
-            </Guest>
-            setnavView(view)
+            return ""
         }
     }
 
@@ -122,7 +125,6 @@ function Navbar({}: Props): ReactElement {
 
             <Enterance>
                 {navView}
-                
             </Enterance>
         </Nav>
     )

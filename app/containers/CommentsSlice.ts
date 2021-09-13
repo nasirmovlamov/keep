@@ -32,7 +32,7 @@ export const CommentsSlice = createSlice({
         builder.addCase(getQuestionComments.pending, (state, {payload}) => {
             state.commentsStatus = 'loading'
         }),
-        builder.addCase(getQuestionComments.rejected, (state, action) => {
+        builder.addCase(getQuestionComments.rejected, (state, action:any) => {
             state.commentsStatus = 'idle'
             if (action.payload) {        
                 state.commentsErrors = action.payload.errors
@@ -51,7 +51,7 @@ export const CommentsSlice = createSlice({
         builder.addCase(getAnswerComments.pending, (state, {payload}) => {
             state.commentsStatus = 'loading'
         }),
-        builder.addCase(getAnswerComments.rejected, (state, action) => {
+        builder.addCase(getAnswerComments.rejected, (state, action:any) => {
             state.commentsStatus = 'idle'
             if (action.payload) {        
                 state.commentsErrors = action.payload.errors

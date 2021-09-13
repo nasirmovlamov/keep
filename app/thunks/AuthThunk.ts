@@ -73,12 +73,7 @@ export const userLogout = createAsyncThunk(
   
   
   
-  export const userLogin = createAsyncThunk<
-  MyData , 
-  LoginAttributes , 
-  {
-    rejectValue: LoginAuthError
-  }>(
+  export const userLogin = createAsyncThunk(
     types.LOGIN, async (user:{email:string,password:string} , {rejectWithValue}) => {
       try {
         const login_form = new FormData()

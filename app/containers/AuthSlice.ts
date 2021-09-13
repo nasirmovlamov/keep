@@ -98,7 +98,7 @@ export const UserSlice = createSlice({
             state.status = 'loading'
         }),
 
-        builder.addCase(userLogin.rejected, (state,action) => {
+        builder.addCase(userLogin.rejected, (state,action:any) => {
             state.status = 'failed'
             state.loggedIn = false
             if(action.payload)

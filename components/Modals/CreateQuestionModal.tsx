@@ -5,6 +5,8 @@ import { accessToken } from '../../helpers/token/TokenHandle'
 import { getKeyValue } from '../../logic/getKeyValue'
 import { LabelCont, QuestionCreateForm, QuestionCreateModal } from '../../styles/components/styled-elements/CreateQuestionModal.style'
 import { Title } from '../../styles/components/styled-elements/FormQuestion.style'
+import { autoSuccessToaster } from '../Notify/AutoSuccessToast'
+import { errorToastFunc } from '../Notify/ErrorToasts'
 
 
 interface Props {
@@ -39,10 +41,9 @@ function CreateQuestionModal({}: Props): ReactElement {
             formData.append("content" , questionValue.content)
             formData.append("tags" , JSON.stringify(tags))
             const resp = await BASE_API_INSTANCE.post("/forum/create", formData) 
-            dispatch(successToast({side:"top-right" , content:resp.data.message}))
+            autoSuccessToaster(resp.data.message)
         } catch (error) {
-            
-            dispatch(errorToast({side:"bottom-right" , content:"error.response.data"}))
+            errorToastFunc("top-right" , "error.response.data")
         }
     }
 

@@ -1,7 +1,7 @@
 import React, { FormEvent,ReactElement, useEffect, useState } from 'react'
 import { useAppSelector, useAppDispatch } from '../../app/store/hooks';
 import * as authThunk from '../../app/thunks/AuthThunk'
-import { changeModalAction, forget_Password_Errors, loginErrors, login_form, login_Form_OnChange, user_modals } from '../../app/containers/AuthSlice';
+import { changeModalAction, forget_Password_Errors, login_form, login_Form_OnChange, user_modals } from '../../app/containers/AuthSlice';
 interface Props {
 }
 
@@ -9,7 +9,7 @@ function ForgetPasswordModal({}: Props):ReactElement {
     const dispatch = useAppDispatch();
     const allModals = useAppSelector(user_modals)
     const loginForm = useAppSelector(login_form)
-    const errors = useAppSelector(forget_Password_Errors);
+    const forgetPassErrors = useAppSelector(forget_Password_Errors);
     
     
     
@@ -38,7 +38,7 @@ function ForgetPasswordModal({}: Props):ReactElement {
                     <button type="button" onClick={() => dispatch(changeModalAction('login'))}>Go back</button>
                 </div>
                 <div style={{display:'flex',flexDirection:"column",alignItems:'center',marginTop:"20px",marginBottom:"10px"}}>
-                {(errors !== null && errors !== undefined &&  errors.errors.attempt !== undefined) && <label>{errors.errors.attempt}</label>}
+                {(forgetPassErrors !== null && forgetPassErrors.attempt !== undefined) && <label>{forgetPassErrors.attempt}</label>}
                 </div>
             </form>
         </div>

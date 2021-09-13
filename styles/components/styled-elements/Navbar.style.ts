@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { useSelector } from "react-redux";
-import { is_Logged } from "../../../app/containers/AppSlice";
 import { ThemeType } from "../../global/styled-utils/styling-elements/Theme.style";
 
 // color = (isLogged) ? "red" : "gray"

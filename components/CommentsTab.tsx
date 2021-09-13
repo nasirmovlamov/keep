@@ -1,5 +1,4 @@
 import React, { ReactElement, useEffect, useState } from 'react'
-import { errorToast } from '../app/containers/AppSlice'
 import { user_data } from '../app/containers/AuthSlice'
 import { comments,   comments_types } from '../app/containers/CommentsSlice'
 import { useAppDispatch, useAppSelector } from '../app/store/hooks'

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { ReactElement, useEffect, useState } from 'react'
-import { changeForumTabActive,  page_tabs } from '../app/containers/PageTabsSlice'
+import { changeForumTabActive,  page_tabs } from '../app/feature/PageTabsSlice'
 import { useAppDispatch, useAppSelector } from '../app/store/hooks'
 import { SingleLine,  SingleTabButton, SingleTabs, SingleTabsContainer, SingleTabTags, SingleTabTagsCont, SingleTabText } from '../styles/components/styled-elements/SinglePageTabs.styled'
 

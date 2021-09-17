@@ -6,9 +6,8 @@ import { RootState } from '../store/store'
 import { getKeyValue } from '../../logic/getKeyValue'
 import toast from 'react-hot-toast'
 import { ToastPosition } from 'react-hot-toast/dist/core/types'
-import { ANSWER_INTERFACE } from '../../components/AnswersCont'
-import { unVoteAnswer, unVoteQuestion, voteAnswer, voteQuestion } from '../thunks/VotingThunk'
-import { getSingleQuestion } from '../thunks/VotingThunk'
+import { unVoteAnswer, unVoteQuestion, voteAnswer, voteQuestion } from '../thunks/QuestionThunk'
+import { getSingleQuestion } from '../thunks/QuestionThunk'
 import { autoErrorToaster } from '../../components/Notify/AutoErrorToaster'
 
 

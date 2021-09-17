@@ -18,5 +18,5 @@ export const URL:URL_INTERFACE = {
     REGISTER: '/register',
     CHECK_USER: '/user',
     ABOUT: '/about',
-    PASSWORD_RESET: '/password/create'
+    PASSWORD_RESET: '/password/create/'
 }

@@ -1,12 +1,10 @@
 import { accessToken, getAccessToken, setAccessToken } from '../../helpers/token/TokenHandle';
 import { BASE_API_URL } from '../../helpers/urls/BASE_URL';
 import * as types from '../constants/AppContants'
-import {APP_API} from '../../helpers/api/AppApi'
 import { AsyncThunk, createAction, createAsyncThunk, isRejectedWithValue} from '@reduxjs/toolkit'
 import {getToken} from '../../logic/userToken'
 import { AxiosError } from 'axios'
 import { APP_INTERFACE } from '../store/state-Interfaces/AppInterface'
-import BaseApi from '../../helpers/api/BaseApi';
 import { BASE_API_INSTANCE } from '../../helpers/api/BaseInstance';
 
 
@@ -20,6 +18,32 @@ export const getSingleQuestion = createAsyncThunk(
       }
   }
 )
+
+
+
+
+export const getAnswers = createAsyncThunk(
+  types.GET_ANSWERS, async (data:{page:number,direction:string,questionId:number}, {rejectWithValue}) => {
+      try {
+        const resp = await BASE_API_INSTANCE.get(`/forum/${data.questionId}/answer/loadanswers?page=${data.page}`)
+        if(data.direction === 'next'){
+          return {data: resp.data , next:true}
+        }
+        else if(data.direction === 'previous'){
+          return {data: resp.data , next:false}
+        }
+        return null
+      } catch (error:any) {
+        return rejectWithValue(error.response.data)
+      }
+  }
+)
+
+
+
+
+
+
 
 
 

@@ -1,11 +1,11 @@
 import { QUESTION_INTERFACE } from "../state-Interfaces/QuestionInterface";
-
+import { ANSWER_INTERFACE} from "../state-Interfaces/QuestionInterface";
 
 export const QUESTION_STATE:QUESTION_INTERFACE = {
     singleQuestionData:{
+        status:"loading",
         id:0 ,
         answer_count:0,
-        answers:[],
         category:{id:0, name:"", slug:"",sort:0},
         closed_at:null,
         comment_count:0,
@@ -20,6 +20,19 @@ export const QUESTION_STATE:QUESTION_INTERFACE = {
         user:{id:0,email:"",name:""},
         user_votes:null,
         view_count:0
+    },
+    answersData:{
+        topPage:1,
+        downPage:0,
+        totalPage:0,
+        topAnswers:{
+            status:"loading",
+            answers:[]
+        },
+        downAnswers:{
+            status:"loading",
+            answers:[]
+        },
     },
     status:"loading"
 }

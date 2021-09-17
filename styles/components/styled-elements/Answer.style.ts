@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 
-export const AnswerStyle = styled.div`
+export const AnswerStyle = styled.li`
     display: flex;
     width: 100%;
     column-gap: 10px;
@@ -36,7 +36,8 @@ export const Name = styled.span`
 
 export const AnswerContent = styled.p`
     font-size: 15px;
-    width: 100%;
+    width: 500px;
+    overflow: hidden;
     margin-top: 10px;
 `
 export const ShowComments = styled.button`

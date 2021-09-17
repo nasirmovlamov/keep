@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import appReducer from '../containers/AppSlice'
-import tabsReducer from '../containers/PageTabsSlice'
-import authReducer from '../containers/AuthSlice'
-import commentsReducer from '../containers/CommentsSlice'
-import questionReducer from '../containers/QuestionSlice'
+import appReducer from '../feature/AppSlice'
+import tabsReducer from '../feature/PageTabsSlice'
+import authReducer from '../feature/AuthSlice'
+import commentsReducer from '../feature/CommentsSlice'
+import questionReducer from '../feature/QuestionSlice'
 
 const reducer = {  appReducer: appReducer , authReducer:authReducer , questionReducer:questionReducer, commentsReducer:commentsReducer  ,tabsReducer:tabsReducer }
 

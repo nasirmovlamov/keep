@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useState } from 'react'
-import { user_data } from '../app/containers/AuthSlice'
-import { comments,   comments_types } from '../app/containers/CommentsSlice'
+import { user_data } from '../app/feature/AuthSlice'
+import { comments,   comments_types } from '../app/feature/CommentsSlice'
 import { useAppDispatch, useAppSelector } from '../app/store/hooks'
 import { addAnswerComment, addQuestionComment } from '../app/thunks/CommentsThunk'
 import { AllCommentsCont, CommentChangeContent, CommentsForm, CommentsTabMainNameStyle, CommentsTabStyle, CommentsTabTitleStyle, CommentStyle, PostComment  } from '../styles/components/styled-elements/CommentsTab.style'

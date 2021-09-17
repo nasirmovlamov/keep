@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useState } from 'react'
 import { AnswersCont, ProductsCont } from '../styles/pages/SingleQuestionPage.styled'
 import { useInView } from 'react-intersection-observer';
 import { useAppDispatch, useAppSelector } from '../app/store/hooks';
-import { changeForumTabActive, forum_tabs } from '../app/containers/PageTabsSlice';
+import { changeForumTabActive, forum_tabs } from '../app/feature/PageTabsSlice';
 
 interface Props {
     

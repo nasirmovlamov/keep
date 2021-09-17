@@ -3,11 +3,11 @@ import axios from 'axios'
 import { getToken } from '../app/actions/getToken';
 import { useAppDispatch, useAppSelector } from '../app/store/hooks';
 import { AddAnswer, AddAnswerCont, AddAnswerSubmit } from '../styles/pages/SingleQuestionPage.styled'
-import { user_data } from '../app/containers/AuthSlice';
+import { user_data } from '../app/feature/AuthSlice';
 import { errorToastFunc } from './Notify/ErrorToasts';
 import { autoSuccessToaster } from './Notify/AutoSuccessToast';
 import { autoErrorToaster } from './Notify/AutoErrorToaster';
-import { addNewAnswer } from '../app/containers/QuestionSlice';
+import { addNewAnswer } from '../app/feature/QuestionSlice';
 
 interface Props {
     id:string|string[]|undefined

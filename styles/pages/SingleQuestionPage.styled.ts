@@ -26,7 +26,6 @@ export const SingleProductAside = styled.aside`
     row-gap: 20px;
     padding-bottom: 50px;
     padding-top: 50px;
-    background-color: red;
     position: sticky;
     top:78px;
 `

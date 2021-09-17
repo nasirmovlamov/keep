@@ -1,5 +1,4 @@
 import { SerializedError } from "@reduxjs/toolkit";
-import { ANSWER_INTERFACE } from "../../../components/AnswersCont";
 import { AUTH_INTERFACE } from "./AuthInterface";
 import { QUESTION_INTERFACE } from "./QuestionInterface";
 
@@ -13,52 +12,6 @@ export interface APP_INTERFACE {
         isShown:boolean
     },
 }
-
-
-
-export interface SingleFormDataInterface{
-    id:number ,
-    answer_count:number,
-    answers:ANSWER_INTERFACE[]
-    category:{id:number, name:string, slug:string,sort:number}
-    closed_at:null,
-    comment_count:number,
-    content:string,
-    created_at:string,
-    last_active_at:string,
-    upvote:number,
-    slug:string,
-    tags:string,
-    title:string,
-    updated_at:string,
-    user:{id:number,email:string,name:string}
-    user_votes:{
-        created_at: string
-        id: number
-        thread_id: number
-        type: string
-        updated_at:string
-        user_id: number}|null
-    view_count:number
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 export interface MyData {  

@@ -37,7 +37,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     {
       settheme("light")
     }
-
     console.log("%cDont try stupid things which you heard from uncle toms or etc!","font-size: 30px; color: red; -webkit-text-stroke:1px black; font-weight: bold;")
   }, [])
 
@@ -57,7 +56,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <Provider store={store}> 
-      <ThemeProvider theme={theme === "light" ?  darkTheme :lightTheme}>
+      <ThemeProvider theme={theme === "light" ? darkTheme : lightTheme  || localStorage.getItem('theme') !== null ? darkTheme : lightTheme}>
         <>
           <Toaster/>
           <GlobalStyle/>

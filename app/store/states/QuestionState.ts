@@ -25,6 +25,7 @@ export const QUESTION_STATE:QUESTION_INTERFACE = {
         topPage:1,
         downPage:0,
         totalPage:0,
+        submittedAnswer:[],
         topAnswers:{
             status:"loading",
             answers:[]

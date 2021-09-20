@@ -21,7 +21,6 @@ export const AppSlice = createSlice({
     //   if(state.singleQuestionData !== null)
     //   {
     //     const newAnswer:ANSWER_INTERFACE = payload
-    //     console.log(payload)
     //     state.singleQuestionData.answers =  [...state.singleQuestionData.answers , newAnswer]
     //     state.singleQuestionData.answer_count += 1
     //   }
@@ -90,8 +89,6 @@ export const AppSlice = createSlice({
     //     for (let i = 0; i < state.singleQuestionData.answers.length; i++) {
     //       if(state.singleQuestionData.answers[i].id === payload.data.answer_id)
     //       {
-    //         console.log(state.singleQuestionData.answers[i].id)
-    //         console.log(payload.data.answer_id)
     //         state.singleQuestionData.answers[i].user_votes = payload.data
     //       } 
     //     }
@@ -109,7 +106,6 @@ export const AppSlice = createSlice({
     // //UN VOTE ANSWER Reducers
     // builder.addCase(unVoteAnswer.fulfilled, (state, {payload}) => {
     //   state.status = 'idle'
-    //   console.log(payload)
 
     //   if(state.singleQuestionData !== null)
     //   {

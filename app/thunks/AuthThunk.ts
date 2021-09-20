@@ -44,10 +44,8 @@ string,
 export const userLogout = createAsyncThunk(
   types.LOGOUT, async (token, {rejectWithValue}) => {
     try {
-        localStorage.clear()
-        setAccessToken(null)
-        const data = await BASE_API_INSTANCE.post(URL.LOGOUT) 
-        return  data
+        const resp = await BASE_API_INSTANCE.get(URL.LOGOUT) 
+        return  resp.data
     } catch (error:any) {
       return rejectWithValue(error.response.data)
     }

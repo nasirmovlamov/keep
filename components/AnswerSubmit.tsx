@@ -7,10 +7,10 @@ import { user_data } from '../app/feature/AuthSlice';
 import { errorToastFunc } from './Notify/ErrorToasts';
 import { autoSuccessToaster } from './Notify/AutoSuccessToast';
 import { autoErrorToaster } from './Notify/AutoErrorToaster';
-import { addNewAnswer } from '../app/feature/QuestionSlice';
+import { addAnswer } from '../app/thunks/QuestionThunk';
 
 interface Props {
-    id:string|string[]|undefined
+    id:string | string[] | undefined
 }
 
 function AnswerSubmitCont({id}: Props): ReactElement {
@@ -39,15 +39,7 @@ function AnswerSubmitCont({id}: Props): ReactElement {
             errorToastFunc("top-right" , "Your answer must be at least 50 charachter.")
             return 0
         }
-        try {
-            const resp = await axios.post(`https://api.abysshub.com/api/forum/${id}/answer/submit` , {content:answer} , {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}})
-                dispatch(addNewAnswer(resp.data.data))
-                autoSuccessToaster(resp.data.message)
-                setanswer("")
-        } catch (error:any) {
-            console.log(error.response.data)
-            autoErrorToaster(error.response.data)
-        }
+        dispatch(addAnswer({content: answer, questionId: id}))
     }
 
     const checkTextAreaHeight = () =>{

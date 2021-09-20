@@ -24,7 +24,9 @@ function Forum({}: Props): ReactElement {
     }
 
     useEffect(() => {
-        getQuestions()
+        setTimeout(() => {
+            getQuestions()
+        }, 500); 
     }, [])
     
     return (

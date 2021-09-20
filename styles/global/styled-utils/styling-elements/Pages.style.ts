@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const ForumPage = styled.main`
     width: 894px;
+    min-height: 1600px;
     display: flex;
     flex-direction: column;
     border-left: 1px solid lightgray;

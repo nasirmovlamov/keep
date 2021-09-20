@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react'
-import { AnswerContent, AnswerStyle, PersonCont } from '../../styles/components/styled-elements/Answer.style'
+import { AnswerContent, AnswerContentSkeleton, AnswerStyle, PersonCont } from '../../styles/components/styled-elements/Answer.style'
 import { SkeletonBox } from '../../styles/global/styled-utils/Global.style'
 
 interface Props {
@@ -14,9 +14,9 @@ function AnswerSkeleton({}: Props): ReactElement {
                     <SkeletonBox className="skeleton-box" width="42px" height="42px" borderRadius="50%"/>
                     <SkeletonBox className="skeleton-box" width="42px" height="15px" borderRadius="8px"/>
                 </PersonCont>
-                <AnswerContent>
+                <AnswerContentSkeleton>
                     <SkeletonBox className="skeleton-box" width="100%" height="99px" borderRadius="8px"/>
-                </AnswerContent>
+                </AnswerContentSkeleton>
                 <div className="flexer fd-c a-end">
                     <SkeletonBox className="skeleton-box" width="45px" height="15px" borderRadius="8px"/>
                 </div>

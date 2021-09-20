@@ -18,6 +18,7 @@ export const Nav = styled.nav`
     margin: 0px;
     position: sticky;
     top:0px;
+    z-index: 999;
 `
 
 

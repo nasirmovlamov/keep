@@ -41,6 +41,19 @@ export const getAnswers = createAsyncThunk(
 
 
 
+export const addAnswer = createAsyncThunk(
+  types.ADD_ANSWER, async (data:{content:string , questionId:string | string [] | undefined }, {rejectWithValue}) => {
+      try {
+        const formData = new FormData()
+        formData.append('content', data.content)
+        const resp = await BASE_API_INSTANCE.post(`/forum/${data.questionId}/answer/submit` , formData)
+        return resp.data
+      } catch (error:any) {
+        return rejectWithValue(error.response.data)
+      }
+  }
+)
+
 
 
 
@@ -77,12 +90,12 @@ export const voteQuestion = createAsyncThunk(
   
   
   export const voteAnswer = createAsyncThunk(
-    types.VOTE_ANSWER, async (vote:{id:number, type:string}, {rejectWithValue}) => {
+    types.VOTE_ANSWER, async (vote:{id:number, type:string, direction:string}, {rejectWithValue}) => {
         try {
           const formData = new FormData()
           formData.append("type" , vote.type)
           const resp = await BASE_API_INSTANCE.post(`/forum/${vote.id}/answer/vote` , formData)
-          return resp.data
+          return {data:resp.data , direction:vote.direction}
         } catch (error:any) {
           return rejectWithValue(error.response.data)
         }
@@ -91,12 +104,12 @@ export const voteQuestion = createAsyncThunk(
   
   
   export const unVoteAnswer = createAsyncThunk(
-    types.UN_VOTE_ANSWER, async (vote:{id:number , type:string}, {rejectWithValue}) => {
+    types.UN_VOTE_ANSWER, async (vote:{id:number , type:string , direction:string}, {rejectWithValue}) => {
         try {
           const formData = new FormData()
           formData.append("type" , vote.type)
           const resp = await BASE_API_INSTANCE.post(`/forum/${vote.id}/answer/unvote` , formData)
-          return vote.id
+          return  {data:resp.data , direction:vote.direction , id:vote.id}
         } catch (error:any) {
           return rejectWithValue(error.response.data)
         }

@@ -5,26 +5,25 @@ import { changeForumTabActive } from '../app/feature/PageTabsSlice';
 import { changeModalAction, user_data } from '../app/feature/AuthSlice';
 import { useAppDispatch, useAppSelector } from '../app/store/hooks';
 import { unVoteAnswer, voteAnswer } from '../app/thunks/QuestionThunk';
-import { AnswerContent, AnswerStyle, Avatar, Name, PersonCont, ShowComments } from '../styles/components/styled-elements/Answer.style';
+import { AnswerContent, AnswerStyle, Avatar, LikeButton, Name, PersonCont, ShowComments } from '../styles/components/styled-elements/Answer.style';
 import { AnswersCont } from '../styles/pages/SingleQuestionPage.styled'
 import { showComments } from '../app/feature/CommentsSlice';
 import { getAnswerComments } from '../app/thunks/CommentsThunk';
 import { single_question_data } from '../app/feature/QuestionSlice';
 import { errorToastFunc, loginError } from './Notify/ErrorToasts';
 import { ANSWER_INTERFACE } from '../app/store/state-Interfaces/QuestionInterface';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCoffee, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
 interface Props {
-    answer:ANSWER_INTERFACE
-    index:number,
+    answer:ANSWER_INTERFACE,
+    direction:string
 }
 
-function Answer({answer , index  }: Props): ReactElement {
+function Answer({answer ,direction  }: Props): ReactElement {
     const dispatch = useAppDispatch()
-    const singleQuestionData = useAppSelector(single_question_data)
     const userData = useAppSelector(user_data)
-    const [color, setcolor] = useState("gray")
+    const [isLiked, setisLiked] = useState(true)
     const voting = () => {
-        console.log(answer)
         if(userData === null)
         {
             loginError()
@@ -32,11 +31,11 @@ function Answer({answer , index  }: Props): ReactElement {
         }
         if(answer.user_votes === null)
         {
-            dispatch(voteAnswer({id:answer.id, type:"upvote"}))
+            dispatch(voteAnswer({id:answer.id, type:"upvote", direction:`${direction}`}))
         }
         else if (answer.user_votes !== null && answer.user_votes.user_id === userData.id)
         {
-            dispatch(unVoteAnswer({id: answer.id, type:"upvote"}))
+            dispatch(unVoteAnswer({id: answer.id, type:"upvote", direction:`${direction}`}))
         }
         else{}
     }
@@ -59,13 +58,14 @@ function Answer({answer , index  }: Props): ReactElement {
     useEffect(() => {
         if(userData)
         {
-            answer.user_votes === null ? setcolor("gray") : setcolor("red")
+            answer.user_votes === null ? setisLiked(false) : setisLiked(true)
         }
         else 
         {
-            setcolor("gray")
+            setisLiked(false)
         }
-    }, [userData])
+    }, [userData , answer])
+
 
     return (
         <AnswerStyle key={answer.id}>
@@ -78,7 +78,7 @@ function Answer({answer , index  }: Props): ReactElement {
                     {answer.content}
                 </AnswerContent>
                 <div className="flexer fd-c a-end">
-                    <button onClick={voting} style={{color:  color}}>like</button>
+                    <LikeButton onClick={voting} style={{color:  isLiked ? "green" : "gray" }}><FontAwesomeIcon icon={faThumbsUp}/> </LikeButton>
                 </div>
             </div>
             <div className="flexer fd-c a-end">

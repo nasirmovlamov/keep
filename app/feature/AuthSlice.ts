@@ -71,21 +71,19 @@ export const UserSlice = createSlice({
         }),
 
         builder.addCase(userLogout.pending, (state, {payload}) => {
-            state.user = {name:"" , email:"" , id:0}
-            state.status = 'loading'
         }),
 
         builder.addCase(userLogout.rejected, (state, {payload}) => {
             state.status = 'failed'
             state.loggedIn = false
             state.user = null
+            
         }),
 
 
         //Login Reducers
         builder.addCase(userLogin.fulfilled, (state, {payload}) => {
             setAccessToken(payload.data.access_token)
-            console.log(payload.data)
             state.user =  payload.data.user
             state.loggedIn = true
             state.status = 'idle'

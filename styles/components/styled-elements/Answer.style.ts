@@ -12,6 +12,15 @@ export const AnswerStyle = styled.li`
     flex-direction: column;
     color: white;
 `
+export const LikeButton = styled.button`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    background-color: transparent;
+`
 
 
 export const PersonCont = styled.div`
@@ -35,6 +44,12 @@ export const Name = styled.span`
 `
 
 export const AnswerContent = styled.p`
+    font-size: 15px;
+    width: 500px;
+    overflow: hidden;
+    margin-top: 10px;
+`
+export const AnswerContentSkeleton = styled.div`
     font-size: 15px;
     width: 500px;
     overflow: hidden;

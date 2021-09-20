@@ -27,6 +27,7 @@ export interface AnswerDataInterface{
     topPage:number,
     downPage:number,
     totalPage:number,
+    submittedAnswer:ANSWER_INTERFACE[],
     topAnswers:{
         status:"loading" | "idle" | "failed",
         answers:ANSWER_INTERFACE[]

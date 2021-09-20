@@ -5,6 +5,7 @@ import { userCheck } from '../app/thunks/AuthThunk';
 import Footer from './Footer'
 import Modals from './Modals/Modals';
 import Navbar from './Navbar'
+import SearchBox from './SearchBox';
 
 
 
@@ -30,6 +31,7 @@ const Layout: FC<Props> = ({ children, ...props }) => {
         return (
             <>
                 <Navbar/>
+                    <SearchBox/>
                     <main>{children}</main>   
                     <Modals/>
                 <Footer/>   

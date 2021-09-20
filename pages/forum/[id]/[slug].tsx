@@ -29,7 +29,7 @@ interface Props {
 
 function SingleQuestionPAge({}: Props): ReactElement {
     const router = useRouter()
-    const {query} = router
+    const {id} = router.query
     const dispatch = useAppDispatch()
     const singleQuestionData = useAppSelector(single_question_data)
     const singleQuestionStatus = useAppSelector(single_question_status)
@@ -59,12 +59,12 @@ function SingleQuestionPAge({}: Props): ReactElement {
         
         if( singleQuestionData.user_votes !== null && singleQuestionData.user_votes.user_id === userData.id) 
         {
-            dispatch(unVoteQuestion({id:query.id , type:"upvote"}) )
+            dispatch(unVoteQuestion({id:id , type:"upvote"}) )
             return null
         }
         else 
         {
-            dispatch(voteQuestion({id:query.id , type:"upvote"}))
+            dispatch(voteQuestion({id:id , type:"upvote"}))
             return null
         }
     }
@@ -89,6 +89,8 @@ function SingleQuestionPAge({}: Props): ReactElement {
         }
 
     }
+
+
     return (
         <SingleProductPage>
             <SingleProductAside>
@@ -167,7 +169,7 @@ function SingleQuestionPAge({}: Props): ReactElement {
                             </QuestionStatistics>
                         </QuestionCont>
 
-                        <AnswerSubmitCont id={query.id}/>
+                        <AnswerSubmitCont id={id}/>
                     </>
                 } 
             </>

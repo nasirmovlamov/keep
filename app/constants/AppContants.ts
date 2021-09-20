@@ -11,6 +11,7 @@ export const VOTE_ANSWER:string = 'VOTE_ANSWER'
 export const UN_VOTE_ANSWER:string = 'UN_VOTE_ANSWER'
 
 export const GET_ANSWERS:string = 'GET_ANSWERS'
+export const ADD_ANSWER:string = 'ADD_ANSWERS'
 
 export const GET_QUESTION_COMMENTS:string = 'GET_QUESTION_COMMENTS'
 export const GET_ANSWER_COMMENTS:string = 'GET_ANSWER_COMMENTS'

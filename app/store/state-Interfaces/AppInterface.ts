@@ -6,6 +6,7 @@ import { QUESTION_INTERFACE } from "./QuestionInterface";
 export interface APP_INTERFACE {
     AUTH_STATE:AUTH_INTERFACE
     QUESTION_STATE:QUESTION_INTERFACE
+    PAGE_OVERFLOWY:"hidden" | "scroll"
     CommentsSection:{
         id:number | null,
         comments:[],

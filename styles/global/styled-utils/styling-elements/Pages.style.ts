@@ -5,13 +5,10 @@ export const ForumPage = styled.main`
     min-height: 1600px;
     display: flex;
     flex-direction: column;
-    border-left: 1px solid lightgray;
-    border-right: 1px solid lightgray;
     margin: auto;
     align-items: center;
-    padding-left: 100px;
-    padding-right: 100px;
     row-gap: 20px;
+    padding-top: 100px;
 `
 
 
@@ -35,7 +32,5 @@ export const SingleProductPage = styled.div`
     box-sizing: border-box;
     display: flex;
     row-gap: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
 `
 

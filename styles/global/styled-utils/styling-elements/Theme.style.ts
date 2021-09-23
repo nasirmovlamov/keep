@@ -1,24 +1,25 @@
   export const lightTheme = {
-      body: '#E2E2E2',
+      body: '#F2F2F3',
       text: '#363537',
       toggleBorder: '#FFF',
       toggleTheme:"0px",
       toggleThemeColor:"#00090E",
       themeTogglerCont: "#FFFFFF",
       themeTogglerContBorder: "black",
+      backgroundMain:"#00090e",
       navbar: {
         navBackground:"#FFFFFF",
-        navLogoText:"#57676A",
+        navLogoText:"#f2f2f3",
         navBorder:"#ADB9B9",
-        navLinks:"#697E7F",
-        navLinksHovered:"#032728",
+        navLinks:"#9ea1a3",
+        navLinksHovered:"#f2f2f3",
         navPersonName:"#032728",
         navLogin:"0",
         navRegister:"0",
         navLogout:"#000000"
       },
       pageTabs: {
-        contBG:"#11191e",
+        contBG:"#ffffff",
         border:"gray",
         hover:{
           border:"lightgray",
@@ -34,6 +35,7 @@
     toggleThemeColor:"#00090E",
     themeTogglerCont:"#00090E",
     themeTogglerContBorder: "00090E",
+    backgroundMain:"#00090e",
     navbar: {
       navBackground:"#00090E",
       navLogoText:"#4C5B5F",

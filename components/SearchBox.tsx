@@ -16,13 +16,14 @@ function SearchBox({}: Props): ReactElement {
     const searchBoxRef = useRef(null)
     const searchInputRef = useRef(null)
     const dispatch = useAppDispatch()
+
     useEffect(() => {
         if(router.isReady)
         {
             setpagePath(pagePathDetector(router.asPath))
             if(router.asPath !== '/')
             {
-                searchBoxRef.current.style = ``
+                searchBoxRef.current.style = `position:fixed;`
                 searchInputRef.current.focus()
             }
         }

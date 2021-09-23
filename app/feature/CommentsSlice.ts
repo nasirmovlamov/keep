@@ -15,8 +15,18 @@ export const CommentsSlice = createSlice({
     initialState:CommentsState ,
     reducers: {
         showComments(state, {payload}) {
-            const {id , type , showComments, title, user}  = payload
-            state.commentsType = {id:id, type:type , showComments:showComments, title:title, user:user} 
+            if(payload)
+            {
+                const {id , type , showComments, title, user}  = payload
+                state.commentsType = {id:id, type:type , showComments:showComments, title:title, user:user} 
+
+            }
+            else
+            {
+                state.commentsType = payload 
+                document.body.style = "overflow-y: scroll"
+            }
+
         },
         closeComments(state, {payload}) {
             state.commentsType = null 

@@ -6,12 +6,11 @@ export const SearchBoxContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: 0.5s;
+    transition: 0.01s;
     margin-left: auto;
     margin-right: auto;
-    height: ${(props) => props.path === "/" ? "615px" : "auto"};
+    height: ${(props) => props.path === "/" ? "430px" : "auto"};
     width: 100%;
-    background-color: rgba(0,0,0,0.1);
     z-index: 2;
     position: sticky;
     top: 75px;
@@ -26,7 +25,7 @@ export const SearchBoxStyle = styled.div`
     background-color: black;
     justify-content: center;
     width: 422px;
-    margin-top: ${(props) => props.path === "/" ? "300px" : "0px"};
+    margin-top: ${(props) => props.path === "/" ? "150px" : "0px"};
     align-items: center;
     transform: translateX(0px);
     height: 50px;
@@ -36,7 +35,7 @@ export const SearchBoxStyle = styled.div`
     background-color: rgba(0,0,0,0.5);
     overflow: hidden;
     border: 1px solid gray;
-    transition: 0.5s;
+    transition: 0.2s;
 `
 
 

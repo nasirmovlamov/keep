@@ -11,13 +11,13 @@ import { useState } from 'react'
 import ThemeSwitcher from '../components/ThemeSwitcher'
 import { useEffect } from 'react'
 import {Toaster } from 'react-hot-toast'
-import { useAppDispatch } from '../app/store/hooks'
+import { useAppDispatch, useAppSelector } from '../app/store/hooks'
 import { userCheck } from '../app/thunks/AuthThunk'
+import { dispatch } from 'react-hot-toast/dist/core/store'
 
 
 
 function MyApp({ Component, pageProps }: AppProps) {
-
   const [theme, settheme] = useState("dark")
   useEffect(() => {
     if(localStorage.getItem('theme') !== null )
@@ -40,6 +40,8 @@ function MyApp({ Component, pageProps }: AppProps) {
     // console.log("%cDont try stupid things which you heard from uncle toms or etc!","font-size: 30px; color: red; -webkit-text-stroke:1px black; font-weight: bold;")
   }, [])
 
+
+  
   const changeTheme = (theme:string) => {
     if(theme==="light")
     {
@@ -55,18 +57,22 @@ function MyApp({ Component, pageProps }: AppProps) {
   
 
   return (
-    <Provider store={store}> 
-      <ThemeProvider theme={theme === "light" ? darkTheme : lightTheme  || localStorage.getItem('theme') !== null ? darkTheme : lightTheme}>
-        <>
-          <Toaster/>
-          <GlobalStyle/>
-          <Layout >
-              <ThemeSwitcher theme={theme} setTheme={changeTheme}/>
-              <Component {...pageProps} />
-          </Layout>
-        </>
-      </ThemeProvider>
-    </Provider>
+    <div style={{display:"flex"}}>
+
+        <Provider store={store}> 
+          <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme  || localStorage.getItem('theme') !== null ? darkTheme : lightTheme}>
+            <>
+              <Toaster/>
+              <GlobalStyle/>
+              <Layout>
+                  <ThemeSwitcher theme={theme} setTheme={changeTheme}/>
+                  <Component {...pageProps} />
+              </Layout>
+            </>
+          </ThemeProvider>
+        </Provider>
+
+    </div>
   )
 }
 export default MyApp

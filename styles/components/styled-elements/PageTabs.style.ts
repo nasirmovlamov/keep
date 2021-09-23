@@ -11,16 +11,9 @@ export const TabsContainer  = styled.div`
     row-gap:10px;
     padding-top: 10px;
     padding-bottom: 20px;
-    padding-left: 10px;
-    padding-right: 51px;
-    background-color: ${({theme}) => theme.pageTabs.contBG};
     border-radius: 6px;
-    border: 1px solid ${({theme}) => theme.pageTabs.border};
     margin-top: 10px;
-    &:hover 
-    {
-        border: 1px solid ${({theme}) => theme.pageTabs.hover.border};
-    }
+    
 `
 
 
@@ -75,6 +68,9 @@ export const TabButton = styled.button`
 export const TabTagsCont = styled.div`
     display: flex;
     align-self: flex-end;
+    background-color: ${({theme}) => theme.pageTabs.contBG};
+    border-radius: 10px;
+    column-gap: 10px;
 `
 
 export const TabTags = styled.button`
@@ -99,6 +95,8 @@ export const TabTags = styled.button`
 
 export const Tabs = styled.div`
     display: flex;
+    background-color: ${({theme}) => theme.pageTabs.contBG};
+    border-radius:10px;
     &:hover ${Line}
     {
         height: 1px;

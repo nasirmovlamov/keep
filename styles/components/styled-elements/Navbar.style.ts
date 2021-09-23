@@ -14,10 +14,11 @@ export const Nav = styled.nav`
     padding-top: 7px;
     padding-bottom: 10px;
     border-bottom: 1px solid ${({theme}) => theme.navbar.navBorder};
-    background-color: ${({theme}) => theme.navbar.navBackground};
+    background-color: ${({theme}) => theme.backgroundMain};
     margin: 0px;
     position: sticky;
     top:0px;
+    height: 60px;
     z-index: 999;
 `
 
@@ -30,7 +31,7 @@ export const Light = styled.div`
     background-color:#FFFFFF;
     border-radius:50%;
     z-index:2;
-    left:44.4px;
+    left:24.4px;
     top:9.4px;
     opacity: 0.1;
     transition: 0.2s;
@@ -51,18 +52,11 @@ export const LightShadow = styled.div`
     z-index: 2;
     fill: #FFFFFF;stroke: #8c8c8c;stroke-width: 0;
     filter: blur(5px);
-    left:40.4px;
+    left:19.4px;
     top:5.5px;
 `
 export const LightShadow2 = styled.div`
-    /* width:25px;
-    height:25px;
-    position:absolute;
-    background-color:#76888A;
-    border-radius:50%;
-    transition: 0.2s;
-    stroke-width: 0;
-    opacity: 0; */
+   
 `
 export const Logo = styled.div`
     display:flex;
@@ -83,9 +77,9 @@ export const Logo = styled.div`
     }
     img 
     {
-        width: 120px;
+        width: 80px;
         z-index: 1;
-        height: 58px;
+        height: 48px;
     }
 `
 export const LogoText = styled.p`
@@ -129,7 +123,6 @@ export const LiStyle = styled.li`
     letter-spacing: 1px;
     font-weight: 600;
     position: relative;
-    margin-top: 27px;
     div 
     {
         opacity: ${(props:{focus:boolean}) => props.focus ? '1' : '0'};
@@ -159,8 +152,8 @@ export const LiStyle = styled.li`
 export const LinksStyle = styled.ul`
     display:flex;
     justify-content:center;
-    align-items:center;
-    height:57px;    
+    align-items:flex-end;
+    height:60px;    
     &:hover ${Line}
     {
         opacity: 0.2; 

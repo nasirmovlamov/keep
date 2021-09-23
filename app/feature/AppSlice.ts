@@ -16,7 +16,9 @@ export const AppSlice = createSlice({
   name: 'app-slice',
   initialState:APP_STATE,
   reducers: {
-
+    set_overflowy(state, {payload}) {
+      state.PAGE_OVERFLOWY = payload
+    },
     // addNewAnswer(state, {payload}) {
     //   if(state.singleQuestionData !== null)
     //   {
@@ -133,10 +135,10 @@ export const AppSlice = createSlice({
 
 
 // action
-
-
+export const {set_overflowy} = AppSlice.actions
 
 // data
+export const page_overflowy = (state: RootState) => state.appReducer.PAGE_OVERFLOWY
 
 
 

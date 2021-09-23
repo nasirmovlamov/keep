@@ -4,7 +4,8 @@ import styled from "styled-components";
 export const CommentsTabStyle = styled.div`
     display: flex;
     flex-direction: column;
-    
+    z-index: 1000;
+    position: relative;
 `
 
 export const CommentsTabMainNameStyle = styled.div`
@@ -16,7 +17,6 @@ export const CommentsTabTitleStyle = styled.div`
     width: 100%;
     overflow: hidden;
     height: 30px;
-    
 `
 
 

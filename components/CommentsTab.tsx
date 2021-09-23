@@ -1,9 +1,10 @@
 import React, { ReactElement, useEffect, useState } from 'react'
+import { set_overflowy } from '../app/feature/AppSlice'
 import { user_data } from '../app/feature/AuthSlice'
-import { comments,   comments_types } from '../app/feature/CommentsSlice'
+import { comments,   comments_types, showComments } from '../app/feature/CommentsSlice'
 import { useAppDispatch, useAppSelector } from '../app/store/hooks'
 import { addAnswerComment, addQuestionComment } from '../app/thunks/CommentsThunk'
-import { AllCommentsCont, CommentChangeContent, CommentsForm, CommentsTabMainNameStyle, CommentsTabStyle, CommentsTabTitleStyle, CommentStyle, PostComment  } from '../styles/components/styled-elements/CommentsTab.style'
+import { AllCommentsCont, CommentChangeContent, CommentsForm,  CommentsTabMainNameStyle, CommentsTabStyle, CommentsTabTitleStyle, CommentStyle, PostComment  } from '../styles/components/styled-elements/CommentsTab.style'
 import { errorToastFunc } from './Notify/ErrorToasts'
 
 interface Props {
@@ -46,9 +47,14 @@ function CommentModal({}: Props): ReactElement {
         setNewComment("")
     }
 
+
+    const dontShowComments = () => {
+        dispatch(showComments(null))
+        dispatch(set_overflowy(""))
+    }
     return (
         <div>
-
+            <button onClick={dontShowComments}>X</button>
             {
                 commentsType.type !== null  && 
                 <CommentsTabStyle>
@@ -63,7 +69,6 @@ function CommentModal({}: Props): ReactElement {
                     </CommentsForm>
                 </CommentsTabStyle>
             }
-
         </div>
     )
 }

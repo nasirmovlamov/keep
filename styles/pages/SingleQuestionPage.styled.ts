@@ -27,6 +27,7 @@ export const SingleProductAside = styled.aside`
     padding-bottom: 50px;
     padding-top: 50px;
     position: sticky;
+    z-index: 999;
     top:78px;
 `
 

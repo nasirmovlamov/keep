@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React, { ReactElement, useEffect, useState } from 'react'
+import React, { ReactElement, useEffect, useRef, useState } from 'react'
 import { useInView } from 'react-intersection-observer';
 import { changeForumTabActive } from '../app/feature/PageTabsSlice';
 import { changeModalAction, user_data } from '../app/feature/AuthSlice';
@@ -14,6 +14,7 @@ import { errorToastFunc, loginError } from './Notify/ErrorToasts';
 import { ANSWER_INTERFACE } from '../app/store/state-Interfaces/QuestionInterface';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCoffee, faThumbsUp } from '@fortawesome/free-solid-svg-icons'
+import { set_overflowy } from '../app/feature/AppSlice';
 interface Props {
     answer:ANSWER_INTERFACE,
     direction:string
@@ -22,6 +23,7 @@ interface Props {
 function Answer({answer ,direction  }: Props): ReactElement {
     const dispatch = useAppDispatch()
     const userData = useAppSelector(user_data)
+    const answerRef = useRef(null)
     const [isLiked, setisLiked] = useState(true)
     const voting = () => {
         if(userData === null)
@@ -41,6 +43,8 @@ function Answer({answer ,direction  }: Props): ReactElement {
     }
     
     const openComments = () =>{
+        document.body.style.overflow = "hidden"
+        dispatch(set_overflowy("hidden"))
         dispatch(getAnswerComments(answer.id))
         dispatch(
             showComments(
@@ -68,7 +72,7 @@ function Answer({answer ,direction  }: Props): ReactElement {
 
 
     return (
-        <AnswerStyle key={answer.id}>
+        <AnswerStyle ref={answerRef} key={answer.id}>
             <div  className="flexer c-gp-10">
                 <PersonCont>
                     <Avatar></Avatar>

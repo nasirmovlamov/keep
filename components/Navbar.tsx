@@ -99,18 +99,27 @@ function Navbar({}: Props): ReactElement {
     
     return (
         <Nav>
-            <Link href="/" ><Logo> <Image src={mainLogo} />   <Light/> <LightShadow/> <LightShadow2/> <LogoText>abyss</LogoText> </Logo></Link>
+            <Link href="/" >
+                <Logo> 
+                    <Image height="49px" src={mainLogo} />  
+                    <Light/>
+                    <LightShadow/>
+                    <LightShadow2/> 
+                    <LogoText>abyss</LogoText> 
+                </Logo>
+            </Link>
+            
             <LinksStyle>
-                <Link href="/forum">
-                    <LiStyle focus={pathname === "/forum" ? true: false}>
-                        <LinkStyle>Forum</LinkStyle>
+                <Link href="/store">
+                    <LiStyle focus={pathname === "/store" ? true: false}>
+                        <LinkStyle>Store</LinkStyle>
                         <Line />
                     </LiStyle>
                 </Link> 
 
-                <Link href="/store">
-                    <LiStyle focus={pathname === "/store" ? true: false}>
-                        <LinkStyle>Store</LinkStyle>
+                <Link href="/forum">
+                    <LiStyle focus={pathname === "/forum" ? true: false}>
+                        <LinkStyle>Community</LinkStyle>
                         <Line/>
                     </LiStyle>
                 </Link>

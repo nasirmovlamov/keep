@@ -159,4 +159,9 @@ body {
             transform: translateX(100%);
   }
 }
+
+body {
+  background-image: url(../../../public/static/img/default-vector-background.png);
+  overflow-x: hidden;
+}
 /*# sourceMappingURL=global.css.map */

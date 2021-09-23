@@ -13,93 +13,137 @@ export const TabsContainer  = styled.div`
     padding-bottom: 20px;
     border-radius: 6px;
     margin-top: 10px;
-    
 `
 
 
 
-export const TabText = styled.span`
+export const TabText = styled.p`
     display: flex;
-    padding: 12px 20px 0px 20px;
+    padding: 0px 20px 0px 20px;
+    height: 50.08px;
+    align-items: center;
+    color: #63696c;
+    transition:0.4s;
 `
 export const Line = styled.div`
     width: 0px;
-    opacity:0;
+    opacity:1;
     height: 2px;
-    background-color: white;
-    margin-top: 5px;
-    transition: 0.2s;
+    background-color: #00090e;
+    transition:0.4s;
 `
 
-export const TabButton = styled.button`
-    display: flex;
-    border: none;
-    font-size: 18px;
-    background-color: transparent;
-    color: #8EA1A3;
-    cursor: pointer;
-    font-weight: 600;
-    align-items:center;
-    flex-direction: column;
-    padding:0px;
-    height: 41px;
-    box-sizing: border-box;
-    div 
-    {
-        opacity: ${(props : {tabFocus:boolean}) => props.tabFocus && '1'};
-        width: ${(props:{tabFocus:boolean}) => props.tabFocus && '100%'};
 
-    }
-    span {
-        color: ${({theme , tabFocus}) => tabFocus ? theme.navbar.navLinksHovered : theme.navbar.navLinks};
-    }
-    &:hover
-    {
-        div{
-            opacity:1  !important;
-            width: 100% !important;
-            height: 2px !important;
-            transform: scale(1) !important;
-
-        }
-    }
-`
 
 export const TabTagsCont = styled.div`
     display: flex;
     align-self: flex-end;
-    background-color: ${({theme}) => theme.pageTabs.contBG};
+    background-color:#FFFFFF;
     border-radius: 10px;
     column-gap: 10px;
+    padding: 3px;
 `
 
 export const TabTags = styled.button`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
-    color:#8EA1A3;
+    padding: 5px 10px;
     border: 1px solid transparent;
-    border-radius: 20px;
+    border-radius: 10px;
     cursor: pointer;
     background-color: transparent;
     transition: 0.4s;
     border:1px solid ${(props:{theme:ThemeType , tagFocus:boolean}) => props.tagFocus ? "white" : "transparent"};
-   
-    /* &:hover 
+    background-color:${(props:{theme:ThemeType , tagFocus:boolean}) => props.tagFocus ? " rgb(229,240,244)" : "transparent"};
+    color:${(props:{theme:ThemeType , tagFocus:boolean}) => props.tagFocus ? "#136393" : "#8EA1A3"};
+    font-size: 14px;
+    font-family: r;
+    &:hover 
     {
-        border: 1px solid lightgray;
-        color:white;
-    } */
+        background-color: rgb(229,240,244);
+        color:#136393;
+    }
 `
 
 export const Tabs = styled.div`
     display: flex;
     background-color: ${({theme}) => theme.pageTabs.contBG};
     border-radius:10px;
-    &:hover ${Line}
+    padding-left: 10px;
+    box-shadow: 0px 1px 1px rgba(99,105,108,0.61), inset 0px 0px 0px rgba(99,105,108,0.61);
+    height: 52px;
+    align-items: flex-end;
+    overflow: hidden;
+`
+
+export const TabButtonsCont = styled.div`
+    display: flex;
+    padding-left: 10px;
+    height: 100%;
+    align-items: flex-end;
+    overflow: hidden;
+    &:hover{
+       
+       ${Line}
+       {
+           transform: translateY(1.3px);
+           width: 80%;
+       }
+       ${TabText}
+       {
+           color: #63696c;
+       }
+}
+`
+
+export const TabButton = styled.button`
+    display: flex;
+    justify-content: space-between;
+    border: none;
+    font-size: 14px;
+    background-color: transparent;
+    color: #63696c;
+    cursor: pointer;
+    font-weight: 600;
+    align-items:center;
+    flex-direction: column;
+    padding:0px;
+    height: 100%;
+    box-sizing: border-box;
+    div
     {
-        height: 1px;
-        transform: scale(0.8);
+        height: ${(props : {tabFocus:boolean}) => props.tabFocus ? "2px" : "0px"};
+        width: ${(props:{tabFocus:boolean}) => props.tabFocus && '100%'};
+    }
+    p {
+        color: ${({theme , tabFocus}) => tabFocus ? theme.pageTabs.focusedColor : theme.pageTabs.nonfocusedColor};
+    }
+    
+    &:hover{
+       
+            ${Line}
+            {
+                transform: translateY(1.3px);
+                width: 80%;
+            }
+            ${TabText}
+            {
+                color: #63696c;
+            }
+    }
+    
+    &:hover
+    {
+        &:hover ${Line}{
+            opacity:1 ;
+            width: 100% ;
+            height: 2px ;
+            transform:translateY(0px);
+        }
+        &:hover ${TabText}
+        {
+            color: #00090e;
+        }
     }
 `

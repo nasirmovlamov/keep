@@ -80,9 +80,9 @@ function Navbar({}: Props): ReactElement {
                         <ImageStyle1>
                             <Image width="70px" height='40px' src={lightPerson} /> 
                         </ImageStyle1>
-                        <ImageStyle2>
+                        {/* <ImageStyle2>
                             <Image width="70px" height='40px' src={darkPerson} /> 
-                        </ImageStyle2>
+                        </ImageStyle2> */}
                         <PersonName>
                             {userData.name}
                         </PersonName>

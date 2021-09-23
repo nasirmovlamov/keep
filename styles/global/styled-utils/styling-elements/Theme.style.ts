@@ -21,6 +21,8 @@
       pageTabs: {
         contBG:"#ffffff",
         border:"gray",
+        nonfocusedColor:"#63696c",
+        focusedColor:"#00090e",
         hover:{
           border:"lightgray",
         }

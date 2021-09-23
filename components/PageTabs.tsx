@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import React, { ReactElement, useEffect, useState } from 'react'
 import { FooterColumn,  FooterElement,  FooterRow, FooterStyle } from '../styles/components/styled-elements/Footer.style'
-import { Line, TabButton, Tabs, TabsContainer, TabTags, TabTagsCont, TabText } from '../styles/components/styled-elements/PageTabs.style'
+import { Line, TabButton, TabButtonsCont, Tabs, TabsContainer, TabTags, TabTagsCont, TabText } from '../styles/components/styled-elements/PageTabs.style'
 
 interface Props {
     
@@ -44,30 +44,22 @@ function PageTabs({}: Props): ReactElement {
     return (
         <TabsContainer>
             <Tabs>
-                <TabButton tabFocus={selectedTab === "Info" ? true: false} name="tab"  onClick={() => tabQuery("Info" , "default")}>
-                    <TabText>Info</TabText> 
-                    <Line />     
+                <TabButtonsCont>
+                <TabButton id="tab1" tabFocus={selectedTab === "Info" ? true: false} name="tab"  onClick={() => tabQuery("Info" , "default")}>
+                    <TabText>Requests</TabText> 
+                    <Line/>     
                 </TabButton>
 
-                <TabButton tabFocus={selectedTab === "Clip" ? true: false} name="tab" onClick={() => tabQuery("Clip", "default")}>
-                    <TabText  >Clip</TabText> 
-                    <Line />        
+                <TabButton id="tab2" tabFocus={selectedTab === "Clip" ? true: false} name="tab" onClick={() => tabQuery("Clip", "default")}>
+                    <TabText>Questions</TabText> 
+                    <Line/>        
                 </TabButton>
                 
-                <TabButton tabFocus={selectedTab === "Forum" ? true: false} name="tab" onClick={() => tabQuery("Forum", "default")}>
-                    <TabText >Forum</TabText> 
+                <TabButton id="tab3" tabFocus={selectedTab === "Forum" ? true: false} name="tab" onClick={() => tabQuery("Forum", "default")}>
+                    <TabText>Discussions</TabText> 
                     <Line  />   
                 </TabButton>
-                
-                <TabButton tabFocus={selectedTab === "Review" ? true: false} name="tab"  onClick={() => tabQuery("Review", "default")}>
-                    <TabText  >Review</TabText> 
-                    <Line /> 
-                </TabButton>
-                
-                <TabButton tabFocus={selectedTab === "Other" ? true: false}  name="tab"  onClick={() => tabQuery("Other", "default")}>
-                    <TabText>Other</TabText> 
-                    <Line /> 
-                </TabButton>
+                </TabButtonsCont>
             </Tabs>
 
             <TabTagsCont>

@@ -63,7 +63,6 @@ export const Logo = styled.div`
     justify-content:center;
     align-items:center;
     position:relative;
-
     
     &:hover ${LightShadow} {
         opacity: 0.38;
@@ -129,12 +128,13 @@ export const LiStyle = styled.li`
         width: ${(props:{focus:boolean}) =>  props.focus ? '120px' : '0px'};
     }
     a {
+        font-family: s;
         color: ${(props:{theme:ThemeType , focus:boolean}) =>  props.focus ? props.theme.navbar.navLinksHovered : props.theme.navbar.navLinks};
     }
 
     &:hover 
     {
-        
+        cursor: pointer;
         div 
         {
             opacity: 1 !important;
@@ -143,7 +143,7 @@ export const LiStyle = styled.li`
 
         }
         a {
-            color: ${({theme}) => theme.navbar.navLinksHovered};
+            color: ${({theme}) => theme.navbar.navLinksHovered} !important;
         }
     }
 
@@ -160,7 +160,7 @@ export const LinksStyle = styled.ul`
         transform: scale(0.8);
         ${({theme}) => theme.navbar.navLinks}   
     }
-    &::hover
+    &:hover
     {
         a 
         {
@@ -195,7 +195,8 @@ export const PersonName = styled.label`
     align-items:center;
     margin-right: 15px;
     color: ${({theme}) => theme.navbar.navLinks};
-
+    cursor: pointer;
+    margin-top: 1px;
 `
 
 
@@ -260,7 +261,7 @@ export const Logout = styled.button`
     background-color: transparent;
     cursor: pointer;
     transition: 0.2s;
-    font-size: 18px;
+    font-size: 16px;
     color: ${({theme}) => theme.navbar.navLinks};
 
     &:hover 

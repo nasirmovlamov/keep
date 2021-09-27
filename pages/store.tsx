@@ -21,7 +21,9 @@ function Store({}: Props): ReactElement {
     }
     
     useEffect(() => {
-        getStoreProducts()
+        setTimeout(() => {
+            getStoreProducts()
+        }, 1000);
     }, [])
 
     return (

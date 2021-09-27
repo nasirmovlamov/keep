@@ -8,9 +8,8 @@ export const TabsContainer  = styled.div`
     width:100%;
     display: flex;
     flex-direction: column;
-    row-gap:10px;
+    row-gap:14px;
     padding-top: 10px;
-    padding-bottom: 20px;
     border-radius: 6px;
     margin-top: 10px;
 `
@@ -33,6 +32,21 @@ export const Line = styled.div`
     transition:0.4s;
 `
 
+export const TabTagsAndResults = styled.div`
+    display: flex;
+    justify-content: space-between;
+
+`
+
+export const TabResults = styled.p`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:#62686b;
+    font-size: 20px;
+    margin-left:30px;
+    font-family: r;
+`
 
 
 export const TabTagsCont = styled.div`

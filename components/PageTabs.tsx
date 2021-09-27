@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import React, { ReactElement, useEffect, useState } from 'react'
 import { FooterColumn,  FooterElement,  FooterRow, FooterStyle } from '../styles/components/styled-elements/Footer.style'
-import { Line, TabButton, TabButtonsCont, Tabs, TabsContainer, TabTags, TabTagsCont, TabText } from '../styles/components/styled-elements/PageTabs.style'
+import { Line, TabButton, TabButtonsCont, TabResults, Tabs, TabsContainer, TabTags, TabTagsAndResults, TabTagsCont, TabText } from '../styles/components/styled-elements/PageTabs.style'
 
 interface Props {
     
@@ -62,12 +62,17 @@ function PageTabs({}: Props): ReactElement {
                 </TabButtonsCont>
             </Tabs>
 
-            <TabTagsCont>
-                <TabTags name="tag" tagFocus={selectedTag === "Newes" ? true: false} onClick={() => tabQuery("default" , "Newes")}>Newes</TabTags>
-                <TabTags name="tag" tagFocus={selectedTag === "Most Visited" ? true: false} onClick={() => tabQuery("default" , "Most Visited")}>Most Visited</TabTags>
-                <TabTags name="tag" tagFocus={selectedTag === "Most Helpful" ? true: false} onClick={() => tabQuery("default" , "Most Helpful")}>Most Helpful</TabTags>
-                <TabTags name="tag" tagFocus={selectedTag === "Recently" ? true: false} onClick={() => tabQuery("default" , "Recently")}>Recently</TabTags>
-            </TabTagsCont>
+            <TabTagsAndResults>
+                <TabResults>7,903 results</TabResults>
+
+                <TabTagsCont>
+                    <TabTags name="tag" tagFocus={selectedTag === "Newes" ? true: false} onClick={() => tabQuery("default" , "Newes")}>Newes</TabTags>
+                    <TabTags name="tag" tagFocus={selectedTag === "Most Visited" ? true: false} onClick={() => tabQuery("default" , "Most Visited")}>Most Visited</TabTags>
+                    <TabTags name="tag" tagFocus={selectedTag === "Most Helpful" ? true: false} onClick={() => tabQuery("default" , "Most Helpful")}>Most Helpful</TabTags>
+                    <TabTags name="tag" tagFocus={selectedTag === "Recently" ? true: false} onClick={() => tabQuery("default" , "Recently")}>Recently</TabTags>
+                </TabTagsCont>
+            </TabTagsAndResults>
+
         </TabsContainer>   
     )
 }

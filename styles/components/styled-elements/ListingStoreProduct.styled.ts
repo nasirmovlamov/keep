@@ -13,7 +13,7 @@ export const StoreListingProductStyle = styled.div`
     border-radius: 6px;
     column-gap: 5px;
     row-gap: 15px;
-    width: 894px;
+    width: 100%;
     margin-bottom:20px ;
 `
 

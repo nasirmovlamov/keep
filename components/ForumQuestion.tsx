@@ -1,7 +1,9 @@
 import React, { ReactElement} from 'react'
 import Image from 'next/image'
-import { AnswerCount,  Avatar, BottomSide, Content, DateCont, FormQuestionCont, Name, PersonCont, QuestionTags, StatisticCont, Tags, TextCont, Title, Text, HelpfulCont, HelpfulCount, AnswerCont, ViewsCont, ViewsCount } from '../styles/components/styled-elements/FormQuestion.style'
+import { AnswerCount,  Avatar, BottomSide, Content, DateCont, FormQuestionCont, Name, PersonCont, QuestionTags, StatisticCont, Tags, TextCont, Title, Text, HelpfulCont, HelpfulCount, AnswerCont, ViewsCont, ViewsCount, CountOfProducts, ProductCount, ProductsIcons, ProductIcons, ProductIcon, ThumbIcon, DefaultLine, PercentageLine, DateCount } from '../styles/components/styled-elements/FormQuestion.style'
 import Link from 'next/link'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faThumbsUp } from '@fortawesome/free-regular-svg-icons'
 
 interface Props {
     data:{
@@ -42,26 +44,32 @@ function FormQuestion({data}: Props): ReactElement {
                         {data.tags.map( (tags, index ) =>  index < 3 && <Tags>{tags}</Tags>)}
                     </QuestionTags>
 
-                    <DateCont> {data.createdAt}</DateCont>
+                    <CountOfProducts> 
+                        <ProductsIcons>
+                            <ProductIcon index={3} backgroundColor="#e5f0f4"></ProductIcon>
+                            <ProductIcon index={2} backgroundColor="#00578b"></ProductIcon>
+                            <ProductIcon index={1} backgroundColor="white"></ProductIcon>
+                        </ProductsIcons>
+                        <ProductCount><span>11</span> Products</ProductCount>
+                    </CountOfProducts>
                 </BottomSide>
             </TextCont>
 
             <StatisticCont>
 
                     <AnswerCont>
-                        <AnswerCount>{data.answerCount}</AnswerCount>
+                        <AnswerCount>7</AnswerCount>
                         <Text>Answers</Text>
                     </AnswerCont>
 
                     <HelpfulCont>
-                        <HelpfulCount>{data.helpfulCount}</HelpfulCount>
-                        <Text>Helpful</Text>
+                        <HelpfulCount><ThumbIcon><FontAwesomeIcon  icon={faThumbsUp} /> </ThumbIcon> 16 </HelpfulCount>
+                        <DefaultLine><PercentageLine percentage={(69/100*100)}/></DefaultLine>
                     </HelpfulCont>
 
-                    <ViewsCont>
-                        <ViewsCount>{data.viewsCount}</ViewsCount>
-                        <Text>Views</Text>
-                    </ViewsCont>
+                    <DateCount>
+                        2d 7h ago
+                    </DateCount>
 
             </StatisticCont>
 

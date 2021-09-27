@@ -1,28 +1,26 @@
 import styled from 'styled-components';
 
 export const ForumPage = styled.main`
-    width: 894px;
+    width: 808px;
     min-height: 1600px;
     display: flex;
     flex-direction: column;
     margin: auto;
     align-items: center;
-    row-gap: 20px;
+    row-gap: 14px;
     padding-top: 100px;
 `
 
 
 export const StorePage = styled.main`
-    width: 894px;
+    width: 808px;
+    min-height: 1600px;
     display: flex;
     flex-direction: column;
-    border-left: 1px solid lightgray;
-    border-right: 1px solid lightgray;
     margin: auto;
     align-items: center;
-    padding-left: 100px;
-    padding-right: 100px;
-    row-gap: 20px;
+    row-gap: 14px;
+    padding-top: 100px;
 `
 
 export const SingleProductPage = styled.div`

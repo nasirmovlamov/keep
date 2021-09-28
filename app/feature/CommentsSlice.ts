@@ -19,17 +19,18 @@ export const CommentsSlice = createSlice({
             {
                 const {id , type , showComments, title, user}  = payload
                 state.commentsType = {id:id, type:type , showComments:showComments, title:title, user:user} 
-
+                state.isCommentOpened = true
             }
             else
             {
                 state.commentsType = payload 
-                document.body.style = "overflow-y: scroll"
+                document.body.setAttribute("style" , "overflow-y: scroll")
             }
 
         },
         closeComments(state, {payload}) {
             state.commentsType = null 
+            state.isCommentOpened = false
         },
     },
 
@@ -112,6 +113,7 @@ export const { showComments , closeComments } = CommentsSlice.actions;
 export const comments_errors = (state: RootState) => state.commentsReducer.commentsErrors
 export const comments = (state: RootState) => state.commentsReducer.comments
 export const comments_types = (state: RootState) => state.commentsReducer.commentsType
+export const is_comment_opened = (state: RootState) => state.commentsReducer.isCommentOpened
 export const comments_status = (state: RootState) => state.commentsReducer.commentsStatus
 
 

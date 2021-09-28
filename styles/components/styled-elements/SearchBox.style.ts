@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 
 
-export const SearchBoxContainer = styled.div`
+export const SearchBoxContainer = styled.div<{path:string}>`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,28 +13,23 @@ export const SearchBoxContainer = styled.div`
     margin-right: auto;
     width: 100%;
     z-index: 2;
-    /* position: sticky; */
-    /* top: 75px; */
     pointer-events: none;
     transition: 0.4s;
-
 `
 
 
 
-export const SearchBoxStyle = styled.div`
+export const SearchBoxStyle = styled.div<{direction:string}>`
     display: flex;
     pointer-events: all;
     background-color: black;
-    /* justify-content: space-between; */
     width: 808px;
-    /* margin-top: ${(props) => props.path === "/" ? "150px" : "0px"}; */
     transform: translateX(0px);
     height: 50px;
     color: white;
     border-radius: 5px;
     border-radius: 30px 30px 30px 30px ;
-    overflow: hidden;
+    /* overflow: hidden; */
     border: none;
     box-shadow: 0px 1px 1px rgba(99,105,108,0.61), inset 0px 0px 0px rgba(99,105,108,0.61);
     transition: 0.4s;
@@ -43,7 +38,7 @@ export const SearchBoxStyle = styled.div`
     justify-content: space-between;
     box-sizing: border-box;
     z-index: 2;
-    transform: ${(props) => props.direction === "up" ? "translateY(0px)" : "translateY(-51px)"};
+    transform: ${({direction}) => direction === "up" ? "translateY(0px)" : "translateY(-51px)"};
     transform-origin: top;
 `
 
@@ -58,7 +53,25 @@ export const SearchBoxPage = styled.div`
     background-color: white;
     color: #474D51;
     font-family: r;
+    border-radius: 30px 0px 0px 30px ;
+
     flex: 0 0 100px; /* flex-grow, flex-shrink, flex-basis */
+`
+
+export const SearchInput = styled.input<{path:string}>`
+    border-radius: ${(props) => props.path === "/" ? "0px 30px 30px 0px" : "inherit"}  ;
+    height: 100%;
+    padding-left: 40px;
+    border: none;
+    color:black;
+    width: 100%;
+    z-index: 3;
+    &:focus {
+        outline: none;
+    }
+    &::placeholder {
+        color: #d9dadb;
+    }
 `
 
 export const SearchCont = styled.div`
@@ -68,12 +81,11 @@ export const SearchCont = styled.div`
     display:flex;
     align-items: center;
     border-left: 1px solid #E5E6E6;
-    border-right: 1px solid #E5E6E6;
-    padding-left: 10px;
-    padding-right: 10px;
+
+    position: relative;
     svg 
     {
-        z-index: 2;
+        z-index: 4;
         color: white;
         position: absolute;
         margin-left: 10px;
@@ -81,17 +93,46 @@ export const SearchCont = styled.div`
     }
     input 
     {
+        
+    }
+`
+export const SearchNav = styled.div<{path:string}>`
+    position: absolute;
+    display:flex;
+    flex-direction: column;
+    border-left: 1px solid #E5E6E6;
+    border-right: 1px solid #E5E6E6;
+    background-color: white;
+    z-index: 1;
+    /* opacity: 0; */
+    transition: 0.5s;
+    /* top:50px; */
+    border: 1px solid gray;
+    border-top: 1px solid lightgray ;
+    width: ${(props) => props.path === "/" ? "95%" : "100%"}  ;
+
+
+`
+export const SearchNavQuery = styled.button`
+    display: flex;
+    padding: 4px 10px;
+    align-items: center;
+    background-color: white;
+    border: none;
+    svg 
+    {
+        z-index: 4;
+        color: white;
+        position: absolute;
+        margin-left: 0px;
+        color: #d9dadb;
+    }
+    span 
+    {
         height: 100%;
-        padding-left: 40px;
+        padding-left: 30px;
         border: none;
-        color:black;
-        width: 100%;
-        &:focus {
-            outline: none;
-        }
-        &::placeholder {
-            color: #d9dadb;
-        }
+        color: lightgray;
     }
 `
 
@@ -107,6 +148,8 @@ export const AddQuesitionCont = styled.button`
     border: none;
     font-size: 15px;
     font-family: s;
+    border-radius: 0px 30px 30px 0px ;
+
 `
 
 

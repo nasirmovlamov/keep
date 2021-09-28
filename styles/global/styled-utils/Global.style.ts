@@ -85,8 +85,8 @@ export const TogglerButton = styled.div`
     transition: 0.3s;
 `
 
-export const SkeletonBox = styled.div`
-    width:${(props) => props.width};
-    height:${(props) => props.height};
-    border-radius:${(props) =>  `${props.borderRadius}`}; 
+export const SkeletonBox = styled.div<{width:string,height:string,borderRadius:string}>`
+    width:${({width}) => width};
+    height:${({height}) => height};
+    border-radius:${({borderRadius}) =>  `${borderRadius}`}; 
 `

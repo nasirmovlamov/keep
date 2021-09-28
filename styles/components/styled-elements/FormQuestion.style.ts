@@ -1,5 +1,15 @@
 import styled from "styled-components";
 
+
+export interface PercentageLineProps {
+    percentage:number
+}
+
+export interface ProductIconProps {
+    backgroundColor:string
+    index:number
+}
+
 export const FormQuestionCont = styled.div`
     display: flex;
     width: 100%;
@@ -18,6 +28,7 @@ export const FormQuestionCont = styled.div`
     height: 125px;
     align-items: center;
 `
+
 export const PersonCont = styled.div`
     display: flex;
     flex-direction: column;
@@ -105,14 +116,14 @@ export const ProductsIcons = styled.div`
     justify-content: center;
 `
 
-export const ProductIcon = styled.div`
+export const ProductIcon = styled.div<ProductIconProps>`
     width: 18px;
     height: 18px;
     box-shadow: 0px 1px 2px rgba(99,105,108,1), inset 0px 0px 0px rgba(99,105,108,0.61);
     border-radius: 50%;
-    background-color: ${(props) =>  props.backgroundColor};
+    background-color: ${({backgroundColor}) =>  backgroundColor};
     position: absolute;
-    margin-right: ${(props) => (props.index * 15) }px;
+    margin-right: ${({index}) => (index * 15)} px;
 `
 
 export const CountOfProducts = styled.div`
@@ -206,15 +217,14 @@ export const HelpfulCount = styled.div`
 `
 
 
-
-
 export const DefaultLine = styled.div`
     width: 76px;
     height: 3px;
     background-color: rgba(0,0,0,0.5);
 `
-export const PercentageLine = styled.div`
-    width: ${(props) => props.percentage}%;
+
+export const PercentageLine = styled.div<PercentageLineProps>`
+    width: ${({percentage}) => percentage}%;
     height: 100%;
     background-color:#00578b;
 `

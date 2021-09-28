@@ -13,7 +13,7 @@ import SinglePageTabs from '../../../components/SinglePageTabs'
 import { SingleProductPage } from '../../../styles/global/styled-utils/styling-elements/Pages.style'
 import { Avatar, Name, PersonCont, QuestionTags, ContentCont, QuestionCont, QuestionContent, QuestionDate, QuestionTag, QuestionTagsAndDate, QuestionTitle, QuestionStatistics, QuestionStatisticElement, QuestionStatisticButton, QuestionStatisticText, AddAnswer, AddAnswerCont, AddAnswerSubmit, AnswersCont, ProductsCont, SingleProductMiddle, SingleProductAside } from '../../../styles/pages/SingleQuestionPage.styled'
 import CommentModal from '../../../components/CommentsTab'
-import { comments,   comments_status,   comments_types, showComments } from '../../../app/feature/CommentsSlice'
+import { comments,   comments_status,   comments_types, is_comment_opened, showComments } from '../../../app/feature/CommentsSlice'
 import { ShowComments } from '../../../styles/components/styled-elements/Answer.style'
 import { getQuestionComments } from '../../../app/thunks/CommentsThunk'
 import { single_question_data, single_question_status } from '../../../app/feature/QuestionSlice'
@@ -36,6 +36,7 @@ function SingleQuestionPAge({}: Props): ReactElement {
     const loading  = useAppSelector(is_loading)
     const userData = useAppSelector(user_data)
     const commentsStatus = useAppSelector(comments_status)
+    const isCommentOpened = useAppSelector(is_comment_opened)
 
 
     useEffect(() => {
@@ -188,7 +189,10 @@ function SingleQuestionPAge({}: Props): ReactElement {
                 singleQuestionStatus=== "loading" ? 
                 <Loader/>
                 :
-                <> {commentsStatus === "idle" && <CommentModal/>}</>
+                <> 
+                    {isCommentOpened && <CommentModal/>}
+                    {/* {chatBoxStatus === "idle" && <CommentModal/>} */}
+                </>
             }
             </SingleProductAside>
 

@@ -4,8 +4,17 @@ import tabsReducer from '../feature/PageTabsSlice'
 import authReducer from '../feature/AuthSlice'
 import commentsReducer from '../feature/CommentsSlice'
 import questionReducer from '../feature/QuestionSlice'
+import chatBoxReducer from '../feature/ChatBoxSlice'
 
-const reducer = {  appReducer: appReducer , authReducer:authReducer , questionReducer:questionReducer, commentsReducer:commentsReducer  ,tabsReducer:tabsReducer }
+const reducer = 
+{  
+  appReducer: appReducer , 
+  authReducer:authReducer , 
+  questionReducer:questionReducer, 
+  commentsReducer:commentsReducer  ,
+  tabsReducer:tabsReducer,
+  chatBoxReducer:chatBoxReducer
+}
 
 
 

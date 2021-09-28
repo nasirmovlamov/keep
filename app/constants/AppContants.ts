@@ -18,3 +18,7 @@ export const GET_ANSWER_COMMENTS:string = 'GET_ANSWER_COMMENTS'
 export const ADD_ANSWER_COMMENTS:string = 'ADD_ANSWER_COMMENTS'
 export const ADD_QUESTION_COMMENTS:string = 'ADD_QUESTION_COMMENTS'
 
+
+export const CHECK_CHAT:string = 'CHECK_CHAT'
+export const OPEN_CHATBOX:string = 'OPEN_CHATBOX'
+

@@ -21,17 +21,13 @@ export const userCheck= createAsyncThunk(
 )
 
 
-export const forgetPasswordThunk= createAsyncThunk<
-{data:null , message:string, errors:null},
-string,
-{rejectValue:ForgetPasswordError}
->(
+export const forgetPasswordThunk= createAsyncThunk(
   types.FORGET_PASSWORD, async (email:string, {rejectWithValue}) => {
       try {
         const resp = await BASE_API_INSTANCE.post(URL.PASSWORD_RESET , {email:email})
         return resp.data
       } catch (error:any) {
-        return rejectWithValue(error.response.data )
+        return rejectWithValue(error.response.data)
       }
   }
 )

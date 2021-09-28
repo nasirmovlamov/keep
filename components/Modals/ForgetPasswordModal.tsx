@@ -16,7 +16,7 @@ function ForgetPasswordModal({}: Props):ReactElement {
 
     const formSubmit = async (e:FormEvent) => {
         e.preventDefault()
-        dispatch(authThunk.forgetPasswordThunk({email:loginForm.email, name:"",password:""}))
+        dispatch(authThunk.forgetPasswordThunk(loginForm.email))
     }
 
     

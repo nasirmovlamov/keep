@@ -154,9 +154,7 @@ export const UserSlice = createSlice({
         builder.addCase(forgetPasswordThunk.rejected, (state, action) => {
             state.status = 'failed'
             state.loggedIn = false
-            if (action.payload !== null && action.payload !== undefined) {        
-                state.user_errors.forgetPasswordErrors = action.payload
-            } 
+            autoErrorToaster(action.payload)
         })  
     }
 

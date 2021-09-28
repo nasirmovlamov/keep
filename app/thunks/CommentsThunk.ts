@@ -2,12 +2,10 @@
 import { accessToken, getAccessToken, setAccessToken } from '../../helpers/token/TokenHandle';
 import { BASE_API_URL } from '../../helpers/urls/BASE_URL';
 import * as types from '../constants/AppContants'
-import {APP_API} from '../../helpers/api/AppApi'
 import { AsyncThunk, createAction, createAsyncThunk, isRejectedWithValue} from '@reduxjs/toolkit'
 import {getToken} from '../../logic/userToken'
 import { AxiosError } from 'axios'
 import { APP_INTERFACE, ForgetPasswordError, LoginAttributes, LoginAuthError, MyData, RegisterAttributes, RegisterAuthError } from '../store/state-Interfaces/AppInterface'
-import BaseApi from '../../helpers/api/BaseApi';
 import { BASE_API_INSTANCE } from '../../helpers/api/BaseInstance';
 
 

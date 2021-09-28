@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { ReactElement, useEffect, useState } from 'react'
 import { AnswersCont, ProductsCont } from '../styles/pages/SingleQuestionPage.styled'
 import { useInView } from 'react-intersection-observer';

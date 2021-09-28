@@ -32,7 +32,7 @@ function Forum({}: Props): ReactElement {
     return (
         <ForumPage>
             <PageTabs/>  
-            {formQuestionsAPI.map(element => <FormQuestion data={element}/>)} 
+            {formQuestionsAPI.map((element , index) => <FormQuestion key={index} data={element}/>)} 
         </ForumPage>
     )
 }

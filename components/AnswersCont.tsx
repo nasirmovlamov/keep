@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect, useState } from 'react'
@@ -100,12 +101,12 @@ function AnswersConts({}: Props): ReactElement {
     
     return (
         <AnswersCont ref={inViewRefAnswersCont} id="answersCont"  style={{scrollMarginTop: "250px"}}>
-                <ul >{submittedAnswer.map((answer) => <Answer direction="new-submitted"  answer={answer}/>)} </ul>
-                <ul >{topAnswers.map((answer) => <Answer direction="top"  answer={answer}/>)} </ul>
+                <ul >{submittedAnswer.map((answer) => <Answer key={answer.id} direction="new-submitted"  answer={answer}/>)} </ul>
+                <ul >{topAnswers.map((answer) => <Answer key={answer.id} direction="top"  answer={answer}/>)} </ul>
                     {topAnswersStatus === "loading" && <div ref={inViewRefLoaderDown}><AnswerSkeleton/><AnswerSkeleton/><AnswerSkeleton/><AnswerSkeleton/><AnswerSkeleton/><AnswerSkeleton/></div>}
                     {topAnswersStatus === "loading" && <div style={{height:"100vh"}}></div>}
                     {downAnswersStatus === "loading" && <div ref={inViewRefLoaderUp}><AnswerSkeleton/><AnswerSkeleton/><AnswerSkeleton/><AnswerSkeleton/><AnswerSkeleton/><AnswerSkeleton/><AnswerSkeleton/></div>}
-                <ul id="downAnswers" >{downAnswers.map((answer ) => <Answer direction="bottom"  answer={answer}/>)} </ul>
+                <ul id="downAnswers" >{downAnswers.map((answer ) => <Answer key={answer.id} direction="bottom"  answer={answer}/>)} </ul>
         </AnswersCont>
     )
 }

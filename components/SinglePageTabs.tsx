@@ -4,6 +4,7 @@ import React, { ReactElement, useEffect, useState } from 'react'
 import { changeForumTabActive,  page_tabs } from '../app/feature/PageTabsSlice'
 import { useAppDispatch, useAppSelector } from '../app/store/hooks'
 import { SingleLine,  SingleTabButton, SingleTabs, SingleTabsContainer, SingleTabTags, SingleTabTagsCont, SingleTabText } from '../styles/components/styled-elements/SinglePageTabs.styled'
+import NavLink from './NavLink'
 
 
 interface Props {
@@ -25,21 +26,21 @@ function SinglePageTabs({}: Props): ReactElement {
                     ?
 
                     pageTabs.forumTabs.map( (tabs)=>
-                        <Link key={tabs.id} href={`#${tabs.link}`}>
+                        <NavLink key={tabs.id} href={`#${tabs.link}`}>
                             <SingleTabButton tabActive={tabs.isActive}>
                                 <SingleTabText  >{tabs.tabName}</SingleTabText> 
                                 <SingleLine />    
                             </SingleTabButton>    
-                        </Link>
+                        </NavLink>
                     )
                     :
                     pageTabs.productTabs.map( (tabs)=>
-                        <Link key={tabs.id} href={`#${tabs.link}`}>
+                        <NavLink key={tabs.id} href={`#${tabs.link}`}>
                             <SingleTabButton tabActive={tabs.isActive}>
                                 <SingleTabText  >{tabs.tabName}</SingleTabText> 
                                 <SingleLine />    
                             </SingleTabButton>    
-                        </Link>
+                        </NavLink>
                     )
                 }
                 

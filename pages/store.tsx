@@ -29,7 +29,7 @@ function Store({}: Props): ReactElement {
     return (
         <StorePage>
             <PageTabs/>  
-            {storeListingProducts.map(element => <ListingStoreProduct data={element}/>)} 
+            {storeListingProducts.map((element , index)=> <ListingStoreProduct key={index} data={element}/>)} 
         </StorePage>
     )
 }

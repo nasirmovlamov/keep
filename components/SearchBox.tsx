@@ -44,7 +44,7 @@ function SearchBox({}: Props): ReactElement {
             isScrollingDown && setDirection('down')
             isScrollingUp && setDirection('up')
         }
-    }, [isScrollingDown, isScrollingUp])
+    }, [isScrollingDown, isScrollingUp, router.asPath])
 
     const searchSizechange = (event:string) => {
         if(router.pathname === '/')

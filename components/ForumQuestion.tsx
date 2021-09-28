@@ -4,6 +4,7 @@ import { AnswerCount,  Avatar, BottomSide, Content, FormQuestionCont, Name, Pers
 import Link from 'next/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faThumbsUp } from '@fortawesome/free-regular-svg-icons'
+import NavLink from './NavLink'
 
 interface Props {
     data:{
@@ -30,11 +31,11 @@ function FormQuestion({data}: Props): ReactElement {
             </PersonCont>
 
             <TextCont>
-                <Link href={`/forum/1/schema-builder-laravel-migrations-unique-on-two-columns`}>
+                <NavLink href={`/forum/1/schema-builder-laravel-migrations-unique-on-two-columns`}>
                     <Title> 
                         {data.title}
                     </Title>
-                </Link>
+                </NavLink>
                 <Content> 
                     {data.content}
                 </Content>

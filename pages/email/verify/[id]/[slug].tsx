@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import React, { ReactElement, useEffect, useState } from 'react'
@@ -18,7 +19,7 @@ function EMAIL_VERIFY({}: Props): ReactElement {
             const resp = await axios.get(`${BASE_API_URL}${router.asPath}` ,  {headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}})
             setmessage(resp.data.message)
             setstatus("idle")
-        } catch (error) {
+        } catch (error:any) {
             setstatus("error")
             seterrors(error.response.data.errors.user)
         }
@@ -37,7 +38,7 @@ function EMAIL_VERIFY({}: Props): ReactElement {
     }
     else if(status === "error")
     {
-        return <div>{errors.map(errors => <p style={{color:"white", display:"flex",justifyContent:"center", marginTop:"50px",marginBottom:"50px"}}>{errors}</p>)}</div>
+        return <div>{errors.map((errors, index) => <p key={index} style={{color:"white", display:"flex",justifyContent:"center", marginTop:"50px",marginBottom:"50px"}}>{errors}</p>)}</div>
     }
     else 
     {

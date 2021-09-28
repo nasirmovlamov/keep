@@ -28,7 +28,7 @@ const Layout: FC<Props> = ({ children, ...props }) => {
         {
             dispatch(user_status_not_logged("not-logged"))
         }
-    }, [])
+    }, [dispatch])
    
     if(userStatus === "logged" || userStatus === "not-logged") {
         return (

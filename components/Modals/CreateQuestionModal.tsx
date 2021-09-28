@@ -43,7 +43,7 @@ function CreateQuestionModal({}: Props): ReactElement {
             formData.append("tags" , JSON.stringify(tags))
             const resp = await BASE_API_INSTANCE.post("/forum/create", formData) 
             autoSuccessToaster(resp.data.message)
-        } catch (error) {
+        } catch (error:any) {
             autoErrorToaster(error.response.data)
         }
     }
@@ -76,7 +76,7 @@ function CreateQuestionModal({}: Props): ReactElement {
                 <LabelCont>
                     <label htmlFor="title">Tags</label>
                     <div className="tags d-f ">
-                        {tags.map((tag:string) => <div>{tag}</div>)}
+                        {tags.map((tag:string , index:number) => <div key={index}>{tag}</div>)}
                         <input onKeyDown={createTag} type="text" name="tags"/>
                     </div>
                 </LabelCont>

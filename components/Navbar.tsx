@@ -15,6 +15,7 @@ import { userCheck, userLogin, userLogout } from '../app/thunks/AuthThunk'
 import { GetServerSideProps } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import NavLink from './NavLink'
 
 interface Props {
 }
@@ -31,6 +32,7 @@ function Navbar({}: Props): ReactElement {
     
     useEffect(() => {
         loginChecker()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isLogged])
     
 
@@ -64,10 +66,10 @@ function Navbar({}: Props): ReactElement {
             const view = 
             <Guest>  
                 <LoginButton      onClick={() => dispatch(changeModalAction("login"))}>
-                    <Image  src={loginPng} /> 
+                    <Image  src={loginPng} alt={"login"}/> 
                 </LoginButton>
                 <RegisterButton   onClick={() => dispatch(changeModalAction("register"))}>
-                    <Image  src={registerSVG} /> 
+                    <Image  src={registerSVG} alt={"register"}/> 
                 </RegisterButton>
             </Guest>
             setnavView(view)
@@ -78,7 +80,7 @@ function Navbar({}: Props): ReactElement {
             const view = <>
                     <Logged> 
                         <ImageStyle1>
-                            <Image width="70px" height='40px' src={lightPerson} /> 
+                            <Image width="70px" height='40px' src={lightPerson} alt={"person icon"}/> 
                         </ImageStyle1>
                         {/* <ImageStyle2>
                             <Image width="70px" height='40px' src={darkPerson} /> 
@@ -99,37 +101,37 @@ function Navbar({}: Props): ReactElement {
     
     return (
         <Nav>
-            <Link href="/" >
+            <NavLink href={"/"} >
                 <Logo> 
-                    <Image height="49px" src={mainLogo} />  
+                    <Image height="49px" src={mainLogo} alt={"Abyss logo"}/>  
                     <Light/>
                     <LightShadow/>
                     <LightShadow2/> 
                     <LogoText>abyss</LogoText> 
                 </Logo>
-            </Link>
+            </NavLink>
             
             <LinksStyle>
-                <Link href="/store">
+                <NavLink href={"/store"}>
                     <LiStyle focus={pathname === "/store" ? true: false}>
                         <LinkStyle>Store</LinkStyle>
                         <Line />
                     </LiStyle>
-                </Link> 
+                </NavLink> 
 
-                <Link href="/forum">
+                <NavLink href={"/forum"}>
                     <LiStyle focus={pathname === "/forum" ? true: false}>
                         <LinkStyle>Community</LinkStyle>
                         <Line/>
                     </LiStyle>
-                </Link>
+                </NavLink>
                 
-                <Link href="/pedi">
+                <NavLink href={"/pedi"}>
                     <LiStyle focus={pathname === "/pedi" ? true: false}>
                         <LinkStyle>Pedia</LinkStyle>
                         <Line/>
                     </LiStyle>
-                </Link> 
+                </NavLink> 
             </LinksStyle>
 
             <Enterance>

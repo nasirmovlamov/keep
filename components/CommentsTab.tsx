@@ -60,7 +60,7 @@ function CommentModal({}: Props): ReactElement {
                 <CommentsTabStyle>
                     <CommentsTabMainNameStyle>{commentsType.user.name} </CommentsTabMainNameStyle>
                     <AllCommentsCont>
-                        {Comments.map(comment => <CommentStyle>{comment.content}</CommentStyle>)}
+                        {Comments.map(comment => <CommentStyle key={comment.id}>{comment.content}</CommentStyle>)}
                     </AllCommentsCont>
 
                     <CommentsForm onSubmit={submitComment}>

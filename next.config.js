@@ -1,10 +1,10 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   images: {
-    domains: ['https://demo.abysshub.com'],
+    domains: ['demo.abysshub.com'],
   },
   reactStrictMode: true,
   eslint:{
-    ignoreDuringBuilds: true,
-  }
+    ignoreDuringBuilds: false,
+  },
 }

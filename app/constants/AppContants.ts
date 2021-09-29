@@ -21,4 +21,7 @@ export const ADD_QUESTION_COMMENTS:string = 'ADD_QUESTION_COMMENTS'
 
 export const CHECK_CHAT:string = 'CHECK_CHAT'
 export const OPEN_CHATBOX:string = 'OPEN_CHATBOX'
+export const OPEN_ROOM_MESSAGES:string = 'OPEN_ROOM_MESSAGES'
+export const CHECK_ROOM:string = 'CHECK_ROOM'
+export const SEND_MESSAGE_TO_ROOM:string = 'SEND_MESSAGE_TO_ROOM'
 

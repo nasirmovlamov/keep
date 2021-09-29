@@ -1,7 +1,9 @@
 
 export interface ChatBoxInterface {
     status:"loading" | "idle" | "failed",
-    rooms:RoomInterface[],
+    isChatBoxOpened:boolean
+    openedChatRoomId:number | null
+    rooms:{[index:string]:RoomInterface},
 }
 
 

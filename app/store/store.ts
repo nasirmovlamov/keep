@@ -2,8 +2,8 @@ import { configureStore } from '@reduxjs/toolkit'
 import appReducer from '../feature/AppSlice'
 import tabsReducer from '../feature/PageTabsSlice'
 import authReducer from '../feature/AuthSlice'
-import commentsReducer from '../feature/CommentsSlice'
 import questionReducer from '../feature/QuestionSlice'
+import commentsReducer from '../feature/CommentsSlice'
 import chatBoxReducer from '../feature/ChatBoxSlice'
 
 const reducer = 

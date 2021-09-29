@@ -8,6 +8,8 @@ import Modals from './Modals/Modals';
 import Navbar from './Navbar'
 import OverlayBackground from './Overlay';
 import SearchBox from './SearchBox';
+import { openChat } from '../app/feature/ChatBoxSlice'
+import { openRooms } from '../app/thunks/ChatBoxThunks';
 
 
 
@@ -28,8 +30,15 @@ const Layout: FC<Props> = ({ children, ...props }) => {
         {
             dispatch(user_status_not_logged("not-logged"))
         }
-    }, [dispatch])
-   
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
+
+    const openUserChat = () => {
+        dispatch(openRooms())
+    }
+    
+
     if(userStatus === "logged" || userStatus === "not-logged") {
         return (
             <>
@@ -37,6 +46,8 @@ const Layout: FC<Props> = ({ children, ...props }) => {
                     <Navbar/>
                     <SearchBox/>
                     <main>{children}</main>   
+                    {userStatus && <button type="button" style={{position:"fixed",right:"0px",bottom:"0px"}} onClick={openUserChat}>Chat</button>}
+
                     <Modals/>
                     <Footer/>
                 </div>   

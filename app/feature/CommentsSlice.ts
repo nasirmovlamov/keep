@@ -1,11 +1,8 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { RootState } from '../store/store'
+import { createSlice} from '@reduxjs/toolkit'
 import { autoErrorToaster } from '../../components/Notify/AutoErrorToaster'
 import { autoSuccessToaster } from '../../components/Notify/AutoSuccessToast'
-import { errorToastFunc } from '../../components/Notify/ErrorToasts'
-import { successToast } from '../../components/Notify/SuccessToast'
-import { CommentsInterface } from '../store/state-Interfaces/CommentInterface'
 import { CommentsState } from '../store/states/CommentState'
-import { RootState } from '../store/store'
 import { addAnswerComment, addQuestionComment, getAnswerComments, getQuestionComments } from '../thunks/CommentsThunk'
 
 
@@ -15,6 +12,7 @@ export const CommentsSlice = createSlice({
     initialState:CommentsState ,
     reducers: {
         showComments(state, {payload}) {
+            state.isCommentOpened = true
             if(payload)
             {
                 const {id , type , showComments, title, user}  = payload

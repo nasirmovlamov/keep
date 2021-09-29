@@ -14,7 +14,8 @@ import SinglePageTabs from '../../../components/SinglePageTabs'
 import { SingleProductPage } from '../../../styles/global/styled-utils/styling-elements/Pages.style'
 import { Avatar, Name, PersonCont, QuestionTags, ContentCont, QuestionCont, QuestionContent, QuestionDate, QuestionTag, QuestionTagsAndDate, QuestionTitle, QuestionStatistics, QuestionStatisticElement, QuestionStatisticButton, QuestionStatisticText, AddAnswer, AddAnswerCont, AddAnswerSubmit, AnswersCont, ProductsCont, SingleProductMiddle, SingleProductAside } from '../../../styles/pages/SingleQuestionPage.styled'
 import CommentModal from '../../../components/CommentsTab'
-import { comments,   comments_status,   comments_types, is_comment_opened, showComments } from '../../../app/feature/CommentsSlice'
+import { closeComments, comments,   comments_status,   comments_types, is_comment_opened, showComments } from '../../../app/feature/CommentsSlice'
+import { closeChat, is_chatbox_opened, openChat } from '../../../app/feature/ChatBoxSlice'
 import { ShowComments } from '../../../styles/components/styled-elements/Answer.style'
 import { getQuestionComments } from '../../../app/thunks/CommentsThunk'
 import { single_question_data, single_question_status } from '../../../app/feature/QuestionSlice'
@@ -22,6 +23,7 @@ import { getSingleQuestion, unVoteQuestion, voteQuestion } from '../../../app/th
 import { SkeletonBox } from '../../../styles/global/styled-utils/Global.style'
 import Loader from '../../../components/Loader'
 import QuestionSkeleton from '../../../components/Skeletons/QuestionSkeleton'
+import ChatBox from '../../../components/ChatBox'
 
 interface Props {
 }
@@ -38,6 +40,7 @@ function SingleQuestionPAge({}: Props): ReactElement {
     const userData = useAppSelector(user_data)
     const commentsStatus = useAppSelector(comments_status)
     const isCommentOpened = useAppSelector(is_comment_opened)
+    const isChatBoxOpened = useAppSelector(is_chatbox_opened)
 
 
     useEffect(() => {
@@ -71,11 +74,12 @@ function SingleQuestionPAge({}: Props): ReactElement {
         }
     }
 
-
+    
 
     const openQuestionComments = () =>{
         if(singleQuestionData !== null)
         {
+            dispatch(closeChat(""))
             dispatch(getQuestionComments(singleQuestionData.id))
             dispatch(
                 showComments(
@@ -92,6 +96,7 @@ function SingleQuestionPAge({}: Props): ReactElement {
 
     }
 
+    
 
     return (
         <SingleProductPage>
@@ -144,6 +149,7 @@ function SingleQuestionPAge({}: Props): ReactElement {
                                     
                                     <QuestionDate> {singleQuestionData.created_at} </QuestionDate>
                                     <ShowComments type="button" onClick={openQuestionComments}/> 
+
                                 </QuestionTagsAndDate>
                             </ContentCont>
 
@@ -192,7 +198,7 @@ function SingleQuestionPAge({}: Props): ReactElement {
                 :
                 <> 
                     {isCommentOpened && <CommentModal/>}
-                    {/* {chatBoxStatus === "idle" && <CommentModal/>} */}
+                    {isChatBoxOpened && <ChatBox/>}
                 </>
             }
             </SingleProductAside>

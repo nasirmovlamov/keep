@@ -65,7 +65,7 @@ function SearchBox({}: Props): ReactElement {
         }
         if(event === 'focus')
         {
-            searchNavRef.current!.style.top = `51px`
+            searchNavRef.current!.style.top = (router.asPath === "/" ? `65px` : "51px")
         }
         if(event === 'blur')
         {
@@ -96,7 +96,7 @@ function SearchBox({}: Props): ReactElement {
     
     return (
         <SearchBoxContainer ref={searchContRef} path={router.asPath} style={SearchContDesign}>
-            <SearchBoxStyle direction={direction} ref={searchBoxRef}> 
+            <SearchBoxStyle  path={router.asPath} direction={direction} ref={searchBoxRef}> 
                 <SearchBoxPage>{pagePath}</SearchBoxPage>
                 <SearchCont>
                     <FontAwesomeIcon  icon={faSearch}/>

@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { ReactElement, useEffect, useState } from 'react'
+import React, { ReactElement, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { user_data } from '../app/feature/AuthSlice'
 import { useInView } from 'react-intersection-observer';
 
@@ -16,7 +16,8 @@ interface Props {
 export default function ChatBox({}: Props): ReactElement {
 
     const [inViewRefChatLoaderCont, inViewChatLoaderCont] = useInView()
-
+    const messagesEndRef = useRef<HTMLDivElement>(null)
+    const messagesBoxRef = useRef<HTMLDivElement>(null)
 
     const userData = useAppSelector(user_data)
     const dispatch = useAppDispatch()
@@ -31,12 +32,15 @@ export default function ChatBox({}: Props): ReactElement {
 
 
     useEffect(() => {
-        if(openedChatRoomId)
-        {
-            dispatch(checkRoomChat(chatRooms[openedChatRoomId].opponent_user.id))
-        }
-    }, [openedChatRoomId])
+        dispatch(openRooms())
+    }, [Object.keys(chatRooms).length === 0])
 
+    useEffect(() => {
+        
+    }, [chatRooms[openedChatRoomId].messages])
+
+
+    
 
     useEffect(() => {
         if(inViewChatLoaderCont)
@@ -46,26 +50,44 @@ export default function ChatBox({}: Props): ReactElement {
     }, [inViewChatLoaderCont])
 
 
+    const scrollToBottom = () => {
+        messagesEndRef.current.scrollIntoView({block: 'nearest',inline: 'start'})
+    }
+
+
+    const changeRoomId = (id:number) => {
+        dispatch(setRoomId(id))
+        if(chatRooms[id].messages.length === 0)
+        {
+            dispatch(checkRoomChat(chatRooms[id].opponent_user.id))
+        }
+        if(openedChatRoomId !== null && openedChatRoomId !== id)
+        {
+            scrollToBottom()
+        }
+    }
+    
     return (
         <ChatWindow>
             <ChatNav><ChatNavName>{userData!.name}</ChatNavName>  <CloseChatBox onClick={closeChatBox}>X</CloseChatBox></ChatNav>
             
             <ChatMain>
                 <ChatRooms>
-                    {getRooms(chatRooms).map((room: any) => <ChatRoom onClick={()=> dispatch(setRoomId(room.id))} key={room.id}>{room.opponent_user.name}</ChatRoom>)}
+                    {getRooms(chatRooms).map((room: any) => <ChatRoom onClick={() => changeRoomId(room.id)} key={room.id}>{room.opponent_user.name}</ChatRoom>)}
                 </ChatRooms>
                 <ChatMessagesTab>
                     { openedChatRoomId !== null &&
-                    <>
-                    <div ref={inViewRefChatLoaderCont}>loader</div>
-                    <ChatMessages>
-                        <ChatMessagesFix></ChatMessagesFix>
-                        {openedChatRoomId !== null && chatRooms[openedChatRoomId].messages.map((message: any) => <ChatMessage isMe={userData!.id === message.user.id} key={message.id}>{message.content}</ChatMessage>)}
-                    </ChatMessages>
-                    <ChatSendMessage>
-                        <input value={userMessage} onChange={(e:any) => setuserMessage(e.target.value)} type="text" placeholder="Type your message here..."/>
-                        {<button onClick={() => dispatch(sendMessageToRoom({roomId:openedChatRoomId, content:userMessage }))}>Send</button>}
-                    </ChatSendMessage>
+                        <>
+                        <ChatMessages ref={messagesBoxRef}>
+                            <div ref={inViewRefChatLoaderCont}>loader</div>
+                            <ChatMessagesFix></ChatMessagesFix>
+                                {chatRooms[openedChatRoomId].messages.map((message: any) => <ChatMessage isMe={userData!.id === message.user.id} key={message.id}>{message.content}</ChatMessage>)}
+                                <div ref={messagesEndRef} >1</div>
+                        </ChatMessages>
+                        <ChatSendMessage>
+                            <input value={userMessage} onChange={(e:any) => setuserMessage(e.target.value)} type="text" placeholder="Type your message here..."/>
+                            {<button onClick={() => dispatch(sendMessageToRoom({roomId:openedChatRoomId, content:userMessage }))}>Send</button>}
+                        </ChatSendMessage>
                     </>
                     }
                 </ChatMessagesTab>

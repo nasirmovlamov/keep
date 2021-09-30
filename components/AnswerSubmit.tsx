@@ -50,19 +50,51 @@ function AnswerSubmitCont({id}: Props): ReactElement {
         }
     }
 
-        const blurToggler = () =>{
+    const blurToggler = () =>{
         settextAreaBlur(true)
         if(textAreaBlur)
         {
-            settextAreaHeight(50)
+            if(textAreaHeight === 150)
+            {
+                settextAreaHeight(50)
+            }
         }
     }
     
+    const textAreaChange = (e:any) =>{
+        if (e.scrollHeight !== textAreaHeight && e.scrollHeight < 500) {
+            settextAreaHeight(e.scrollHeight+1.5)
+        }
+        setanswer(e.value)
+    }
 
+
+    const changeTextAreaHeight = () =>{
+        if(textAreaHeight < 150)
+        {
+            settextAreaHeight(150)
+        }
+    }
     return (
         <AddAnswerCont onSubmit={submitAnswer}> 
-            <AddAnswer ref={textAreaRef}  style={{height:`${textAreaHeight}px`}} onClick={()=> settextAreaHeight(150)}onBlur={blurToggler} placeholder='Add new answer' value={answer} onChange={(e)=> setanswer(e.target.value)}/>
-            <AddAnswerSubmit   ref={buttonRef} onMouseDown={checkTextAreaHeight}> Post </AddAnswerSubmit>
+
+            <AddAnswer 
+                ref={textAreaRef}  
+                style={{height:`${textAreaHeight}px`}} 
+                onClick={changeTextAreaHeight}
+                onBlur={blurToggler} 
+                placeholder='Add new answer' 
+                value={answer} 
+                onChange={(e)=> textAreaChange(e.target)}
+                autoComplete="on"
+            />
+            
+            <AddAnswerSubmit   
+                ref={buttonRef} 
+                onMouseDown={checkTextAreaHeight}> 
+                Post 
+            </AddAnswerSubmit>
+
         </AddAnswerCont>
     )
 }

@@ -9,7 +9,6 @@ import Navbar from './Navbar'
 import OverlayBackground from './Overlay';
 import SearchBox from './SearchBox';
 import { openChat } from '../app/feature/ChatBoxSlice'
-import { openRooms } from '../app/thunks/ChatBoxThunks';
 
 
 
@@ -35,7 +34,7 @@ const Layout: FC<Props> = ({ children, ...props }) => {
 
 
     const openUserChat = () => {
-        dispatch(openRooms())
+        dispatch(openChat(""))
     }
     
 

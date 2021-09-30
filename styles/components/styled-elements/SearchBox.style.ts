@@ -19,13 +19,13 @@ export const SearchBoxContainer = styled.div<{path:string}>`
 
 
 
-export const SearchBoxStyle = styled.div<{direction:string}>`
+export const SearchBoxStyle = styled.div<{direction:string, path:string}>`
     display: flex;
     pointer-events: all;
     background-color: black;
     width: 808px;
     transform: translateX(0px);
-    height: 50px;
+    height: ${(props) => props.path === "/" ? "65px" : "50px"};
     color: white;
     border-radius: 5px;
     border-radius: 30px 30px 30px 30px ;
@@ -110,8 +110,7 @@ export const SearchNav = styled.div<{path:string}>`
     border: 1px solid gray;
     border-top: 1px solid lightgray ;
     width: ${(props) => props.path === "/" ? "95%" : "100%"}  ;
-
-
+    align-self: flex-end;
 `
 export const SearchNavQuery = styled.button`
     display: flex;

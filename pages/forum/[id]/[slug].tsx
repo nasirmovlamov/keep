@@ -107,8 +107,6 @@ function SingleQuestionPAge({}: Props): ReactElement {
                 :
                 <>Left SIDE</>
             }
-            
-
             </SingleProductAside>
 
             <SingleProductMiddle>

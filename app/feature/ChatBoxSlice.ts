@@ -2,7 +2,7 @@ import { RootState } from "../store/store";
 import { createSlice} from '@reduxjs/toolkit'
 import { autoErrorToaster } from "../../components/Notify/AutoErrorToaster";
 import { ChatBoxState } from "../store/states/ChatBoxState"
-import { checkChat, checkRoomChat, openRooms, sendMessageToRoom } from "../thunks/ChatBoxThunks";
+import { checkChat, checkRoomChat, loadArchieveMessages, openRooms, sendMessageToRoom } from "../thunks/ChatBoxThunks";
 
 
 
@@ -55,6 +55,22 @@ export const ChatBoxSlice = createSlice({
         builder.addCase(sendMessageToRoom.rejected, (state, action:any) => {
             autoErrorToaster(action.payload)
         })
+
+
+
+        // LOAD MESSAGES ROOM
+        builder.addCase(loadArchieveMessages.fulfilled, (state, {payload}) => {
+            console.log(payload.data)
+            // console.log(state.rooms[state.openedChatRoomId!].messages)
+            state.rooms[state.openedChatRoomId!].messages = [...payload.data , ...state.rooms[state.openedChatRoomId!].messages]
+        }),
+        builder.addCase(loadArchieveMessages.pending, (state, {payload}) => {
+        }),
+        builder.addCase(loadArchieveMessages.rejected, (state, action:any) => {
+            console.log(action.payload)
+            // autoErrorToaster(action.payload)
+        })
+
 
 
         // OPEN USER CHATBOX

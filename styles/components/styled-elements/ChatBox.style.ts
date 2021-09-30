@@ -15,6 +15,9 @@ export const ChatNav = styled.div`
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    border: 2px solid blue;
+    background-color: green;
+    padding: 5px;
 `
 
 export const ChatNavName = styled.div`
@@ -23,6 +26,7 @@ export const ChatNavName = styled.div`
     align-items: center;
     padding: 0px;
     margin: 0px;
+    color: white;
 `
 
 export const CloseChatBox = styled.button`

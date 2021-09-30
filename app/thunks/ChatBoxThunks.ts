@@ -62,3 +62,15 @@ export const sendMessageToRoom = createAsyncThunk(
     }
   }
 )
+
+
+export const loadArchieveMessages = createAsyncThunk(
+  types.LOAD_MESSAGES_TO_ROOM, async ({roomId , lastMessageId}:{roomId:number, lastMessageId:number}, {rejectWithValue}) => {
+    try {
+      const resp = await BASE_API_INSTANCE.get(`/chat/${roomId}/${lastMessageId}/load`)
+      return resp.data
+    } catch (error:any) {
+      return rejectWithValue(error.response.data)
+    }
+  }
+)

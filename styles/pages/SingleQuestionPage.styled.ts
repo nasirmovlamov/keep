@@ -164,10 +164,8 @@ export const AddAnswer = styled.textarea`
     padding-top: 10px;
     border-radius:6px ;
     border: 1px solid lightgray;
-    transition: 0.4s height;
     border-right: 0px;
     resize:none;
-    /* overflow: hidden; */
     &:focus{
         outline: none;
     }

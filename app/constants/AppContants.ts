@@ -24,4 +24,5 @@ export const OPEN_CHATBOX:string = 'OPEN_CHATBOX'
 export const OPEN_ROOM_MESSAGES:string = 'OPEN_ROOM_MESSAGES'
 export const CHECK_ROOM:string = 'CHECK_ROOM'
 export const SEND_MESSAGE_TO_ROOM:string = 'SEND_MESSAGE_TO_ROOM'
+export const LOAD_MESSAGES_TO_ROOM:string = 'LOAD_MESSAGES_TO_ROOM'
 

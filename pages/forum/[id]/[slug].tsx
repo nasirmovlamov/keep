@@ -12,7 +12,7 @@ import AnswerSubmit from '../../../components/AnswerSubmit'
 import ProductsConts from '../../../components/ProductsCont'
 import SinglePageTabs from '../../../components/SinglePageTabs'
 import { SingleProductPage } from '../../../styles/global/styled-utils/styling-elements/Pages.style'
-import { Avatar, Name, PersonCont, QuestionTags, ContentCont, QuestionCont, QuestionContent, QuestionDate, QuestionTag, QuestionTagsAndDate, QuestionTitle, QuestionStatistics, QuestionStatisticElement, QuestionStatisticButton, QuestionStatisticText, AddAnswer, AddAnswerCont, AddAnswerSubmit, AnswersCont, ProductsCont, SingleProductMiddle, SingleProductAside } from '../../../styles/pages/SingleQuestionPage.styled'
+import { Avatar, Name, PersonCont, QuestionTags, ContentCont, QuestionCont, QuestionContent, QuestionDate, QuestionTag, QuestionTagsAndDate, QuestionTitle, QuestionStatistics, QuestionStatisticElement, QuestionStatisticButton, QuestionStatisticText, AddAnswer, AddAnswerCont, AddAnswerSubmit, AnswersCont, ProductsCont, SingleProductMiddle, SingleProductAside, AnswersAndProductsCont, VotePercentage } from '../../../styles/pages/SingleQuestionPage.styled'
 import CommentModal from '../../../components/CommentsTab'
 import { closeComments, comments,   comments_status,   comments_types, is_comment_opened, showComments } from '../../../app/feature/CommentsSlice'
 import { closeChat, is_chatbox_opened, openChat } from '../../../app/feature/ChatBoxSlice'
@@ -24,6 +24,14 @@ import { SkeletonBox } from '../../../styles/global/styled-utils/Global.style'
 import Loader from '../../../components/Loader'
 import QuestionSkeleton from '../../../components/Skeletons/QuestionSkeleton'
 import ChatBox from '../../../components/ChatBox'
+import MainPartOfPage from '../../../components/MainPartOfPage'
+import SidePartOfPage from '../../../components/SidePartOfPage'
+import { PageDefaultStyle } from '../../../styles/pages/Page.styled'
+import SearchBox from '../../../components/SearchBox'
+import { AnswerCont, AnswerCount, DateCount, DefaultLine, HelpfulCont, HelpfulCount, PercentageLine, StatisticCont, Text, ThumbIcon } from '../../../styles/components/styled-elements/FormQuestion.style'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faThumbsDown as solidfaThumbsDown  ,   faThumbsUp as solidfaThumbsUp } from '@fortawesome/free-solid-svg-icons'
+import {faComment, faThumbsDown as regularfaThumbsDown  ,   faThumbsUp as regularfaThumbsUp  } from '@fortawesome/free-regular-svg-icons'
 
 interface Props {
 }
@@ -51,7 +59,7 @@ function SingleQuestionPAge({}: Props): ReactElement {
     }, [router , userData])
 
     
-    const voting = () => {
+    const vote = () => {
         if(userData === null)
         {
             dispatch(changeModalAction('login'))
@@ -61,20 +69,23 @@ function SingleQuestionPAge({}: Props): ReactElement {
         {
             return null
         }
-        
-        if( singleQuestionData.user_votes !== null && singleQuestionData.user_votes.user_id === userData.id) 
-        {
-            dispatch(unVoteQuestion({id:id , type:"upvote"}) )
-            return null
-        }
-        else 
-        {
-            dispatch(voteQuestion({id:id , type:"upvote"}))
-            return null
-        }
+        dispatch(voteQuestion({id:id , type:"upvote"}))
+        return null
     }
 
-    
+    const unvote = () => {
+        if(userData === null)
+        {
+            dispatch(changeModalAction('login'))
+            return null
+        }
+        if(singleQuestionData === null )
+        {
+            return null
+        }
+        dispatch(unVoteQuestion({id:id , type:"upvote"}) )
+        return null
+    }
 
     const openQuestionComments = () =>{
         if(singleQuestionData !== null)
@@ -99,109 +110,119 @@ function SingleQuestionPAge({}: Props): ReactElement {
     
 
     return (
-        <SingleProductPage>
-            <SingleProductAside>
-             {
-                singleQuestionStatus === "loading" ? 
-                <Loader/>
-                :
-                <>Left SIDE</>
-            }
-            </SingleProductAside>
 
-            <SingleProductMiddle>
-
-            
-            {/* Single Question Title Content Answer Posting */}
-            <>  
-                {              
+        <PageDefaultStyle>
+            <SidePartOfPage side={"left"}>
+                {/* <SingleProductAside>
+                {
                     singleQuestionStatus === "loading" ? 
-
-                    <QuestionSkeleton/>
-                    
+                    <Loader/>
                     :
+                    <>Left SIDE</>
+                }
+                </SingleProductAside> */}
+            </SidePartOfPage>
 
-                    <>
-                        <button style={{alignSelf:'flex-end'}} onClick={() => dispatch(changeModalAction("questionCreate"))}>QuestionCreate</button>
+            <MainPartOfPage>
+                <SingleProductMiddle>
+                    {/* Single Question Title Content Answer Posting */}
+                        <>  
+                            {              
+                                singleQuestionStatus === "loading" ? 
 
-                        <QuestionCont>
-                            <PersonCont>
-                                <Avatar></Avatar>
-                                <Name>{singleQuestionData.user.name}</Name>
-                            </PersonCont>
+                                <QuestionSkeleton/>
+                                
+                                :
 
-                            <ContentCont>
-                                <QuestionTitle> 
-                                    {singleQuestionData.title}
-                                </QuestionTitle>    
-                                <QuestionContent> 
-                                    {singleQuestionData.content}
-                                </QuestionContent>
+                                <>
+                                    <button style={{alignSelf:'flex-end'}} onClick={() => dispatch(changeModalAction("questionCreate"))}>QuestionCreate</button>
 
-                                <QuestionTagsAndDate>
-                                    <QuestionTags>
-                                        <QuestionTag>test 1</QuestionTag>
-                                        <QuestionTag>test 2</QuestionTag>
-                                        <QuestionTag>test 3</QuestionTag>
-                                    </QuestionTags> 
-                                    
-                                    <QuestionDate> {singleQuestionData.created_at} </QuestionDate>
-                                    <ShowComments type="button" onClick={openQuestionComments}/> 
+                                    <QuestionCont>
+                                        <PersonCont>
+                                            <Avatar></Avatar>
+                                            <Name>{singleQuestionData.user.name}</Name>
+                                        </PersonCont>
 
-                                </QuestionTagsAndDate>
-                            </ContentCont>
+                                        <ContentCont>
+                                            <QuestionTitle> 
+                                                {singleQuestionData.title}
+                                            </QuestionTitle>    
+                                            <QuestionContent> 
+                                                {singleQuestionData.content}
+                                            </QuestionContent>
+
+                                            <QuestionTagsAndDate>
+                                                <QuestionTags>
+                                                    <QuestionTag>test 1</QuestionTag>
+                                                    <QuestionTag>test 2</QuestionTag>
+                                                    <QuestionTag>test 3</QuestionTag>
+                                                </QuestionTags> 
+                                                
+                                                
+                                                <ShowComments disabled={singleQuestionData.comment_count === 0} type="button" onClick={openQuestionComments}> <FontAwesomeIcon icon={faComment} /> <span>{singleQuestionData.comment_count}</span> comment</ShowComments> 
+
+                                            </QuestionTagsAndDate>
+                                        </ContentCont>
 
 
-                            <QuestionStatistics>
-                                <QuestionStatisticElement>
-                                    <QuestionStatisticButton color={"#ffa361"}>{singleQuestionData.view_count}</QuestionStatisticButton>
-                                    <QuestionStatisticText>views</QuestionStatisticText>
-                                </QuestionStatisticElement>
+                                        <QuestionStatistics>
+                                            <StatisticCont>
+                                                    <AnswerCont>
+                                                        <AnswerCount>7</AnswerCount>
+                                                        <Text>Answers</Text>
+                                                    </AnswerCont>
 
-                                <QuestionStatisticElement>
-                                    <QuestionStatisticButton color={"#8b4261"}>{singleQuestionData.answer_count}</QuestionStatisticButton>
-                                    <QuestionStatisticText>Answers</QuestionStatisticText>
-                                </QuestionStatisticElement>
+                                                    <HelpfulCont>
+                                                        <HelpfulCount>
+                                                            <QuestionStatisticButton  changeDirection={false} onClick={vote} ><ThumbIcon><FontAwesomeIcon  icon={singleQuestionData.user_votes?.type === "upvote" ? solidfaThumbsUp :regularfaThumbsUp} /> </ThumbIcon></QuestionStatisticButton> 
+                                                            <QuestionStatisticButton  changeDirection={true} onClick={unvote} ><ThumbIcon><FontAwesomeIcon  icon={singleQuestionData.user_votes?.type === "downvote" ? solidfaThumbsDown :regularfaThumbsDown } />  </ThumbIcon></QuestionStatisticButton> 
+                                                        </HelpfulCount>
+                                                        <DefaultLine><PercentageLine percentage={(69/100*100)}/></DefaultLine>
+                                                        <VotePercentage>
+                                                            6%
+                                                        </VotePercentage>
+                                                    </HelpfulCont>
+                                            </StatisticCont>
+                                            <DateCount>
+                                                2d 7h ago
+                                            </DateCount>
+                                            {/* <QuestionStatisticElement>
+                                                <QuestionStatisticButton onClick={voting} color={singleQuestionData.user_votes === null ? "red" : "green"}>like</QuestionStatisticButton>
+                                                <QuestionStatisticText>Give Vote</QuestionStatisticText>
+                                                <QuestionDate> {singleQuestionData.created_at} </QuestionDate>
+                                            </QuestionStatisticElement> */}
+                                        </QuestionStatistics>
+                                    </QuestionCont>
 
-                                <QuestionStatisticElement>
-                                    <QuestionStatisticButton color={"#00578b"}>{singleQuestionData.upvote}</QuestionStatisticButton>
-                                    <QuestionStatisticText>Helpful</QuestionStatisticText>
-                                </QuestionStatisticElement>
+                                    <AnswerSubmitCont id={id}/>
+                                </>
+                            } 
+                        </>
+                    {/* Single Question Title Content Answer Posting */}
+                    
+                    {/* Answers and Products */}
+                    <AnswersAndProductsCont>
+                        <SinglePageTabs/>
+                        <AnswersConts />
+                        <ProductsConts />
+                    </AnswersAndProductsCont>
+                    {/* Answers and Products */}
 
-                                <QuestionStatisticElement>
-                                    <QuestionStatisticButton onClick={voting} color={singleQuestionData.user_votes === null ? "red" : "green"}>like</QuestionStatisticButton>
-                                    <QuestionStatisticText>Give Vote</QuestionStatisticText>
-                                </QuestionStatisticElement>
-                            </QuestionStatistics>
-                        </QuestionCont>
+                </SingleProductMiddle>
+            </MainPartOfPage>
 
-                        <AnswerSubmitCont id={id}/>
+            <SidePartOfPage side={"right"}>
+                {
+                    singleQuestionStatus=== "loading" ? 
+                    <Loader/>
+                    :
+                    <> 
+                        {isCommentOpened && <CommentModal/>}
                     </>
-                } 
-            </>
-
-                
-                
-                {/* Answers and Products */}
-                <SinglePageTabs/>
-                <AnswersConts />
-                <ProductsConts />
-
-            </SingleProductMiddle>
-
-            <SingleProductAside>
-            {
-                singleQuestionStatus=== "loading" ? 
-                <Loader/>
-                :
-                <> 
-                    {isCommentOpened && <CommentModal/>}
-                    {isChatBoxOpened && <ChatBox/>}
-                </>
-            }
-            </SingleProductAside>
-
-        </SingleProductPage>
+                }
+            </SidePartOfPage>
+        </PageDefaultStyle>
+        
     )
 }
 

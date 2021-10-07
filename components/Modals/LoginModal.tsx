@@ -19,8 +19,7 @@ function LoginModal({}: Props):ReactElement {
 
     
     return (
-        <div style={{width:"100vw", height:"100vh" ,  display: 'flex', justifyContent: 'center', alignItems: 'center', position:'absolute', background:"rgba(0,0,0,0.5)", left:0,top:0,zIndex:4}}>
-            <form style={{background:"rgba(255,255,255,0.7)" , padding:"25px", borderRadius:"20px"}} onSubmit={formSubmit}>
+            <form style={{background:"rgba(255,255,255,0.7)" , padding:"25px", borderRadius:"20px", pointerEvents:"all"}} onSubmit={formSubmit}>
                 <div style={{display:'flex',flexDirection:"column",alignItems:'flex-end',marginTop:"0px",marginBottom:"10px"}}>
                     <button type="button" onClick={() => dispatch(changeModalAction('login'))} style={{background:"none",border:"none",cursor:"pointer"}}>X</button>
                 </div>
@@ -44,7 +43,6 @@ function LoginModal({}: Props):ReactElement {
                     <button type="button" style={{color:"red", fontSize:"12px",marginTop:"5px",marginBottom:"5px"}} onClick={()=> dispatch(changeModalAction('forgetPassword'))}>Forget Password</button>
                 </div>
             </form>
-        </div>
     )
 }
 

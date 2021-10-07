@@ -6,6 +6,7 @@ import LoginModal from './LoginModal'
 import RegisterModal from './RegisterModal'
 import IsEmailSendModal from './IsEmailSendModal'
 import CreateQuestionModal from './CreateQuestionModal'
+import ModalCont from './ModalCont'
 
 interface Props {
 }
@@ -15,12 +16,14 @@ function Modals({}: Props):ReactElement {
     
     return (
         <>
-            {allModals.login && <LoginModal />}
-            {allModals.register && <RegisterModal />}
-            {allModals.forgetPassword && <ForgetPasswordModal />}
-            {allModals.isEmailSend && <IsEmailSendModal />}
-            {allModals.questionCreate && <CreateQuestionModal />}
-        </>
+            
+            {allModals.login && <ModalCont> <LoginModal /></ModalCont>}
+            {allModals.register && <ModalCont><RegisterModal /></ModalCont>}
+            {allModals.forgetPassword && <ModalCont><ForgetPasswordModal /></ModalCont>}
+            {allModals.isEmailSend && <ModalCont><IsEmailSendModal /></ModalCont>}
+            {allModals.questionCreate && <ModalCont><CreateQuestionModal /></ModalCont>}        
+            
+            </>
     )
 }
 

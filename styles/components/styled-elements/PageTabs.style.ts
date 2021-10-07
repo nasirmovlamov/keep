@@ -8,11 +8,10 @@ export const TabsContainer  = styled.div`
     width:100%;
     display: flex;
     flex-direction: column;
-    row-gap:14px;
-    padding-top: 10px;
+    row-gap:15px;
     border-radius: 6px;
-    margin-top: 10px;
-`
+    margin-top: 0px;
+    `
 
 
 
@@ -56,6 +55,8 @@ export const TabTagsCont = styled.div`
     border-radius: 10px;
     column-gap: 10px;
     padding: 3px;
+    padding-left: 3px;
+    height: 35px;
 `
 
 export const TabTags = styled.button`
@@ -86,7 +87,7 @@ export const Tabs = styled.div`
     border-radius:10px;
     padding-left: 10px;
     box-shadow: 0px 1px 1px rgba(99,105,108,0.61), inset 0px 0px 0px rgba(99,105,108,0.61);
-    height: 52px;
+    height: 54px;
     align-items: flex-end;
     overflow: hidden;
 `
@@ -108,7 +109,7 @@ export const TabButtonsCont = styled.div`
        {
            color: #63696c;
        }
-}
+    }
 `
 
 export const TabButton = styled.button`

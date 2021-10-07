@@ -5,6 +5,8 @@ import authReducer from '../feature/AuthSlice'
 import questionReducer from '../feature/QuestionSlice'
 import commentsReducer from '../feature/CommentsSlice'
 import chatBoxReducer from '../feature/ChatBoxSlice'
+import searchBoxReducer from '../feature/SearchBoxSlice'
+import pageFiltersReducer from '../feature/PageFiltersSlice'
 
 const reducer = 
 {  
@@ -13,7 +15,9 @@ const reducer =
   questionReducer:questionReducer, 
   commentsReducer:commentsReducer  ,
   tabsReducer:tabsReducer,
-  chatBoxReducer:chatBoxReducer
+  chatBoxReducer:chatBoxReducer,
+  searchBoxReducer:searchBoxReducer,
+  pageFiltersReducer:pageFiltersReducer
 }
 
 

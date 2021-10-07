@@ -9,15 +9,18 @@ export const SingleTabsContainer  = styled.div`
     width:100%;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     row-gap:10px;
     padding-top: 10px;
     padding-right: 51px;
-    border-bottom: 1px solid ${({theme}) => theme.pageTabs.border};
     margin-top: 10px;
     position: sticky;
-    top: 76px;
-    background-color: #00090E;
+    top: 56px;
+    transition: 0.5s top;
     padding-bottom: 0px;
+    z-index: 99999;
+    border-radius: 10px;
+    background-color: #ffffff;
     &:hover 
     {
     }
@@ -32,12 +35,13 @@ export const SingleTabText = styled.span`
 
 `
 export const SingleLine = styled.div`
-    width: 0px;
+    width: 100%;
     opacity:0;
-    height: 2.5px;
-    background-color: white;
+    height: 2px;
+    background-color:  #00090e;
     transition: 0.2s;
     align-self: center;
+
 `
 
 
@@ -59,11 +63,6 @@ export const SingleTabTags = styled.button`
     transition: 0.4s;
     border:1px solid ${(props:{theme:ThemeType , tagFocus:boolean}) => props.tagFocus ? "white" : "transparent"};
    
-    /* &:hover 
-    {
-        border: 1px solid lightgray;
-        color:white;
-    } */
 `
 
 export const SingleTabs = styled.div`
@@ -72,7 +71,11 @@ export const SingleTabs = styled.div`
     &:hover ${SingleLine}
     {
         opacity: 0.3;
-        transform: scaleX(0.8);
+        transform: scale(0.8);
+    }
+    &:hover ${SingleTabText}
+    {
+        opacity: 0.3;
     }
 `
 
@@ -96,22 +99,26 @@ export const SingleTabButton = styled.button`
     {
         opacity: ${(props:{tabActive:boolean}) => props.tabActive && '1'};
         width: ${(props:{tabActive:boolean}) => props.tabActive && '100% '};
-        height: ${(props:{tabActive:boolean}) => props.tabActive && '2.5px'};
         transform: scale(1);
     }
     span {
-        color: ${(props : {theme:ThemeType , tabActive:boolean}) => props.tabActive ?  props.theme.navbar.navLinksHovered :  props.theme.navbar.navLinks};
+        color: ${(props : {theme:ThemeType , tabActive:boolean}) => props.tabActive ?  "#00090e" :  "#63696c"};
     }
     &:hover
     {   
+       
+        ${SingleTabText}
+        {
+            opacity: 1;
+        }
         span{
-            color: white;
+            color: #00090e;
         }
         div{
             opacity:1  !important;
             width: 100% !important;
-            height: 2.5px !important;
             transform: scale(1) !important;
+            color:#63696c;
         }
     }
 `

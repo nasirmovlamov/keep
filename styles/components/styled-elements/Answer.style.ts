@@ -57,9 +57,22 @@ export const AnswerContentSkeleton = styled.div`
 `
 export const ShowComments = styled.button`
     border: none;
-    background-color: black;
-    color: white;
+    background-color: transparent;
+    color: #474d51;
     border-radius: 6px;
     padding: 5px 7px;
     cursor: pointer;
+    column-gap: 5px;
+    span , svg
+    {
+        color: #00578b;
+        font-size: 15px;
+    }
+    svg 
+    {
+        font-size: 20px;
+        margin-bottom: -2px;
+        margin-right: 4px;
+    }
+    
 `

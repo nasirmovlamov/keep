@@ -31,7 +31,7 @@ function FormQuestion({data}: Props): ReactElement {
             </PersonCont>
 
             <TextCont>
-                <NavLink href={`/forum/1/schema-builder-laravel-migrations-unique-on-two-columns`}>
+                <NavLink href={`/forum/46/laravel-is-so-prettyyy`}>
                     <Title> 
                         {data.title}
                     </Title>

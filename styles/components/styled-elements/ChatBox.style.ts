@@ -7,6 +7,8 @@ export const ChatWindow = styled.div`
     display: flex;
     flex-direction: column;
     background-color: lightgray;
+    position: sticky;
+    top: 100px;
 `
 
 export const ChatNav = styled.div`

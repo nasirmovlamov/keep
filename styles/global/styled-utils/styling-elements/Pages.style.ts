@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ForumPage = styled.main`
+export const ForumPage = styled.div`
     width: 808px;
     min-height: 1600px;
     display: flex;
@@ -8,7 +8,7 @@ export const ForumPage = styled.main`
     margin: auto;
     align-items: center;
     row-gap: 14px;
-    padding-top: 100px;
+    /* padding-top: 100px; */
 `
 
 
@@ -19,8 +19,8 @@ export const StorePage = styled.main`
     flex-direction: column;
     margin: auto;
     align-items: center;
-    row-gap: 14px;
-    padding-top: 100px;
+    row-gap: 15px;
+    /* padding-top: 100px; */
 `
 
 export const SingleProductPage = styled.div`

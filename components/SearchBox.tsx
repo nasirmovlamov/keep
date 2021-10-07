@@ -5,7 +5,9 @@ import React, { ReactElement, useEffect, useRef, useState } from 'react'
 import { useScrollDirection } from 'react-use-scroll-direction'
 import { changeModalAction } from '../app/feature/AuthSlice'
 import { useAppDispatch } from '../app/store/hooks'
-import { AddQuesitionCont, SearchBoxContainer , SearchBoxPage, SearchBoxStyle, SearchCont, SearchInput, SearchNav, SearchNavQuery} from '../styles/components/styled-elements/SearchBox.style'
+import { forumWordRegex, storeWordRegex } from '../logic/regex/NavbarRegex'
+import { AddQuesitionCont, SearchBoxContainer , SearchBoxPage, SearchBoxStyle, SearchBoxThunk, SearchBoxThunkAndCont, SearchCont, SearchInput, SearchNav, SearchNavQuery} from '../styles/components/styled-elements/SearchBox.style'
+import { MainPartOfPageStyle, SidePartOfPageStyle } from '../styles/pages/Page.styled'
 
 interface Props {
     
@@ -19,6 +21,18 @@ function SearchBox({}: Props): ReactElement {
     const searchInputRef = useRef<HTMLInputElement>(null)
     const searchNavRef = useRef<HTMLDivElement>(null)
     const dispatch = useAppDispatch()
+    const [searchValue, setSearchValue] = useState("")
+
+    const changeSearchValue = (e:string) => {
+        setSearchValue(e)
+        searchNavRef.current!.style.top = (router.asPath === "/" ? `65px` : "51px")
+        if(router.pathname === '/')
+        {
+            searchNavRef.current!.style.top = `66px`
+        }
+    }
+
+
 
     useEffect(() => {
         if(router.isReady)
@@ -42,9 +56,8 @@ function SearchBox({}: Props): ReactElement {
         if(router.asPath !== '/')
         {
             isScrollingDown && setDirection('down')
-            isScrollingUp && setDirection('up')
         }
-    }, [isScrollingDown, isScrollingUp, router.asPath])
+    }, [isScrollingDown,  router.asPath])
 
     const searchSizechange = (event:string) => {
         if(router.pathname === '/')
@@ -52,25 +65,21 @@ function SearchBox({}: Props): ReactElement {
 
             if(event === 'focus')
             {
-                // searchBox.style.width = `400px`
                 searchContRef.current!.style.paddingTop = `1vh`
-                searchNavRef.current!.style.top = `50px`
+                searchNavRef.current!.style.top = `65px`
+                return 0
             }
             if(event === 'blur')
             {
-                // searchBox.style.width = `422px`
                 searchContRef.current!.style.paddingTop = `20vh`
                 searchNavRef.current!.style.top = `0px`
             }
         }
-        if(event === 'focus')
-        {
-            searchNavRef.current!.style.top = (router.asPath === "/" ? `65px` : "51px")
-        }
+       
         if(event === 'blur')
         {
             searchNavRef.current!.style.top = `0px`
-
+            return 0
         }
 
     } 
@@ -80,13 +89,17 @@ function SearchBox({}: Props): ReactElement {
         {   
             return "Home"
         }
-        else if(pathname === "/forum") 
+        else if(forumWordRegex.test(pathname)) 
         {
             return "Library"
         }
-        else 
+        else if(storeWordRegex.test(pathname))
         {
             return "Store"
+        }
+        else 
+        {
+            return ""
         }
     }
 
@@ -96,24 +109,34 @@ function SearchBox({}: Props): ReactElement {
     
     return (
         <SearchBoxContainer ref={searchContRef} path={router.asPath} style={SearchContDesign}>
-            <SearchBoxStyle  path={router.asPath} direction={direction} ref={searchBoxRef}> 
-                <SearchBoxPage>{pagePath}</SearchBoxPage>
-                <SearchCont>
-                    <FontAwesomeIcon  icon={faSearch}/>
-                    <SearchInput path={router.asPath} placeholder="Search..." ref={searchInputRef} onFocus={() => searchSizechange('focus')} onBlur={() => searchSizechange('blur')}  type="text" /> 
-                    <SearchNav  path={router.asPath} ref={searchNavRef}>
-                        <SearchNavQuery>
-                            <FontAwesomeIcon  icon={faSearch}/>
-                            <span>react</span>
-                        </SearchNavQuery>
-                        <SearchNavQuery>
-                            <FontAwesomeIcon  icon={faSearch}/>
-                            <span>react</span>
-                        </SearchNavQuery>
-                    </SearchNav>
-                </SearchCont>
-                {pagePath !== "Home" && <AddQuesitionCont onClick={router.asPath === "/forum" ? () => dispatch(changeModalAction("questionCreate")) : ()=>{}}>ADD</AddQuesitionCont>}
-            </SearchBoxStyle>
+            <>
+                <div style={{width:"400px"}}></div>
+                <div style={{width:"808px"}}>
+                    <SearchBoxThunkAndCont  ref={searchBoxRef} direction={direction}>
+                        <SearchBoxStyle path={router.asPath} direction={direction} > 
+                            <SearchBoxPage>{pagePath}</SearchBoxPage>
+                            <SearchCont>
+                                <FontAwesomeIcon  icon={faSearch}/>
+                                <SearchInput value={searchValue} onChange={(e) => changeSearchValue(e.target.value)}  path={router.asPath} placeholder="Search..." ref={searchInputRef} onFocus={() => searchSizechange('focus')} onBlur={() => searchSizechange('blur')}  type="text" /> 
+                                <SearchNav  path={router.asPath} ref={searchNavRef}>
+                                    <SearchNavQuery>
+                                        <FontAwesomeIcon  icon={faSearch}/>
+                                        <span>react</span>
+                                    </SearchNavQuery>
+                                    <SearchNavQuery>
+                                        <FontAwesomeIcon  icon={faSearch}/>
+                                        <span>react</span>
+                                    </SearchNavQuery>
+                                </SearchNav>
+                            </SearchCont>
+                            {pagePath !== "Home" && <AddQuesitionCont onClick={router.asPath === "/forum" ? () => dispatch(changeModalAction("questionCreate")) : ()=>{}}>ADD</AddQuesitionCont>}
+                        </SearchBoxStyle>
+                        {pagePath !== "Home" &&<SearchBoxThunk onMouseMove={()=>setDirection("up")} direction={direction}>	• 	•	•</SearchBoxThunk>}
+                    </SearchBoxThunkAndCont>
+                </div>
+                <div style={{width:"400px"}}></div>
+
+            </>
         </SearchBoxContainer>
     )
 }

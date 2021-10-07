@@ -4,8 +4,9 @@ import styled from "styled-components";
 
 export const SearchBoxContainer = styled.div<{path:string}>`
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    /* flex-direction: column; */
+    /* align-items: center; */
+    column-gap: 20px;
     padding-top: ${(props) => props.path === "/" ? "20vh" : "0vh"};
     height: ${(props) => props.path === "/" ? "70vh" : "auto"};
     transition: 0.01s;
@@ -17,7 +18,39 @@ export const SearchBoxContainer = styled.div<{path:string}>`
     transition: 0.4s;
 `
 
+export const SearchBoxThunkAndCont = styled.div<{direction:string}>`
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: space-between;
+    transform: ${({direction}) => direction === "up" ? "translateY(0px)" : "translateY(-51px)"};
+    width: 808px;
+    position: sticky;
+    transition: 0.5s;
+    z-index: 100;
 
+`
+
+export const SearchBoxThunk = styled.button<{direction:string}>`
+    display: flex;
+    flex-direction: column;
+    color: black;
+    pointer-events: all;
+    border: none;
+    background-color: #00090e;
+    color: gray;
+    width: 200px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+    height: 16px;
+    border-radius: 0px 0px 5px 5px;
+    transform: ${({direction})=>direction === "down" ? "translateY(0px)" : "translateY(-20px)"};
+    pointer-events: ${({direction})=>direction === "down" ? "all" : "none"};
+    transition: 0.2s;
+`
 
 export const SearchBoxStyle = styled.div<{direction:string, path:string}>`
     display: flex;
@@ -29,7 +62,6 @@ export const SearchBoxStyle = styled.div<{direction:string, path:string}>`
     color: white;
     border-radius: 5px;
     border-radius: 30px 30px 30px 30px ;
-    /* overflow: hidden; */
     border: none;
     box-shadow: 0px 1px 1px rgba(99,105,108,0.61), inset 0px 0px 0px rgba(99,105,108,0.61);
     transition: 0.4s;
@@ -37,9 +69,9 @@ export const SearchBoxStyle = styled.div<{direction:string, path:string}>`
     align-items: flex-start;
     justify-content: space-between;
     box-sizing: border-box;
-    z-index: 2;
-    transform: ${({direction}) => direction === "up" ? "translateY(0px)" : "translateY(-51px)"};
+    z-index: 9999;
     transform-origin: top;
+    transition: 0.5s;
 `
 
 
@@ -111,6 +143,9 @@ export const SearchNav = styled.div<{path:string}>`
     border-top: 1px solid lightgray ;
     width: ${(props) => props.path === "/" ? "95%" : "100%"}  ;
     align-self: flex-end;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
 `
 export const SearchNavQuery = styled.button`
     display: flex;

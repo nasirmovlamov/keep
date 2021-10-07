@@ -1,10 +1,12 @@
 import React, { ReactElement, useEffect, useState } from 'react'
+import { changeModalAction } from '../../app/feature/AuthSlice'
 import { useAppDispatch } from '../../app/store/hooks'
 import {BASE_API_INSTANCE} from '../../helpers/api/BaseInstance'
 import { accessToken } from '../../helpers/token/TokenHandle'
 import { getKeyValue } from '../../logic/getKeyValue'
 import { LabelCont, QuestionCreateForm, QuestionCreateModal } from '../../styles/components/styled-elements/CreateQuestionModal.style'
 import { Title } from '../../styles/components/styled-elements/FormQuestion.style'
+import MyEditor from '../MyEditor'
 import { autoErrorToaster } from '../Notify/AutoErrorToaster'
 import { autoSuccessToaster } from '../Notify/AutoSuccessToast'
 import { errorToastFunc } from '../Notify/ErrorToasts'
@@ -51,6 +53,9 @@ function CreateQuestionModal({}: Props): ReactElement {
     return (
         <QuestionCreateModal>
             <QuestionCreateForm onSubmit={sendCreateQuestionModal}>
+                <div style={{display:'flex',flexDirection:"column",alignItems:'flex-end',marginTop:"0px",marginBottom:"10px"}}>
+                    <button type="button" onClick={() => dispatch(changeModalAction('questionCreate'))} style={{background:"none",border:"none",cursor:"pointer"}}>X</button>
+                </div>
                 <LabelCont>
                     <label htmlFor="title">Title</label>
                     <input onChange={questionChange}  value={questionValue.title}  type="text" name="title"/>
@@ -59,7 +64,7 @@ function CreateQuestionModal({}: Props): ReactElement {
 
                 <LabelCont>
                     <label htmlFor="content">Content</label>
-                    <input onChange={questionChange} value={questionValue.content} type="text" name="content"/>
+                    <MyEditor content={questionValue} onChange={(code:any) => setQuestionValue(code)}/>
                     <label htmlFor="content">validate</label>
                 </LabelCont>
 

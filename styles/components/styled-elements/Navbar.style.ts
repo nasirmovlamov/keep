@@ -151,9 +151,10 @@ export const LiStyle = styled.li`
 
 export const LinksStyle = styled.ul`
     display:flex;
-    justify-content:center;
+    /* justify-content:center; */
     align-items:flex-end;
     height:60px;    
+    width:680px;
     &:hover ${Line}
     {
         opacity: 0.2; 

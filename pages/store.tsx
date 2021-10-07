@@ -1,8 +1,14 @@
 import axios from 'axios'
 import React, { ReactElement, useEffect, useState } from 'react'
 import ListingStoreProduct from '../components/ListingStoreProduct'
-import PageTabs from '../components/PageTabs'
+import PageTabs from '../components/ForumPageTabs'
 import { StorePage } from '../styles/global/styled-utils/styling-elements/Pages.style'
+import { PageDefaultStyle } from '../styles/pages/Page.styled'
+import SidePartOfPage from '../components/SidePartOfPage'
+import MainPartOfPage from '../components/MainPartOfPage'
+import { useAppSelector } from '../app/store/hooks'
+import { is_chatbox_opened } from '../app/feature/ChatBoxSlice'
+import ChatBox from '../components/ChatBox'
 
 interface Props {
     
@@ -10,6 +16,7 @@ interface Props {
 
 function Store({}: Props): ReactElement {
     const [storeListingProducts, setstoreListingProducts] = useState([])
+    const isChatBoxOpened = useAppSelector(is_chatbox_opened)
 
     const getStoreProducts = async () => {
         try {
@@ -27,10 +34,29 @@ function Store({}: Props): ReactElement {
     }, [])
 
     return (
-        <StorePage>
-            <PageTabs/>  
-            {storeListingProducts.map((element , index)=> <ListingStoreProduct key={index} data={element}/>)} 
-        </StorePage>
+        <PageDefaultStyle>
+            <SidePartOfPage>
+                
+            </SidePartOfPage>
+
+            <MainPartOfPage>
+                <StorePage>
+                    <PageTabs/>  
+                    {storeListingProducts.map((element , index)=> <ListingStoreProduct key={index} data={element}/>)} 
+                </StorePage>
+            </MainPartOfPage>
+
+            <SidePartOfPage>
+                {
+                    <> 
+                        {isChatBoxOpened  && <ChatBox/>}
+                    </>
+                }
+            </SidePartOfPage>
+        </PageDefaultStyle>
+
+
+        
     )
 }
 

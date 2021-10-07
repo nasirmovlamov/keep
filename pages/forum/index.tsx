@@ -2,9 +2,16 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 import React, { ReactElement, useEffect, useState } from 'react'
 import FormQuestion from '../../components/ForumQuestion'
-import PageTabs from '../../components/PageTabs'
+import PageTabs from '../../components/ForumPageTabs'
 import { TabButton, Tabs, TabsContainer, TabTags, TabTagsCont } from '../../styles/components/styled-elements/PageTabs.style'
 import { ForumPage } from '../../styles/global/styled-utils/styling-elements/Pages.style'
+import MainPartOfPage from '../../components/MainPartOfPage'
+import SidePartOfPage from '../../components/SidePartOfPage'
+import { PageDefaultStyle } from '../../styles/pages/Page.styled'
+import { useAppSelector } from '../../app/store/hooks'
+import { is_chatbox_opened } from '../../app/feature/ChatBoxSlice'
+import ChatBox from '../../components/ChatBox'
+import PageFilters from '../../components/PageFilters'
 
 interface Props {
     
@@ -13,6 +20,7 @@ interface Props {
 function Forum({}: Props): ReactElement {
     const router = useRouter()
     const [formQuestionsAPI, setformQuestionsAPI] = useState([])
+    const isChatBoxOpened = useAppSelector(is_chatbox_opened)
 
     const getQuestions = async () => {
         try {
@@ -30,10 +38,26 @@ function Forum({}: Props): ReactElement {
     }, [])
     
     return (
-        <ForumPage>
-            <PageTabs/>  
-            {formQuestionsAPI.map((element , index) => <FormQuestion key={index} data={element}/>)} 
-        </ForumPage>
+        <PageDefaultStyle>
+            <SidePartOfPage>
+                <PageFilters/>
+            </SidePartOfPage>
+
+            <MainPartOfPage>
+                <ForumPage>
+                    <PageTabs/>  
+                    {formQuestionsAPI.map((element , index) => <FormQuestion key={index} data={element}/>)} 
+                </ForumPage>
+            </MainPartOfPage>
+
+            <SidePartOfPage>
+                {
+                    <> 
+                        {isChatBoxOpened  && <ChatBox/>}
+                    </>
+                }
+            </SidePartOfPage>
+        </PageDefaultStyle>
     )
 }
 

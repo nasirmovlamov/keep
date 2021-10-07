@@ -16,6 +16,7 @@ import { GetServerSideProps } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import NavLink from './NavLink'
+import { forumWordRegex } from '../logic/regex/NavbarRegex'
 
 interface Props {
 }
@@ -98,7 +99,7 @@ function Navbar({}: Props): ReactElement {
         }
     }
 
-    
+
     return (
         <Nav>
             <NavLink href={"/"} >
@@ -119,8 +120,8 @@ function Navbar({}: Props): ReactElement {
                     </LiStyle>
                 </NavLink> 
 
-                <NavLink href={"/forum"}>
-                    <LiStyle focus={pathname === "/forum" ? true: false}>
+                <NavLink href={"/forum?selectedTab=Info&selectedTag=Newes"}>
+                    <LiStyle focus={forumWordRegex.test(pathname) ? true: false}>
                         <LinkStyle>Community</LinkStyle>
                         <Line/>
                     </LiStyle>

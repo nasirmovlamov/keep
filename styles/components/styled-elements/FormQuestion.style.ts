@@ -12,15 +12,15 @@ export interface ProductIconProps {
 
 export const FormQuestionCont = styled.div`
     display: flex;
-    width: 100%;
-    padding-top: 16px;
-    padding-bottom: 16px;
+    width: 810px;
+    padding-top: 15px;
+    padding-bottom: 8px;
     padding-left: 20px;
-    padding-right: 10px;
+    padding-right: 44px;
     box-sizing: border-box;
     background-color: ${({theme}) => theme.pageTabs.contBG};
     border-radius: 6px;
-    column-gap: 5px;
+    column-gap: 22px;
     border-radius: 10px;
     background-color: #ffffff;
     box-shadow: 0px 1px 1px rgba(99,105,108,0.61), inset 0px 0px 0px rgba(99,105,108,0.61);
@@ -32,21 +32,22 @@ export const FormQuestionCont = styled.div`
 export const PersonCont = styled.div`
     display: flex;
     flex-direction: column;
-    row-gap: 18px;
-    justify-content: center;
+    width: 61px;
+    height:93px;
 `
 export const Avatar = styled.img`
-    width: 55px;
-    height:55px;
+    width: 61px;
+    height:61px;
     border-radius:50%;
     object-fit: cover;
 `
 export const Name = styled.span`
     font-size: 12px;
+    margin-top: 6px;
     display: flex;
     color: #00090e;
     opacity: 0.62;
-    width: 55px;
+    width: 100%;
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
@@ -71,6 +72,7 @@ export const Title = styled.h2`
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-family: s;
 `
 export const Content = styled.p`
     font-size: 15px;
@@ -96,9 +98,7 @@ export const QuestionTags = styled.div`
 
 export const Tags = styled.button`
     height: 22px;
-    font-size: 12px;
     color: white;
-    background-color:#E5F0F4;
     border: none;
     padding: 5px;
     border-radius: 5px;
@@ -109,6 +109,11 @@ export const Tags = styled.button`
     border: 1px solid lightgray;
     align-items: center;
     box-shadow: 0px 0px 0px 0.5px rgba(158,161,163,0.38), inset 0px 0px 1px rgba(158,161,163,1);
+    background-color: #e5f0f4;
+    font-family: r;
+    font-size: 12px;
+    text-decoration: none solid rgb(0, 87, 139);
+    text-align: center;
 `
 export const ProductsIcons = styled.div`
     display: flex;
@@ -123,7 +128,7 @@ export const ProductIcon = styled.div<ProductIconProps>`
     border-radius: 50%;
     background-color: ${({backgroundColor}) =>  backgroundColor};
     position: absolute;
-    margin-right: ${({index}) => (index * 15)} px;
+    margin-right: ${({index}) => (index * 15)}px;
 `
 
 export const CountOfProducts = styled.div`
@@ -156,7 +161,6 @@ export const StatisticCont = styled.div`
     column-gap: 5px;
     row-gap:5px;
     box-sizing: border-box;
-    height: 100%;
 
 `
 
@@ -236,5 +240,5 @@ export const DateCount = styled.p`
     font-family: r;
     font-style: italic;
     font-size: 12px;
-    color:lightgray;    
+    color:#9ea1a3;    
 `

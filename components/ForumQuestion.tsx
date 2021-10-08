@@ -56,23 +56,7 @@ function FormQuestion({data}: Props): ReactElement {
                 </BottomSide>
             </TextCont>
 
-            <StatisticCont>
-
-                    <AnswerCont>
-                        <AnswerCount>7</AnswerCount>
-                        <Text>Answers</Text>
-                    </AnswerCont>
-
-                    <HelpfulCont>
-                        <HelpfulCount><ThumbIcon><FontAwesomeIcon  icon={faThumbsUp} /> </ThumbIcon> 16 </HelpfulCount>
-                        <DefaultLine><PercentageLine percentage={(69/100*100)}/></DefaultLine>
-                    </HelpfulCont>
-
-                    <DateCount>
-                        2d 7h ago
-                    </DateCount>
-
-            </StatisticCont>
+            w
 
 
         </FormQuestionCont>

@@ -1,14 +1,14 @@
 import axios from 'axios'
 import React, { ReactElement, useEffect, useState } from 'react'
-import ListingStoreProduct from '../components/ListingStoreProduct'
-import PageTabs from '../components/ForumPageTabs'
-import { StorePage } from '../styles/global/styled-utils/styling-elements/Pages.style'
-import { PageDefaultStyle } from '../styles/pages/Page.styled'
-import SidePartOfPage from '../components/SidePartOfPage'
-import MainPartOfPage from '../components/MainPartOfPage'
-import { useAppSelector } from '../app/store/hooks'
-import { is_chatbox_opened } from '../app/feature/ChatBoxSlice'
-import ChatBox from '../components/ChatBox'
+import ListingStoreProduct from '../../components/ListingStoreProduct'
+import PageTabs from '../../components/ForumPageTabs'
+import { StorePage } from '../../styles/global/styled-utils/styling-elements/Pages.style'
+import { PageDefaultStyle } from '../../styles/pages/Page.styled'
+import SidePartOfPage from '../../components/SidePartOfPage'
+import MainPartOfPage from '../../components/MainPartOfPage'
+import { useAppSelector } from '../../app/store/hooks'
+import { is_chatbox_opened } from '../../app/feature/ChatBoxSlice'
+import ChatBox from '../../components/ChatBox'
 
 interface Props {
     
@@ -35,7 +35,7 @@ function Store({}: Props): ReactElement {
 
     return (
         <PageDefaultStyle>
-            <SidePartOfPage>
+            <SidePartOfPage side="left">
                 
             </SidePartOfPage>
 
@@ -46,7 +46,7 @@ function Store({}: Props): ReactElement {
                 </StorePage>
             </MainPartOfPage>
 
-            <SidePartOfPage>
+            <SidePartOfPage side="right">
                 {
                     <> 
                         {isChatBoxOpened  && <ChatBox/>}

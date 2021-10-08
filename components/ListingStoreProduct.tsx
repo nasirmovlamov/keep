@@ -2,6 +2,7 @@ import React, { ReactElement} from 'react'
 import Image from 'next/image'
 import { AnswerCount,  Avatar, BottomSide, Content,  FormQuestionCont, Name, PersonCont, QuestionTags, StatisticCont, Tags, TextCont, Title, Text, HelpfulCont, HelpfulCount, AnswerCont, ViewsCont,  } from '../styles/components/styled-elements/FormQuestion.style'
 import { AddCave, Language, LanguageInfo, LinesofCode, ProductContent, ProductContentCont, ProductDetailCont,  ProductImageAndContent, ProductLanguageAndImage, ProductPerson, ProductPriceCont, ProductSoldCont, ProductStarCont, ProductTag, ProductTags, ProductTitle, StoreListingProductStyle } from '../styles/components/styled-elements/ListingStoreProduct.styled'
+import NavLink from './NavLink'
 
 interface Props {
     data:{
@@ -35,7 +36,7 @@ function ListingStoreProduct({data}: Props): ReactElement {
 
                 <ProductContentCont>
                     <ProductContent>
-                        <ProductTitle>{data.name}</ProductTitle>
+                        <NavLink href={"store/1/test"}><ProductTitle>{data.name}</ProductTitle></NavLink>
                         <ProductDetailCont>
                             <ProductStarCont>star {data.starCount}</ProductStarCont>
                             <ProductSoldCont>sold {data.soldCount}</ProductSoldCont>

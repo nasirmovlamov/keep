@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const SingleProductMiddle = styled.main`
-    width: 808px;
+    width: 100%;
     display: flex;
     flex-direction:column;
     margin: auto;

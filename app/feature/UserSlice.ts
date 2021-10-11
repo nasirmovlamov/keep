@@ -17,7 +17,6 @@ export const UserSlice = createSlice({
     initialState:AUTH_STATE,
     reducers: {
         changeModalAction(state, action) {
-            
             state.user_errors = user_errors_data
             for (const [key, value] of Object.entries(state.userModals)) {
                 if(key !== action.payload)
@@ -171,20 +170,20 @@ export const { user_status_not_logged } = UserSlice.actions;
 
 
 // data
-export const register_errors = (state: RootState) => state.authReducer.user_errors.registerErrors.errors;
-export const login_errors = (state: RootState) => state.authReducer.user_errors.loginErrors.errors;
-export const forget_Password_Errors = (state: RootState) => state.authReducer.user_errors.forgetPasswordErrors.errors;
-export const user_data = (state: RootState) => state.authReducer.user
-export const user_modals = (state: RootState) => state.authReducer.userModals
+export const register_errors = (state: RootState) => state.userReducer.user_errors.registerErrors.errors;
+export const login_errors = (state: RootState) => state.userReducer.user_errors.loginErrors.errors;
+export const forget_Password_Errors = (state: RootState) => state.userReducer.user_errors.forgetPasswordErrors.errors;
+export const user_data = (state: RootState) => state.userReducer.user
+export const user_modals = (state: RootState) => state.userReducer.userModals
 
-export const login_form = (state: RootState) => state.authReducer.forms.loginForm
-export const register_form = (state: RootState) => state.authReducer.forms.registerForm
+export const login_form = (state: RootState) => state.userReducer.forms.loginForm
+export const register_form = (state: RootState) => state.userReducer.forms.registerForm
 
 
 
-export const is_Logged = (state: RootState) => state.authReducer.loggedIn
-export const is_loading = (state: RootState) => state.authReducer.status
-export const user_status = (state: RootState) => state.authReducer.user_status
+export const is_Logged = (state: RootState) => state.userReducer.loggedIn
+export const is_loading = (state: RootState) => state.userReducer.status
+export const user_status = (state: RootState) => state.userReducer.user_status
 
 
 export default UserSlice.reducer;

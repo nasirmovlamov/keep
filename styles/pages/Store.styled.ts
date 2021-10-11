@@ -121,3 +121,107 @@ export const ProductTag = styled.div`
     text-align: center;
     
 `
+
+
+
+
+
+
+export const LabelCont = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 10px;
+`
+
+export const LabelKey = styled.h3`
+    font-size: 25px;
+    color: #032728;
+`
+
+export const LabelContent = styled.p`
+    text-align: justify;
+    font-size: 18px;
+    color: #032728;
+
+`
+
+export const ClipsCont = styled.p`
+    display:flex;
+    height: 329px;
+    width: 100%;
+    flex-direction: column;
+    row-gap: 10px;
+`
+export const ClipTitle = styled.h3`
+    font-size: 25px;
+    color: #032728;
+`
+export const ClipBody = styled.div`
+    display: flex;
+    justify-content: space-between;
+`
+export const MainClip = styled.div`
+    height: 100%;
+    background-color: gray;
+    width: 532px;
+`
+export const SideClips = styled.div`
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 138px;
+    row-gap: 10px;
+
+`
+export const SideClip = styled.div`
+    width: 135px;
+    height: 84px;
+    background-color: gray;
+`
+
+
+export const StoreForumCont = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+`
+
+export const StoreForumTitle = styled.h3`
+    font-size: 25px;
+    color: #032728;
+`
+
+export const StoreForumBody = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+`
+
+
+export const StoreDiscussionCont = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+`
+
+export const StoreDiscussionTitle = styled.h3`
+    font-size: 25px;
+    color: #032728;
+`
+
+export const StoreDiscussionBody = styled.div`
+    width: 100%;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+`

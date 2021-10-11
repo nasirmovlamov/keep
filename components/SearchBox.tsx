@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useRouter } from 'next/router'
 import React, { ReactElement, useEffect, useRef, useState } from 'react'
 import { useScrollDirection } from 'react-use-scroll-direction'
-import { changeModalAction } from '../app/feature/AuthSlice'
+import { changeModalAction } from '../app/feature/UserSlice'
 import { useAppDispatch } from '../app/store/hooks'
 import { forumWordRegex, storeWordRegex } from '../logic/regex/NavbarRegex'
 import { AddQuesitionCont, SearchBoxContainer , SearchBoxPage, SearchBoxStyle, SearchBoxThunk, SearchBoxThunkAndCont, SearchCont, SearchInput, SearchNav, SearchNavQuery} from '../styles/components/styled-elements/SearchBox.style'
@@ -106,6 +106,22 @@ function SearchBox({}: Props): ReactElement {
     const SearchContDesign = {
         paddingTop: pagePath === "Home" ? "20vh" : "0vh",
     }
+
+
+    const handleAddClick = () => {
+        console.log(router.asPath)
+
+        if(forumWordRegex.test(router.asPath))
+        {
+            dispatch(changeModalAction("questionCreate"))
+        } 
+        else if(storeWordRegex.test(router.asPath))
+        {
+            dispatch(changeModalAction("productCreate"))
+        }
+        else 
+        {}
+    }
     
     return (
         <SearchBoxContainer ref={searchContRef} path={router.asPath} style={SearchContDesign}>
@@ -129,7 +145,7 @@ function SearchBox({}: Props): ReactElement {
                                     </SearchNavQuery>
                                 </SearchNav>
                             </SearchCont>
-                            {pagePath !== "Home" && <AddQuesitionCont onClick={router.asPath === "/forum" ? () => dispatch(changeModalAction("questionCreate")) : ()=>{}}>ADD</AddQuesitionCont>}
+                            {pagePath !== "Home" && <AddQuesitionCont onClick={handleAddClick}>ADD</AddQuesitionCont>}
                         </SearchBoxStyle>
                         {pagePath !== "Home" &&<SearchBoxThunk onMouseMove={()=>setDirection("up")} direction={direction}>	• 	•	•</SearchBoxThunk>}
                     </SearchBoxThunkAndCont>

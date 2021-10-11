@@ -3,7 +3,7 @@ import axios from 'axios'
 import { getToken } from '../app/actions/getToken';
 import { useAppDispatch, useAppSelector } from '../app/store/hooks';
 import { AddAnswer, AddAnswerCont, AddAnswerSubmit } from '../styles/pages/SingleQuestionPage.styled'
-import { user_data } from '../app/feature/AuthSlice';
+import { user_data } from '../app/feature/UserSlice';
 import { errorToastFunc } from './Notify/ErrorToasts';
 import { autoSuccessToaster } from './Notify/AutoSuccessToast';
 import { autoErrorToaster } from './Notify/AutoErrorToaster';

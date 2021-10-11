@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import appReducer from '../feature/AppSlice'
 import tabsReducer from '../feature/PageTabsSlice'
-import authReducer from '../feature/AuthSlice'
+import userReducer from '../feature/UserSlice'
 import questionReducer from '../feature/QuestionSlice'
 import commentsReducer from '../feature/CommentsSlice'
 import chatBoxReducer from '../feature/ChatBoxSlice'
@@ -11,7 +11,7 @@ import pageFiltersReducer from '../feature/PageFiltersSlice'
 const reducer = 
 {  
   appReducer: appReducer , 
-  authReducer:authReducer , 
+  userReducer:userReducer , 
   questionReducer:questionReducer, 
   commentsReducer:commentsReducer  ,
   tabsReducer:tabsReducer,

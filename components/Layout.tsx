@@ -1,6 +1,6 @@
 import React, { ReactElement, FC, useEffect } from 'react'
 import { page_overflowy } from '../app/feature/AppSlice';
-import {  user_data, user_status, user_status_not_logged } from '../app/feature/AuthSlice';
+import {  user_data, user_status, user_status_not_logged } from '../app/feature/UserSlice';
 import { useAppDispatch, useAppSelector } from '../app/store/hooks';
 import { userCheck } from '../app/thunks/AuthThunk';
 import Footer from './Footer'

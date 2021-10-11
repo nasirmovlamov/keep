@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { ReactElement, useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { user_data } from '../app/feature/AuthSlice'
+import { user_data } from '../app/feature/UserSlice'
 import { useInView } from 'react-intersection-observer';
 
 import { chat_rooms, closeChat, opened_chat_room_id, setRoomId } from '../app/feature/ChatBoxSlice'

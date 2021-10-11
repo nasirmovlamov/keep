@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import React, { ReactElement, useEffect, useRef, useState } from 'react'
 import { useInView } from 'react-intersection-observer';
 import { changeForumTabActive } from '../app/feature/PageTabsSlice';
-import { changeModalAction, user_data } from '../app/feature/AuthSlice';
+import { changeModalAction, user_data } from '../app/feature/UserSlice';
 import { useAppDispatch, useAppSelector } from '../app/store/hooks';
 import { unVoteAnswer, voteAnswer } from '../app/thunks/QuestionThunk';
 import { AnswerContent, AnswerStyle, Avatar, LikeButton, Name, PersonCont, ShowComments } from '../styles/components/styled-elements/Answer.style';

@@ -70,12 +70,12 @@ export const SingleTabs = styled.div`
     height: 40px;
     &:hover ${SingleLine}
     {
-        opacity: 0.3;
         transform: scale(0.8);
+        background-color: gray;
     }
     &:hover ${SingleTabText}
     {
-        opacity: 0.3;
+        color: gray;
     }
 `
 
@@ -109,6 +109,7 @@ export const SingleTabButton = styled.button`
        
         ${SingleTabText}
         {
+            color: black;
             opacity: 1;
         }
         span{
@@ -119,6 +120,7 @@ export const SingleTabButton = styled.button`
             width: 100% !important;
             transform: scale(1) !important;
             color:#63696c;
+            background-color: black !important;
         }
     }
 `

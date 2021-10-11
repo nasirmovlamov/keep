@@ -47,7 +47,6 @@ function MyEditor({content , onChange}) {
     if (quill) {
       quill.on('text-change', () => {
         onChange(quill.root.innerHTML);
-        console.log(editor_theme);
         let qlSyntaxes = document.querySelectorAll('.ql-syntax')
         for (let index = 0; index < qlSyntaxes.length; index++) {
           qlSyntaxes[index].setAttribute('style', `background-color: ${editor_theme}`)

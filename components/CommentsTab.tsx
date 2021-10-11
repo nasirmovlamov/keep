@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import { set_overflowy } from '../app/feature/AppSlice'
-import { user_data } from '../app/feature/AuthSlice'
+import { user_data } from '../app/feature/UserSlice'
 import { comments,   comments_types, showComments } from '../app/feature/CommentsSlice'
 import { useAppDispatch, useAppSelector } from '../app/store/hooks'
 import { addAnswerComment, addQuestionComment } from '../app/thunks/CommentsThunk'

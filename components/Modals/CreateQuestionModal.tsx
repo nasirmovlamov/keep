@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect, useState } from 'react'
-import { changeModalAction } from '../../app/feature/AuthSlice'
+import { changeModalAction } from '../../app/feature/UserSlice'
 import { useAppDispatch } from '../../app/store/hooks'
 import {BASE_API_INSTANCE} from '../../helpers/api/BaseInstance'
 import { accessToken } from '../../helpers/token/TokenHandle'

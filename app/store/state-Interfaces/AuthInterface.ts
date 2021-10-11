@@ -16,7 +16,8 @@ export interface AUTH_INTERFACE {
         register:boolean
         forgetPassword:boolean,
         isEmailSend:boolean,
-        questionCreate:boolean
+        questionCreate:boolean,
+        productCreate:boolean
     }
     forms:{
         registerForm:{

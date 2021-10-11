@@ -11,7 +11,7 @@ export interface PageTabsState {
 const initialState: PageTabsState = {
     page_tabs:{
         forumTabs:[{tabName:"Answers" , link:"answersCont" , id:0 , isActive:true} , {tabName:"Products" , link:"productsCont" , id:1 , isActive:false}],
-        productTabs:[{tabName:"Answers" , link:"answersCont" , id:2 , isActive:true} , {tabName:"Products" , link:"productsCont" , id:3 , isActive:false}]
+        productTabs:[{tabName:"Code" , link:"codeCont" , id:2 , isActive:true} , {tabName:"Info" , link:"requirementsCont" , id:3 , isActive:false} , {tabName:"Forum" , link:"forumCont" , id:4 , isActive:false} , {tabName:"Clips" , link:"clipCont" , id:5 , isActive:false}]
     }
 };
 

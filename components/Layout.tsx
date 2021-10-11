@@ -12,6 +12,8 @@ import { openChat } from '../app/feature/ChatBoxSlice'
 import router from 'next/router';
 import { forumWordRegex } from '../logic/regex/NavbarRegex';
 import Head from 'next/head'
+import { LayoutCont, LayoutMain } from '../styles/pages/Page.styled';
+import LayoutSide from './LayoutSide';
 
 
 interface Props {
@@ -44,25 +46,20 @@ const Layout: FC<Props> = ({ children, ...props }) => {
     if(userStatus === "logged" || userStatus === "not-logged") {
         return (
             <>
-                
-                <div style={{width:"100%" , minHeight:"100vh", backgroundImage: "url(../../../public/static/img/default-vector-background.png)" }}>
-                    <Navbar/>
-                    <SearchBox/>
-                    {children}
+                <LayoutCont>
+                    <LayoutSide/>
+                    <LayoutMain>
+                        <Navbar/>
+                        {/*<SearchBox/>*/}
+                        {children}
 
-                    {userData !== null && <button type="button" style={{position:"fixed",right:"0px",bottom:"0px"}} onClick={openUserChat}>Chat</button>}
-                    <Modals/>
-                    <Footer/>
-                </div>   
+                        {/*{userData !== null && <button type="button" style={{position:"fixed",right:"0px",bottom:"0px"}} onClick={openUserChat}>Chat</button>}
+                        <Modals/>
+                        {/*<Footer/>*/}
+                    </LayoutMain>
+                </LayoutCont>
 
-                {
-                (pageOverflowY === "hidden" 
-                    && 
-                    <div style={{width:"10px" , height:"100vh" , background:"white", right:"0px",  zIndex:9999999, backgroundColor:"transparent"}}>
-                        <div style={{width:"100%" , height:"59.4px" , backgroundColor:"#00090e"}}></div>
-                    </div> 
-                )
-                }
+               ``
 
             </>
         )

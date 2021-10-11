@@ -6,9 +6,9 @@
       toggleThemeColor:"#00090E",
       themeTogglerCont: "#FFFFFF",
       themeTogglerContBorder: "black",
-      backgroundMain:"#00090e",
+      backgroundMain:"#1e1e2d",
       navbar: {
-        navBackground:"#FFFFFF",
+        navBackground:"#1e1e2d",
         navLogoText:"#f2f2f3",
         navBorder:"#ADB9B9",
         navLinks:"#9ea1a3",
@@ -37,9 +37,9 @@
     toggleThemeColor:"#00090E",
     themeTogglerCont:"#00090E",
     themeTogglerContBorder: "00090E",
-    backgroundMain:"#00090e",
+    backgroundMain:"#1e1e2d",
     navbar: {
-      navBackground:"#00090E",
+      navBackground:"#1e1e2d",
       navLogoText:"#4C5B5F",
       navBorder:"#49585C",
       navLinks:"#879B9D",

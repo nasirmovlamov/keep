@@ -11,9 +11,6 @@ export const Nav = styled.nav`
     align-items:center;
     padding-left: 25px;
     padding-right: 20px;
-    padding-top: 7px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid ${({theme}) => theme.navbar.navBorder};
     background-color: ${({theme}) => theme.backgroundMain};
     margin: 0px;
     position: sticky;
@@ -24,150 +21,36 @@ export const Nav = styled.nav`
 
 
 
-export const Light = styled.div`
-    width:7px;
-    height:7px;
-    position:absolute;
-    background-color:#FFFFFF;
-    border-radius:50%;
-    z-index:2;
-    left:24.4px;
-    top:9.4px;
-    opacity: 0.1;
-    transition: 0.2s;
-    filter: blur(1px);
-
-`
-
-
-export const LightShadow = styled.div`
-    width:15px;
-    height:15px;
-    position:absolute;
-    background-color:#FFFFFF;
-    border-radius:50%;
-    transition: 0.2s;
-    stroke-width: 0;
-    opacity: 0;
-    z-index: 2;
-    fill: #FFFFFF;stroke: #8c8c8c;stroke-width: 0;
-    filter: blur(5px);
-    left:19.4px;
-    top:5.5px;
-`
-export const LightShadow2 = styled.div`
-   
-`
-export const Logo = styled.div`
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    position:relative;
-    
-    &:hover ${LightShadow} {
-        opacity: 0.38;
-
-    }
-    &:hover ${LightShadow2} {
-        opacity: 0.169;
-    }
-    &:hover ${Light} {
-        opacity: 1;
-    }
-    img 
-    {
-        width: 80px;
-        z-index: 1;
-        height: 48px;
-    }
-`
-export const LogoText = styled.p`
-    font-size: 45px;
-    color: ${({theme}) => theme.navbar.navLogoText};
-`
-
-export const Line =  styled.div`
-    width: 10px;
-    opacity: 0;
-    height: 2px;
-    border-radius: 100px;
-    position:absolute;
-    bottom: 0px;
-    transition: 0.3s;
-    background-color: ${({theme}) => theme.navbar.navLinksHovered};
-`
-export const LinkStyle = styled.a`
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    letter-spacing: 1px;
-    font-weight: 600;
-    cursor: pointer;
-    color: ${({theme}) => theme.navbar.navLinks};
-    transition: 0.3s;
-    
-`
-
 
 
 export const LiStyle = styled.li`
     display:flex;
     justify-content:center;
     align-items:center;
-    height:50px;    
     padding-bottom: 3px;
     column-gap: 40px;
-    font-size: 18px;
-    width: 195px;
+    font-size: 13px;
+    color:#92929F;
     letter-spacing: 1px;
     font-weight: 600;
-    position: relative;
-    div 
-    {
-        opacity: ${(props:{focus:boolean}) => props.focus ? '1' : '0'};
-        width: ${(props:{focus:boolean}) =>  props.focus ? '120px' : '0px'};
-    }
-    a {
-        font-family: s;
-        color: ${(props:{theme:ThemeType , focus:boolean}) =>  props.focus ? props.theme.navbar.navLinksHovered : props.theme.navbar.navLinks};
-    }
-
+    color:white;
+    cursor:pointer;
+    padding:8px 10px;
+    border-radius:5px;
     &:hover 
     {
-        cursor: pointer;
-        div 
-        {
-            opacity: 1 !important;
-            width: 120px;
-            transform: scale(1) !important;
-
-        }
-        a {
-            color: ${({theme}) => theme.navbar.navLinksHovered} !important;
-        }
+        color:#3699FF;
+        background-color: #1B1B29CC;
     }
-
 `
 
 export const LinksStyle = styled.ul`
     display:flex;
     /* justify-content:center; */
-    align-items:flex-end;
-    height:60px;    
-    width:680px;
-    &:hover ${Line}
-    {
-        opacity: 0.2; 
-        transform: scale(0.8);
-        ${({theme}) => theme.navbar.navLinks}   
-    }
-    &:hover
-    {
-        a 
-        {
-            color:${({theme}) => theme.navbar.navLinks}   
-        }
-    }
+    align-items:center;
+    height:100%;    
+    column-gap: 25px;
+    margin-left:20px;
 `
 
 

@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect,  useState } from 'react'
-import {Enterance, Guest, ImageStyle1, ImageStyle2,  Light, LightShadow, LightShadow2, Line,  LinksStyle, LinkStyle, LiStyle, Logged, LoginButton, Logo, LogoText, Logout, Nav, PersonName, RegisterButton} from '../styles/components/styled-elements/Navbar.style'
+import {Enterance, Guest, ImageStyle1, ImageStyle2,   LinksStyle, LinkStyle, LiStyle, Logged, LoginButton, Logo, LogoText, Logout, Nav, PersonName, RegisterButton} from '../styles/components/styled-elements/Navbar.style'
 import Image from 'next/image'
 import mainLogo from '../public/static/img/main-logo.svg'
 import lightPerson from '../public/static/img/light-person.png'
@@ -102,35 +102,25 @@ function Navbar({}: Props): ReactElement {
 
     return (
         <Nav>
-            <NavLink href={"/"} >
-                <Logo> 
-                    <Image height="49px" src={mainLogo} alt={"Abyss logo"}/>  
-                    <Light/>
-                    <LightShadow/>
-                    <LightShadow2/> 
-                    <LogoText>abyss</LogoText> 
-                </Logo>
-            </NavLink>
+            
             
             <LinksStyle>
-                <NavLink href={"/store"}>
-                    <LiStyle focus={pathname === "/store" ? true: false}>
-                        <LinkStyle>Store</LinkStyle>
-                        <Line />
-                    </LiStyle>
-                </NavLink> 
-
                 <NavLink href={"/forum?selectedTab=Info&selectedTag=Newes"}>
                     <LiStyle focus={forumWordRegex.test(pathname) ? true: false}>
-                        <LinkStyle>Community</LinkStyle>
-                        <Line/>
+                        Community
                     </LiStyle>
                 </NavLink>
                 
+                <NavLink href={"/store"}>
+                    <LiStyle focus={pathname === "/store" ? true: false}>
+                        Store
+                    </LiStyle>
+                </NavLink> 
+
+                
                 <NavLink href={"/pedi"}>
                     <LiStyle focus={pathname === "/pedi" ? true: false}>
-                        <LinkStyle>Pedia</LinkStyle>
-                        <Line/>
+                        Pedia
                     </LiStyle>
                 </NavLink> 
             </LinksStyle>

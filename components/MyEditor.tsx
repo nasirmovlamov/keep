@@ -72,8 +72,6 @@ function MyEditor({content , onChange}) {
 
   return (
     <>
-      
-
       <select value={editor_theme} onChange={handleChange}>
         <option value="red">red</option>
         <option value="green">green</option>

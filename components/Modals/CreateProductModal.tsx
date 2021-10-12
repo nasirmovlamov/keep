@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import { changeModalAction } from '../../app/feature/UserSlice'
-import { useAppDispatch } from '../../app/store/hooks'
+import { useAppDispatch, useAppSelector } from '../../app/store/hooks'
 import {BASE_API_INSTANCE} from '../../helpers/api/BaseInstance'
 import { accessToken } from '../../helpers/token/TokenHandle'
 import { getKeyValue } from '../../logic/getKeyValue'
@@ -11,6 +11,10 @@ import { autoErrorToaster } from '../Notify/AutoErrorToaster'
 import { autoSuccessToaster } from '../Notify/AutoSuccessToast'
 import { errorToastFunc } from '../Notify/ErrorToasts'
 import {DragDropContext, Droppable , Draggable} from 'react-beautiful-dnd'
+import { addNewSection, deleteSection, sections_product, updateKey, updateLabel, updateSectionsOrder } from '../../app/feature/CreateProductSlice'
+import { SectionOfProduct } from '../../app/store/state-Interfaces/CreateProductInterface'
+import { faRulerVertical } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 interface Props {
 }
@@ -20,132 +24,154 @@ interface Props {
 
 
 function CreateProductModal(this: any, {}: Props): ReactElement {
-    const [questionValue, setQuestionValue] = useState({title:"", content:""})
-    const [tags, settags] = useState<string[]>([])
-    const [category, setCategory] = useState<string>("1")
 
-    interface elementOfList {
-        id: number,
-        label_key: string
-        label_value: string
-        isEditor: boolean
-        isClips:boolean
-    }
-    const [elementsOfList, setelementsOfList] = useState<elementOfList[]>([
-        {
-            id: 1,
-            label_key: "Description",
-            label_value:"",
-            isEditor:true,
-            isClips:false,
-        },
-        {
-            id: 2,
-            label_key: "Requirements",
-            label_value:"",
-            isEditor:true,
-            isClips:false
-        },
-      ]
-    )
+    const sectionsProduct = useAppSelector(sections_product)
+    const [clips, setclips] = useState([{id2:99} , {id2:98} , {id2:97}])
+    
 
 
 
     const dispatch = useAppDispatch()
 
-    const questionChange = (e:any) => {
-        setQuestionValue({...questionValue, [e.target.name]:e.target.value})
-    }
+    
 
-    const createTag = (event:any) => {
-        if(event.code === "Space")
+    
+
+
+
+    function handleOnDragEnd(result:any) {
+        console.log(result)
+        if(result.source.droppableId === 'main')
         {
-            settags([...tags, event.target.value])
-            event.target.value = ""
+            if (!result.destination) return;
+            console.log(result)
+            const items = Array.from(sectionsProduct);
+            const [reorderedItem] = items.splice(result.source.index, 1);
+            items.splice(result.destination.index, 0, reorderedItem);
+            dispatch(updateSectionsOrder(items));
+        }
+        else if (result.source.droppableId === 'clips')
+        {
+            if (!result.destination) return;
+            const items = Array.from(clips);
+            const [reorderedItem] = items.splice(result.source.index, 1);
+            items.splice(result.destination.index, 0, reorderedItem);
+            setclips(items)
         }
     }
-
-    const sendCreateQuestionModal = async (e:any) => {
-        e.preventDefault()
-        try {
-            const formData = new FormData()
-            formData.append("category_id" , category)
-            formData.append("title" , questionValue.title)
-            formData.append("content" , questionValue.content)
-            formData.append("tags" , JSON.stringify(tags))
-            const resp = await BASE_API_INSTANCE.post("/forum/create", formData) 
-            autoSuccessToaster(resp.data.message)
-        } catch (error:any) {
-            autoErrorToaster(error.response.data)
-        }
-    }
-
-
-
-  function handleOnDragEnd(result:any) {
-    if (!result.destination) return;
-
-    const items = Array.from(elementsOfList);
-    const [reorderedItem] = items.splice(result.source.index, 1);
-    items.splice(result.destination.index, 0, reorderedItem);
-
-    setelementsOfList(items);
-  }
     
 
 
+    
   
-  const updateLabelKey = (index:number , content:any) =>{
-      console.log(elementsOfList)
-      let oldarray = [...elementsOfList]
-      oldarray[index].label_key = content
-      setelementsOfList([...oldarray])
-    }
-    
-    const updateEditorValue = (index:number , content:any) =>{
-        let oldarray = [...elementsOfList]
-        oldarray[index].label_value = content
-        setelementsOfList([...oldarray])
-    }
+
+
+
+
 
     const addNewBlock = (index:number , content:any) =>{
-        setelementsOfList([...elementsOfList , {id:elementsOfList.length + 1 , label_key:"Header" , label_value:"" , isEditor:true , isClips:false}])
+        dispatch(addNewSection(null))
+        return null
     }
 
     const deleteBlock = (index:number) =>{
-        let oldarray = [...elementsOfList]
-        oldarray.splice(index, 1)
-        setelementsOfList([...oldarray])
+        console.log(index)
+        dispatch(deleteSection(index))
     }
+
+
+    useEffect(() => {
+        console.log(sectionsProduct)
+    }, [sectionsProduct])
 
     return (
         <ProductCreateModal>
-            <ProductCreateForm onSubmit={sendCreateQuestionModal}>
+            <ProductCreateForm>
                 <div style={{display:'flex',flexDirection:"column",alignItems:'flex-end',marginTop:"0px",marginBottom:"10px"}}>
                     <button type="button" onClick={() => dispatch(changeModalAction('productCreate'))} style={{background:"none",border:"none",cursor:"pointer"}}>X</button>
                 </div>
 
                 <DragDropContext onDragEnd={handleOnDragEnd}>
-                    <Droppable droppableId="characters">
-                        {(provided) => (
-                            <ul className="characters" {...provided.droppableProps} ref={provided.innerRef}>
-                                {elementsOfList.map(({id , label_key , label_value , isEditor , isClips}:elementOfList, index) => {
+                    <Droppable droppableId="main" >
+                        {(provided , snapshot) => (
+                            <div  style={{
+                                background: snapshot.isDraggingOver
+                                  ? "lightblue"
+                                  : "lightgrey",
+                                padding: 4,
+                                width: "100%",
+                              }} {...provided.droppableProps} ref={provided.innerRef}>
+                                {sectionsProduct.map(({id , label_key , label_value , isEditor , isClips}:SectionOfProduct, index) => {
                                     return (
-                                        <Draggable key={id} draggableId={id.toString()} index={index}>
-                                            {(provided) => (
-                                                <li ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                                        <Draggable draggableId={id.toString()} index={index}  key={id}>
+                                            {(provided , snapshot) => (
+                                                <div  key={id}  ref={provided.innerRef} {...provided.draggableProps} style={{
+                                                    userSelect: "none",
+                                                    padding: 16,
+                                                    margin: "0 0 8px 0",
+                                                    minHeight: "50px",
+                                                    backgroundColor: snapshot.isDragging
+                                                      ? "#263B4A"
+                                                      : "#456C86",
+                                                    color: "white",
+                                                    ...provided.draggableProps.style
+                                                  }}>   
                                                     <ProductLabelCont key={id}>
-                                                        <button type='button' onClick={()=>deleteBlock(index)}>x</button>
-                                                        <input type='text' value={label_key} onChange={(e:any) => updateLabelKey(index, e.target.value)} />
-                                                        {isEditor && <MyEditor content={label_value}  onChange={(content:any) => updateEditorValue(index , content)}/>}
-                                                        <label htmlFor="title">validate</label>
+                                                        <span style={{marginRight:"10px" , color:"black"}} {...provided.dragHandleProps}><FontAwesomeIcon icon={faRulerVertical}  >block</FontAwesomeIcon></span>
+                                                        {isEditor && <button type='button' onClick={()=>deleteBlock(index)}>x</button>}
+                                                        {isClips && <input type='text' disabled={true} value={label_key} />}
+                                                        {isEditor &&<input type='text' value={label_key} onChange={(e:any) => dispatch(updateKey({index:index , content:e.target.value}))} />}
+                                                        {isEditor && <MyEditor content={label_value}  onChange={(content:any) => dispatch(updateLabel({index:index , content:content}))}/>}
+                                                        {isEditor &&<label htmlFor="title">validate</label>}
+                                                        {isClips && 
+                                                            <div style={{width:'100%', height:'450px'}}>
+                                                                <Droppable droppableId="clips"  type={`${1}`}>
+                                                                    {(provided , snapshot) => (
+                                                                        <div  style={{
+                                                                            background: snapshot.isDraggingOver
+                                                                            ? "lightblue"
+                                                                            : "lightgrey",
+                                                                            padding: 4,
+                                                                            width: "100%",
+                                                                        }} {...provided.droppableProps} ref={provided.innerRef}>
+                                                                            {clips.map(({id2}, index) => {
+                                                                                return (
+                                                                                    <Draggable key={id2} draggableId={id2.toString()} index={index}>
+                                                                                        {(provided , snapshot) => (
+                                                                                            <div  ref={provided.innerRef} {...provided.draggableProps} style={{
+                                                                                                userSelect: "none",
+                                                                                                padding: 16,
+                                                                                                margin: "0 0 8px 0",
+                                                                                                backgroundColor: snapshot.isDragging
+                                                                                                ? "#263B4A"
+                                                                                                : "#456C86",
+                                                                                                color: "white",
+                                                                                                ...provided.draggableProps.style
+                                                                                            }}>
+                                                                                                <span style={{marginRight:"10px" , color:"black"}} {...provided.dragHandleProps}><FontAwesomeIcon icon={faRulerVertical}  >block</FontAwesomeIcon></span>
+                                                                                                {id2}
+                                                                                            </div>  
+                                                                                        )}
+                                                                                    </Draggable>
+                                                                                )
+                                                                            })}
+                                                                            {provided.placeholder}
+                                                                        </div>
+                                                                    )}
+                                                                </Droppable>
+                                                            </div>
+                                                        }
+
+
+
                                                     </ProductLabelCont>
-                                                </li>
+                                                </div>
                                             )}
                                         </Draggable>
                                     );
                                 })}
-                            </ul>
+                                {provided.placeholder}
+                            </div>
                         )}
                     </Droppable>
                 </DragDropContext>
